@@ -32,12 +32,15 @@ export class DynamicForm {
   //     `serverErrors` input (Record<string, string[]> | null) to show 422 messages per field
   //   - `value` model() (RequestFormModel) for two-way binding: [(value)]="formValue"
   //   - a public `form` built with form(this.value, requestTypeSchema(fields)) from
-  //     shared/util-forms, recreated when `type` changes (computed + the `injector` option), so a
-  //     parent can call submit(dynamicForm.form(), ...) through viewChild
+  //     shared/util-forms, recreated when `type` changes, so a parent can call
+  //     submit(dynamicForm.form(), ...) through viewChild. form() creates effects internally, so
+  //     inside a computed() wrap the call in untracked() and pass the `injector` option.
   //   - make sure every field key exists in `value` (text '' / number null / checkbox false /
   //     dateRange { start: '', end: '' } / select and file null): Signal Forms only creates
   //     fields for keys present in the model
   //   - `sections` computed: each section with its fields; hide fields with isFieldVisible
+  //   - <mat-error> only renders while the control is in an error state, so show serverErrors
+  //     in a <mat-hint> (or feed them into the schema as a validate() rule)
   //   Hint: this is the classic "JSON schema -> form" renderer; in React you might map over the
   //   schema and switch on field.type. The same shape works here with @for and @switch.
   //   Docs: https://angular.dev/guide/forms/signals/overview
