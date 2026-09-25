@@ -1,0 +1,28 @@
+<div class="mo-page">
+  <!-- i18n: notifications.title -->
+  <mo-page-header heading="Notifications">
+    <!-- TODO(T5.3): (click) marks everything read; disabled when unreadCount() is 0 -->
+    <!-- i18n: notifications.markAll -->
+    <button mat-stroked-button moPageActions type="button" data-testid="mark-all-read">
+      <mat-icon>done_all</mat-icon>
+      Mark all as read
+    </button>
+  </mo-page-header>
+
+  <!-- TODO(T5.3): bind to the filter signal -->
+  <mat-button-toggle-group value="all" class="notifications__filter">
+    <!-- i18n: notifications.all, notifications.unread -->
+    <mat-button-toggle value="all" data-testid="filter-all">All</mat-button-toggle>
+    <mat-button-toggle value="unread" data-testid="filter-unread">Unread</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <!-- TODO(T5.3): @for (item of visible(); track item.id); @empty -> mo-empty-state -->
+  <mat-nav-list class="notifications__list">
+    <a mat-list-item class="notifications__item--unread" data-testid="notification-row">
+      <mat-icon matListItemIcon aria-hidden="true">verified</mat-icon>
+      <!-- i18n: notifications.kind.request.approved (param: refNo) -->
+      <span matListItemTitle>CL-2026-00032 was approved</span>
+      <span matListItemLine>Sep 24, 2026, 3:15 PM</span>
+    </a>
+  </mat-nav-list>
+</div>
