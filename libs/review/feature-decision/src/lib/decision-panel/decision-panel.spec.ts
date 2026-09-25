@@ -64,8 +64,8 @@ function render(assigneeId: string | null = 'u-me') {
   };
   const decided = () =>
     dispatch.mock.calls
-      .map(([action]) => action)
-      .filter((action): action is Action => typeof action !== 'function' && action.type === '[Inbox] Decide');
+      .map(([action]) => action as unknown as Action)
+      .filter((action) => action.type === '[Inbox] Decide');
   return { fixture, store, dispatch, el, choose, type, submit, decided };
 }
 
