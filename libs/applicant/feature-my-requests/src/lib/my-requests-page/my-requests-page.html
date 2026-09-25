@@ -1,0 +1,68 @@
+<div class="mo-page">
+  <!-- i18n: myRequests.title, myRequests.subtitle -->
+  <mo-page-header heading="My requests" subtitle="Track the status of everything you have submitted.">
+    <!-- TODO(T2.5): routerLink="/applicant/catalog" -->
+    <!-- i18n: myRequests.new -->
+    <a mat-flat-button moPageActions data-testid="new-request">
+      <mat-icon>add</mat-icon>
+      New request
+    </a>
+  </mo-page-header>
+
+  <div class="my-requests__filters">
+    <!-- TODO(T2.5): [value]="status() ?? 'all'" and (change) navigates with the new status -->
+    <!-- i18n: myRequests.filterLabel (aria-label) -->
+    <mat-button-toggle-group class="my-requests__status" value="all" aria-label="Filter by status">
+      <!-- i18n: status.all, status.draft ... status.rejected -->
+      <mat-button-toggle value="all" data-testid="status-filter-all">All</mat-button-toggle>
+      <mat-button-toggle value="draft" data-testid="status-filter-draft">Draft</mat-button-toggle>
+      <mat-button-toggle value="submitted" data-testid="status-filter-submitted">Submitted</mat-button-toggle>
+      <mat-button-toggle value="in_review" data-testid="status-filter-in_review">In review</mat-button-toggle>
+      <mat-button-toggle value="returned" data-testid="status-filter-returned">Returned</mat-button-toggle>
+      <mat-button-toggle value="approved" data-testid="status-filter-approved">Approved</mat-button-toggle>
+      <mat-button-toggle value="rejected" data-testid="status-filter-rejected">Rejected</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <!-- TODO(T2.5): (ngSubmit) or (submit) navigates with q; prefill the input from q() -->
+    <form class="my-requests__search" data-testid="search-form">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-icon matPrefix aria-hidden="true">search</mat-icon>
+        <!-- i18n: myRequests.search -->
+        <mat-label>Reference or keyword</mat-label>
+        <input matInput type="search" name="q" data-testid="search-input" />
+      </mat-form-field>
+    </form>
+  </div>
+
+  <!-- TODO(T2.5): convert to <table mat-table [dataSource]="store.requests()"> with a matColumnDef
+       per column below, *matHeaderRowDef / *matRowDef, and data-testid="request-row" on the row.
+       Each row links to /requests/:id; drafts and returned requests link to
+       /applicant/requests/:id/edit instead. -->
+  <div class="my-requests__table-wrap">
+    <table class="mo-table">
+      <thead>
+        <tr>
+          <!-- i18n: myRequests.col.refNo, .service, .status, .submitted, .sla -->
+          <th>Reference</th>
+          <th>Service</th>
+          <th>Status</th>
+          <th>Submitted</th>
+          <th>Time left</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-testid="request-row">
+          <td class="mo-ltr">BP-2026-00007</td>
+          <td>Building Permit</td>
+          <td><mo-status-chip status="in_review" /></td>
+          <td>Sep 18, 2026</td>
+          <!-- TODO(T2.5): request.dueAt | slaCountdown: now() -->
+          <td class="mo-ltr">1d 6h</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TODO(T2.5): [length]="store.total()", [pageIndex]="(page() ?? 1) - 1", (page) navigates -->
+  <mat-paginator pageSize="10" hidePageSize length="1" data-testid="paginator" />
+</div>
