@@ -1,0 +1,12 @@
+<!-- TODO(T2.4): bind (dragover)/(dragleave)/(drop), [class.file-dropzone--active], [attr.aria-disabled],
+     and the input's [accept]/[multiple]/(change); the button opens the hidden input -->
+<div class="file-dropzone" data-testid="dropzone">
+  <mat-icon class="file-dropzone__icon" aria-hidden="true">cloud_upload</mat-icon>
+  <!-- i18n: upload.dropHere -->
+  <p class="file-dropzone__text">Drag files here</p>
+  <!-- i18n: upload.limits -->
+  <p class="file-dropzone__hint">PDF, PNG or JPEG, up to 5 MB each</p>
+  <!-- i18n: upload.browse -->
+  <button mat-stroked-button type="button" data-testid="dropzone-browse">Browse files</button>
+  <input class="mo-visually-hidden" type="file" tabindex="-1" data-testid="dropzone-input" />
+</div>
