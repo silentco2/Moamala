@@ -1,0 +1,133 @@
+<div class="mo-page detail">
+  <header class="detail__header">
+    <!-- TODO(T2.6): routerLink back to the role's list (history.back() is fine too) -->
+    <!-- i18n: common.back (aria-label) -->
+    <a mat-icon-button aria-label="Back" class="detail__back">
+      <mat-icon class="mo-flip-rtl">arrow_back</mat-icon>
+    </a>
+    <div class="detail__heading">
+      <!-- TODO(T2.6): detail().request.refNo and detail().type.name | localize: lang() -->
+      <p class="detail__ref mo-ltr" data-testid="detail-ref">BP-2026-00007</p>
+      <h1 class="detail__title">Building Permit</h1>
+    </div>
+    <div class="detail__meta">
+      <mo-status-chip status="returned" />
+      <mo-sla-badge />
+    </div>
+  </header>
+
+  <!-- TODO(T5.4): [requestId]="detail().request.id" [users]="detail().users" -->
+  <mo-presence-indicator />
+
+  <!-- TODO(T2.6): @switch (detail().request.status) with one banner per case. Only the returned
+       case is shown statically; the others follow the same markup. -->
+  <!-- @case ('returned') -->
+  <section class="detail__banner detail__banner--warning" role="status" data-testid="returned-banner">
+    <mat-icon aria-hidden="true">undo</mat-icon>
+    <div class="detail__banner-text">
+      <!-- i18n: detail.returned.title -->
+      <p class="detail__banner-title">Returned for changes</p>
+      <!-- TODO(T2.6): lastComment() -->
+      <p class="detail__banner-comment" data-testid="banner-comment">
+        The site plan is missing the plot boundaries. Please upload an updated version.
+      </p>
+    </div>
+    <!-- TODO(T2.6): *moHasRole="'applicant'" and routerLink="/applicant/requests/{{ id }}/edit" -->
+    <!-- i18n: detail.returned.action -->
+    <a mat-flat-button data-testid="edit-request">Edit and resubmit</a>
+  </section>
+  <ng-template>
+    <!-- @case ('approved') -->
+    <section class="detail__banner detail__banner--positive" role="status" data-testid="approved-banner">
+      <mat-icon aria-hidden="true">verified</mat-icon>
+      <div class="detail__banner-text">
+        <!-- i18n: detail.approved.title -->
+        <p class="detail__banner-title">Approved</p>
+        <p class="detail__banner-comment" data-testid="banner-comment">All requirements satisfied.</p>
+      </div>
+    </section>
+    <!-- @case ('rejected') -->
+    <section class="detail__banner detail__banner--negative" role="status" data-testid="rejected-banner">
+      <mat-icon aria-hidden="true">block</mat-icon>
+      <div class="detail__banner-text">
+        <!-- i18n: detail.rejected.title -->
+        <p class="detail__banner-title">Rejected</p>
+        <p class="detail__banner-comment" data-testid="banner-comment">
+          The requested building use is not permitted in this district.
+        </p>
+      </div>
+    </section>
+    <!-- @case ('submitted') and @case ('in_review') -->
+    <section class="detail__banner" role="status" data-testid="progress-banner">
+      <mat-icon aria-hidden="true">hourglass_top</mat-icon>
+      <div class="detail__banner-text">
+        <!-- i18n: detail.progress.title (param: step) -->
+        <p class="detail__banner-title">Waiting at Technical review</p>
+      </div>
+    </section>
+    <!-- @case ('draft') -->
+    <section class="detail__banner" role="status" data-testid="draft-banner">
+      <mat-icon aria-hidden="true">edit_note</mat-icon>
+      <div class="detail__banner-text">
+        <!-- i18n: detail.draft.title -->
+        <p class="detail__banner-title">This request has not been submitted yet</p>
+      </div>
+    </section>
+  </ng-template>
+
+  <div class="detail__columns">
+    <div class="detail__main">
+      <!-- TODO(T2.6): @for (section of sections(); track section.id) -->
+      <mat-card appearance="outlined" class="detail__card">
+        <mat-card-header>
+          <mat-card-title>Owner details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <dl class="detail__fields">
+            <!-- TODO(T2.6): @for (field of section.fields; track field.key) with [attr.data-key] -->
+            <div class="detail__field" data-testid="field-value" data-key="ownerName">
+              <dt>Owner full name</dt>
+              <dd>Omar Haddad</dd>
+            </div>
+            <div class="detail__field" data-testid="field-value" data-key="nationalId">
+              <dt>National ID</dt>
+              <dd class="mo-ltr">1000007919</dd>
+            </div>
+          </dl>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined" class="detail__card">
+        <mat-card-header>
+          <!-- i18n: detail.attachments -->
+          <mat-card-title>Attachments</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- TODO(T2.6): @for over request.attachments; @empty shows detail.noAttachments -->
+          <mat-list>
+            <a mat-list-item href="/api/uploads/att-7-sitePlan" target="_blank" data-testid="attachment">
+              <mat-icon matListItemIcon aria-hidden="true">picture_as_pdf</mat-icon>
+              <span matListItemTitle>sitePlan-7.pdf</span>
+              <span matListItemLine class="mo-ltr">142 KB</span>
+            </a>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <aside class="detail__side">
+      <!-- TODO(T3.5): <router-outlet name="actions" /> (import RouterOutlet) for the decision panel -->
+
+      <mat-card appearance="outlined" class="detail__card">
+        <mat-card-header>
+          <!-- i18n: detail.history -->
+          <mat-card-title>History</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- TODO(T2.6): [items]="timeline()" -->
+          <mo-timeline />
+        </mat-card-content>
+      </mat-card>
+    </aside>
+  </div>
+</div>

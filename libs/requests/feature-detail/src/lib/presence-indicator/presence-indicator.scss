@@ -1,0 +1,30 @@
+.presence {
+  display: inline-flex;
+  gap: var(--mo-space-2);
+  align-items: center;
+  padding: var(--mo-space-1) var(--mo-space-3) var(--mo-space-1) var(--mo-space-1);
+  border-radius: 999px;
+  background: var(--mat-sys-tertiary-container);
+  color: var(--mat-sys-on-tertiary-container);
+  font: var(--mat-sys-label-large);
+}
+
+.presence__avatars {
+  display: flex;
+}
+
+.presence__avatar {
+  display: grid;
+  place-items: center;
+  inline-size: 28px;
+  block-size: 28px;
+  border: 2px solid var(--mat-sys-tertiary-container);
+  border-radius: 50%;
+  background: var(--mat-sys-tertiary);
+  color: var(--mat-sys-on-tertiary);
+  font: var(--mat-sys-label-small);
+
+  & + & {
+    margin-inline-start: -8px;
+  }
+}

@@ -6,3 +6,4 @@ export * from './lib/audit';
 export * from './lib/notification';
 export * from './lib/api';
 export * from './lib/realtime';
+export * from './lib/request-detail';
