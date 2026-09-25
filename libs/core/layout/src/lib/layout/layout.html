@@ -1,0 +1,59 @@
+<!-- TODO(T1.5): bind [dir]="language.dir()" (import BidiModule) so Material components flip with the language -->
+<mat-sidenav-container class="layout">
+  <!-- TODO(T1.6): bind [mode] and [opened] from isHandset(); close the drawer after navigation on handset -->
+  <mat-sidenav class="layout__sidenav" mode="side" opened data-testid="sidenav">
+    <div class="layout__brand">
+      <mat-icon class="layout__logo" aria-hidden="true">account_balance</mat-icon>
+      <!-- i18n: app.name -->
+      <span class="layout__brand-name">Mo'amala</span>
+    </div>
+    <!-- i18n: nav.label (aria-label) -->
+    <mat-nav-list aria-label="Main navigation">
+      <!-- TODO(T1.6): @for (item of navItems(); track item.route) with [routerLink]="item.route",
+           routerLinkActive="layout__nav-item--active" and the translated item.labelKey -->
+      <a mat-list-item class="layout__nav-item layout__nav-item--active" data-testid="nav-item">
+        <mat-icon matListItemIcon aria-hidden="true">storefront</mat-icon>
+        <!-- i18n: nav.catalog -->
+        <span matListItemTitle>Service catalog</span>
+      </a>
+      <a mat-list-item class="layout__nav-item" data-testid="nav-item">
+        <mat-icon matListItemIcon aria-hidden="true">description</mat-icon>
+        <!-- i18n: nav.myRequests -->
+        <span matListItemTitle>My requests</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="layout__content">
+    <mat-toolbar class="layout__toolbar">
+      <!-- TODO(T1.6): render only on handset (@if) and toggle the sidenav on click -->
+      <!-- i18n: nav.openMenu (aria-label) -->
+      <button mat-icon-button type="button" aria-label="Open menu" data-testid="menu-toggle">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <!-- i18n: app.name -->
+      <span class="layout__title">Mo'amala</span>
+      <span class="layout__spacer"></span>
+
+      <ng-content select="[moToolbarActions]" />
+      <mo-lang-switch />
+
+      <button mat-button type="button" [matMenuTriggerFor]="userMenu" data-testid="user-menu">
+        <mat-icon>account_circle</mat-icon>
+        <span class="layout__user-name">Sara Al-Mansouri</span>
+      </button>
+      <mat-menu #userMenu="matMenu" xPosition="before">
+        <!-- TODO(T1.6): (click) signs out -->
+        <button mat-menu-item type="button" data-testid="logout">
+          <mat-icon class="mo-flip-rtl">logout</mat-icon>
+          <!-- i18n: nav.signOut -->
+          <span>Sign out</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <main class="layout__main" id="main-content" tabindex="-1">
+      <ng-content />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
