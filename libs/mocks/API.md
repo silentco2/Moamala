@@ -14,16 +14,20 @@ must implement 1:1. All types live in `libs/shared/models`; field names below ma
   (`errors.*`); 422 responses add `fieldErrors` with translation keys per field (`validation.*`).
 
 ```json
-{ "status": 422, "message": "errors.validation", "fieldErrors": { "comment": ["validation.required"] } }
+{
+  "status": 422,
+  "message": "errors.validation",
+  "fieldErrors": { "comment": ["validation.required"] }
+}
 ```
 
-| Status | Meaning                                                                 |
-| ------ | ----------------------------------------------------------------------- |
-| 401    | Missing, malformed or expired token (`errors.unauthorized`)             |
-| 403    | Authenticated, but the role or ownership does not allow it (`errors.forbidden`) |
-| 404    | Unknown resource (`errors.notFound`)                                    |
-| 409    | State conflict, e.g. already claimed (`errors.alreadyClaimed`)          |
-| 422    | Validation failed; see `fieldErrors`                                    |
+| Status | Meaning                                                                          |
+| ------ | -------------------------------------------------------------------------------- |
+| 401    | Missing, malformed or expired token (`errors.unauthorized`)                      |
+| 403    | Authenticated, but the role or ownership does not allow it (`errors.forbidden`)  |
+| 404    | Unknown resource (`errors.notFound`)                                             |
+| 409    | State conflict, e.g. already claimed (`errors.alreadyClaimed`)                   |
+| 422    | Validation failed; see `fieldErrors`                                             |
 | 500    | Server error (`errors.server`); the mock produces these on purpose in chaos mode |
 
 - **Paging**: list endpoints return `Page<T>` = `{ items, total, page, pageSize }`. `page` is 1-based.
@@ -31,11 +35,11 @@ must implement 1:1. All types live in `libs/shared/models`; field names below ma
 
 ## Auth
 
-| Method | Path                  | Roles  | Body           | Response                     |
-| ------ | --------------------- | ------ | -------------- | ---------------------------- |
-| GET    | `/auth/demo-users`    | public | –              | `User[]` (demo login screen) |
-| POST   | `/auth/login`         | public | `LoginRequest` | `LoginResponse`              |
-| GET    | `/auth/me`            | any    | –              | `User`                       |
+| Method | Path               | Roles  | Body           | Response                     |
+| ------ | ------------------ | ------ | -------------- | ---------------------------- |
+| GET    | `/auth/demo-users` | public | –              | `User[]` (demo login screen) |
+| POST   | `/auth/login`      | public | `LoginRequest` | `LoginResponse`              |
+| GET    | `/auth/me`         | any    | –              | `User`                       |
 
 - `POST /auth/login` with `{ "email": "sara@reviewer.demo" }`. Unknown email: 401
   `errors.invalidCredentials`; empty email: 422 `{ email: ['validation.required'] }`.
@@ -43,14 +47,14 @@ must implement 1:1. All types live in `libs/shared/models`; field names below ma
 
 ## Request types
 
-| Method | Path                                  | Roles | Body / query                | Response             |
-| ------ | ------------------------------------- | ----- | --------------------------- | -------------------- |
-| GET    | `/request-types`                      | any   | `?active=true`              | `RequestType[]`      |
-| GET    | `/request-types/:id`                  | any   | –                           | `RequestType`        |
-| GET    | `/request-types/key-availability`     | admin | `?key=...&excludeId=...`    | `KeyAvailability`    |
-| POST   | `/request-types`                      | admin | `RequestTypeInput`          | 201 `RequestType`    |
-| PUT    | `/request-types/:id`                  | admin | `RequestTypeInput`          | `RequestType`        |
-| DELETE | `/request-types/:id`                  | admin | –                           | 204 (soft delete: `active = false`) |
+| Method | Path                              | Roles | Body / query             | Response                            |
+| ------ | --------------------------------- | ----- | ------------------------ | ----------------------------------- |
+| GET    | `/request-types`                  | any   | `?active=true`           | `RequestType[]`                     |
+| GET    | `/request-types/:id`              | any   | –                        | `RequestType`                       |
+| GET    | `/request-types/key-availability` | admin | `?key=...&excludeId=...` | `KeyAvailability`                   |
+| POST   | `/request-types`                  | admin | `RequestTypeInput`       | 201 `RequestType`                   |
+| PUT    | `/request-types/:id`              | admin | `RequestTypeInput`       | `RequestType`                       |
+| DELETE | `/request-types/:id`              | admin | –                        | 204 (soft delete: `active = false`) |
 
 - Applicants always receive active types only.
 - `POST`/`PUT` validate and answer 422 with keys such as `key`, `name`, `fields`, `steps`,
@@ -61,17 +65,17 @@ must implement 1:1. All types live in `libs/shared/models`; field names below ma
 
 ## Requests
 
-| Method | Path                           | Roles              | Body / query        | Response                 |
-| ------ | ------------------------------ | ------------------ | ------------------- | ------------------------ |
-| GET    | `/requests`                    | any                | `RequestQuery`      | `Page<ServiceRequest>`   |
-| GET    | `/requests/:id`                | any (see access)   | –                   | `ServiceRequest`         |
-| GET    | `/requests/:id/audit`          | any (see access)   | –                   | `AuditEvent[]` (oldest first) |
-| POST   | `/requests`                    | applicant          | `{ typeId }`        | 201 `ServiceRequest` (draft) |
-| PUT    | `/requests/:id/draft`          | applicant (owner)  | `{ data, attachments? }` | `ServiceRequest`    |
-| POST   | `/requests/:id/submit`         | applicant (owner)  | –                   | `ServiceRequest`         |
-| POST   | `/requests/:id/claim`          | reviewer, approver | –                   | `ServiceRequest`         |
-| POST   | `/requests/:id/decision`       | reviewer, approver | `DecisionRequest`   | `ServiceRequest`         |
-| POST   | `/requests/bulk-decision`      | approver           | `BulkDecisionRequest` | `BulkDecisionResponse` |
+| Method | Path                      | Roles              | Body / query             | Response                      |
+| ------ | ------------------------- | ------------------ | ------------------------ | ----------------------------- |
+| GET    | `/requests`               | any                | `RequestQuery`           | `Page<ServiceRequest>`        |
+| GET    | `/requests/:id`           | any (see access)   | –                        | `ServiceRequest`              |
+| GET    | `/requests/:id/audit`     | any (see access)   | –                        | `AuditEvent[]` (oldest first) |
+| POST   | `/requests`               | applicant          | `{ typeId }`             | 201 `ServiceRequest` (draft)  |
+| PUT    | `/requests/:id/draft`     | applicant (owner)  | `{ data, attachments? }` | `ServiceRequest`              |
+| POST   | `/requests/:id/submit`    | applicant (owner)  | –                        | `ServiceRequest`              |
+| POST   | `/requests/:id/claim`     | reviewer, approver | –                        | `ServiceRequest`              |
+| POST   | `/requests/:id/decision`  | reviewer, approver | `DecisionRequest`        | `ServiceRequest`              |
+| POST   | `/requests/bulk-decision` | approver           | `BulkDecisionRequest`    | `BulkDecisionResponse`        |
 
 **Access**: applicants see only their own requests (including drafts); staff see every
 non-draft request.
@@ -107,10 +111,10 @@ returned ──submit──▶ submitted (back at the first step)
 
 ## Uploads
 
-| Method | Path            | Roles     | Body                              | Response          |
-| ------ | --------------- | --------- | --------------------------------- | ----------------- |
-| POST   | `/uploads`      | applicant | `multipart/form-data`, field `file` | 201 `Attachment` |
-| GET    | `/uploads/:id`  | public    | –                                 | file content      |
+| Method | Path           | Roles     | Body                                | Response         |
+| ------ | -------------- | --------- | ----------------------------------- | ---------------- |
+| POST   | `/uploads`     | applicant | `multipart/form-data`, field `file` | 201 `Attachment` |
+| GET    | `/uploads/:id` | public    | –                                   | file content     |
 
 - Limits: `UPLOAD_MAX_BYTES` (5 MB), `UPLOAD_ALLOWED_MIME` (PDF, PNG, JPEG). Violations answer 422
   `{ file: ['validation.fileSize' | 'validation.fileType'] }`.
@@ -119,11 +123,11 @@ returned ──submit──▶ submitted (back at the first step)
 
 ## Notifications
 
-| Method | Path                        | Roles | Body             | Response              |
-| ------ | --------------------------- | ----- | ---------------- | --------------------- |
-| GET    | `/notifications`            | any   | –                | `AppNotification[]` (newest first, own only) |
-| PATCH  | `/notifications/:id`        | any   | `{ read: true }` | `AppNotification`     |
-| POST   | `/notifications/read-all`   | any   | –                | 204                   |
+| Method | Path                      | Roles | Body             | Response                                     |
+| ------ | ------------------------- | ----- | ---------------- | -------------------------------------------- |
+| GET    | `/notifications`          | any   | –                | `AppNotification[]` (newest first, own only) |
+| PATCH  | `/notifications/:id`      | any   | `{ read: true }` | `AppNotification`                            |
+| POST   | `/notifications/read-all` | any   | –                | 204                                          |
 
 Kinds: `request.submitted`, `request.assigned`, `request.returned`, `request.approved`,
 `request.rejected`, `sla.warning`, `sla.breached`. `HIGH_PRIORITY_KINDS` should also surface as a
@@ -131,8 +135,8 @@ toast. `payload` carries `requestId` and `refNo`.
 
 ## Audit
 
-| Method | Path     | Roles | Query        | Response            |
-| ------ | -------- | ----- | ------------ | ------------------- |
+| Method | Path     | Roles | Query        | Response                                                 |
+| ------ | -------- | ----- | ------------ | -------------------------------------------------------- |
 | GET    | `/audit` | admin | `AuditQuery` | `Page<AuditEvent>` (newest first, `pageSize` default 50) |
 
 Filters: `requestId`, `actorId`, `action`, `typeId`, `stepId`, `from`, `to` (dates, inclusive).
@@ -140,10 +144,10 @@ Events not tied to a request (`type_created`, `type_updated`, `role_changed`) ha
 
 ## Users
 
-| Method | Path               | Roles | Body                    | Response |
-| ------ | ------------------ | ----- | ----------------------- | -------- |
-| GET    | `/users`           | any   | –                       | `User[]` (names are shown on timelines) |
-| PATCH  | `/users/:id/role`  | admin | `UpdateUserRoleRequest` | `User`   |
+| Method | Path              | Roles | Body                    | Response                                |
+| ------ | ----------------- | ----- | ----------------------- | --------------------------------------- |
+| GET    | `/users`          | any   | –                       | `User[]` (names are shown on timelines) |
+| PATCH  | `/users/:id/role` | admin | `UpdateUserRoleRequest` | `User`                                  |
 
 Changing your own role answers 422 `{ role: ['validation.ownRole'] }`.
 
@@ -155,21 +159,21 @@ Changing your own role answers 422 `{ role: ['validation.ownRole'] }`.
 
 ## Dev helpers (mock only)
 
-| Method | Path          | Description                                  |
-| ------ | ------------- | -------------------------------------------- |
-| POST   | `/dev/reset`  | Restores the seed data in every open tab     |
+| Method | Path         | Description                              |
+| ------ | ------------ | ---------------------------------------- |
+| POST   | `/dev/reset` | Restores the seed data in every open tab |
 
 ## Realtime
 
 - URL: `ws://localhost/realtime?token=<token>`. An invalid token closes the socket with code 4401.
 - Server → client messages are JSON `RealtimeEvent`s:
 
-| `type`             | Payload                          | Sent to                                     |
-| ------------------ | -------------------------------- | ------------------------------------------- |
-| `request.updated`  | `{ request }`                    | the request's applicant and all staff        |
-| `request.assigned` | `{ requestId, assigneeId }`      | staff                                        |
-| `notification`     | `{ notification }`               | the notification's user                      |
-| `presence`         | `{ requestId, userIds }`         | everyone (clients filter by `requestId`)     |
+| `type`             | Payload                     | Sent to                                  |
+| ------------------ | --------------------------- | ---------------------------------------- |
+| `request.updated`  | `{ request }`               | the request's applicant and all staff    |
+| `request.assigned` | `{ requestId, assigneeId }` | staff                                    |
+| `notification`     | `{ notification }`          | the notification's user                  |
+| `presence`         | `{ requestId, userIds }`    | everyone (clients filter by `requestId`) |
 
 - Client → server messages are JSON `RealtimeClientMessage`s: `presence.join` and
   `presence.leave` with a `requestId`. Closing the socket leaves every request.
@@ -181,9 +185,9 @@ Changing your own role answers 422 `{ role: ['validation.ownRole'] }`.
 
 ## Mock-only behavior
 
-| Setting                            | Effect                                                   |
-| ---------------------------------- | -------------------------------------------------------- |
-| always                             | 200–800 ms latency on every `/api` call                  |
-| `localStorage.mockChaos = '0.1'`   | ~10% of API calls fail with 500 (not `/api/dev/*`)       |
-| `localStorage.mockSimulator = 'off'` | disables the realtime simulator                        |
-| `moamalaMocks.reset()` (console)   | restores the seed data and reloads                        |
+| Setting                              | Effect                                             |
+| ------------------------------------ | -------------------------------------------------- |
+| always                               | 200–800 ms latency on every `/api` call            |
+| `localStorage.mockChaos = '0.1'`     | ~10% of API calls fail with 500 (not `/api/dev/*`) |
+| `localStorage.mockSimulator = 'off'` | disables the realtime simulator                    |
+| `moamalaMocks.reset()` (console)     | restores the seed data and reloads                 |

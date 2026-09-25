@@ -26,32 +26,33 @@ pnpm nx test portal --filter "T1.1"
 
 ## Scripts
 
-| Command               | What it does                                                        |
-| --------------------- | ------------------------------------------------------------------- |
-| `pnpm start`          | Dev server with the MSW mock backend                                 |
-| `pnpm build`          | Production build (the mock backend is excluded)                      |
-| `pnpm test`           | All specs (they fail until the matching task is done)                |
-| `pnpm nx test <project> --filter "T2.3"` | Specs of one task in one project                    |
-| `pnpm nx run-many -t test --filter "T2\."` | Every spec of a phase                              |
-| `pnpm lint`           | ESLint, including Nx module boundaries                               |
-| `pnpm e2e`            | Playwright (you write the test in T6.5)                              |
-| `pnpm i18n:check`     | `en.json`/`ar.json` parity and template key references               |
-| `pnpm verify`         | lint + build + i18n check + Prettier check (what CI runs)            |
+| Command                                    | What it does                                                          |
+| ------------------------------------------ | --------------------------------------------------------------------- |
+| `pnpm start`                               | Dev server with the MSW mock backend                                  |
+| `pnpm build`                               | Production build (the mock backend is excluded)                       |
+| `pnpm test`                                | All specs (they fail until the matching task is done)                 |
+| `pnpm nx test <project> --filter "T2.3"`   | Specs of one task in one project                                      |
+| `pnpm nx run-many -t test --filter "T2\."` | Every spec of a phase                                                 |
+| `pnpm lint`                                | ESLint, including Nx module boundaries                                |
+| `pnpm e2e`                                 | Playwright (you write the test in T6.5)                               |
+| `pnpm typecheck`                           | AOT-compiles every library's templates in a few seconds               |
+| `pnpm i18n:check`                          | `en.json`/`ar.json` parity and template key references                |
+| `pnpm verify`                              | lint + build + typecheck + i18n check + Prettier check (what CI runs) |
 
 ## Demo accounts
 
 Pick one on the login page (or type the email). There is no password.
 
-| Role      | Name (EN / AR)                      | Email                  |
-| --------- | ----------------------------------- | ---------------------- |
-| Applicant | Omar Haddad / عمر حداد              | `omar@applicant.demo`  |
-| Applicant | Layla Nasser / ليلى ناصر            | `layla@applicant.demo` |
-| Reviewer  | Sara Al-Mansouri / سارة المنصوري    | `sara@reviewer.demo`   |
-| Reviewer  | Khalid Farouk / خالد فاروق          | `khalid@reviewer.demo` |
-| Approver  | Mona Youssef / منى يوسف             | `mona@approver.demo`   |
-| Approver  | Faisal Al-Qahtani / فيصل القحطاني   | `faisal@approver.demo` |
-| Admin     | Huda Saleh / هدى صالح               | `huda@admin.demo`      |
-| Admin     | Tariq Ibrahim / طارق إبراهيم        | `tariq@admin.demo`     |
+| Role      | Name (EN / AR)                    | Email                  |
+| --------- | --------------------------------- | ---------------------- |
+| Applicant | Omar Haddad / عمر حداد            | `omar@applicant.demo`  |
+| Applicant | Layla Nasser / ليلى ناصر          | `layla@applicant.demo` |
+| Reviewer  | Sara Al-Mansouri / سارة المنصوري  | `sara@reviewer.demo`   |
+| Reviewer  | Khalid Farouk / خالد فاروق        | `khalid@reviewer.demo` |
+| Approver  | Mona Youssef / منى يوسف           | `mona@approver.demo`   |
+| Approver  | Faisal Al-Qahtani / فيصل القحطاني | `faisal@approver.demo` |
+| Admin     | Huda Saleh / هدى صالح             | `huda@admin.demo`      |
+| Admin     | Tariq Ibrahim / طارق إبراهيم      | `tariq@admin.demo`     |
 
 The seed has three request types (Building Permit: 3 steps, uploads; Commercial License Renewal:
 conditional fields; Public Event Permit: date-range validation) and 40 requests across every
@@ -65,11 +66,11 @@ database persisted to `localStorage`. It only loads in development (`isDevMode()
 `apps/portal/src/main.ts`). Every endpoint is documented in
 [`libs/mocks/API.md`](libs/mocks/API.md), the contract a future .NET API will implement.
 
-| To…                                   | Do this in the browser console                           |
-| ------------------------------------- | -------------------------------------------------------- |
-| Reset the demo data                   | `moamalaMocks.reset()` (or `POST /api/dev/reset`)         |
-| Make ~10% of API calls fail with 500  | `localStorage.mockChaos = '0.1'` (remove the key to stop) |
-| Stop the background activity simulator | `localStorage.mockSimulator = 'off'`                     |
+| To…                                    | Do this in the browser console                            |
+| -------------------------------------- | --------------------------------------------------------- |
+| Reset the demo data                    | `moamalaMocks.reset()` (or `POST /api/dev/reset`)         |
+| Make ~10% of API calls fail with 500   | `localStorage.mockChaos = '0.1'` (remove the key to stop) |
+| Stop the background activity simulator | `localStorage.mockSimulator = 'off'`                      |
 
 Every call has 200–800 ms of latency, so loading states are visible.
 
@@ -121,16 +122,16 @@ Module boundaries (enforced by `@nx/enforce-module-boundaries`):
 
 Verified against npm on 2026-09-25 and pinned:
 
-| Package                                  | Version |
-| ---------------------------------------- | ------- |
-| Angular, Angular Material, CDK           | 22.2    |
-| Nx                                       | 23.2.1  |
-| NgRx (store, effects, entity, devtools, signals, operators) | 22.0.1 |
-| @jsverse/transloco                       | 8.4     |
-| MSW                                      | 2.15    |
-| TypeScript                               | 6.0 (Angular 22 requires `>=6.0 <6.1`; TypeScript 7 is not supported yet) |
-| Vitest (via `@angular/build:unit-test`)  | 4.1     |
-| Playwright                               | 1.x     |
+| Package                                                     | Version                                                                   |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Angular, Angular Material, CDK                              | 22.2                                                                      |
+| Nx                                                          | 23.2.1                                                                    |
+| NgRx (store, effects, entity, devtools, signals, operators) | 22.0.1                                                                    |
+| @jsverse/transloco                                          | 8.4                                                                       |
+| MSW                                                         | 2.15                                                                      |
+| TypeScript                                                  | 6.0 (Angular 22 requires `>=6.0 <6.1`; TypeScript 7 is not supported yet) |
+| Vitest (via `@angular/build:unit-test`)                     | 4.1                                                                       |
+| Playwright                                                  | 1.x                                                                       |
 
 ### Deviations from the original brief
 
@@ -152,6 +153,6 @@ Verified against npm on 2026-09-25 and pinned:
 
 ## Continuous integration
 
-`.github/workflows/ci.yml` runs `pnpm verify` (lint, build, i18n check, formatting). Specs are
+`.github/workflows/ci.yml` runs `pnpm verify` (lint, build, typecheck, i18n check, formatting). Specs are
 not part of CI on purpose: they fail until you implement each task, and `pnpm test` is your
 progress meter.

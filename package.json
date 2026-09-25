@@ -12,7 +12,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "i18n:check": "node tools/check-i18n.mjs",
-    "verify": "nx run-many -t lint build && node tools/check-i18n.mjs && prettier --check ."
+    "verify": "nx run-many -t lint build && ngc -p tsconfig.typecheck.json && node tools/check-i18n.mjs && prettier --check .",
+    "typecheck": "ngc -p tsconfig.typecheck.json"
   },
   "devDependencies": {
     "@angular-devkit/core": "~22.2.0",
