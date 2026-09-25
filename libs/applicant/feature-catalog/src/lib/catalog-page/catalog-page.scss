@@ -1,0 +1,79 @@
+.catalog__search {
+  inline-size: min(100%, 420px);
+}
+
+.catalog__loading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mo-space-4);
+}
+
+.catalog__skeleton {
+  block-size: 180px;
+  border-radius: var(--mo-radius-md);
+  background: var(--mat-sys-surface-container-high);
+}
+
+.catalog__error {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mo-space-3);
+  align-items: center;
+  padding: var(--mo-space-4);
+  border-radius: var(--mo-radius-md);
+  background: var(--mat-sys-error-container);
+  color: var(--mat-sys-on-error-container);
+
+  p {
+    flex: 1;
+    margin: 0;
+  }
+}
+
+.catalog__card {
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog__avatar {
+  display: grid;
+  place-items: center;
+  border-radius: var(--mo-radius-sm);
+  background: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+}
+
+.catalog__description {
+  margin: 0;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+mat-card-content {
+  flex: 1;
+}
+
+.catalog__help {
+  margin-block-start: var(--mo-space-7);
+}
+
+.catalog__help-title {
+  font: var(--mat-sys-title-large);
+}
+
+.catalog__steps {
+  display: grid;
+  gap: var(--mo-space-3);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    gap: var(--mo-space-2);
+    align-items: center;
+    padding: var(--mo-space-4);
+    border-radius: var(--mo-radius-md);
+    background: var(--mat-sys-surface-container);
+  }
+}
