@@ -1,0 +1,70 @@
+<div class="mo-page">
+  <!-- i18n: inbox.title, inbox.subtitle -->
+  <mo-page-header heading="Work inbox" subtitle="Requests waiting at your step." />
+
+  <!-- TODO(T3.4): show while vm().loading -->
+  <ng-template>
+    <mat-progress-bar mode="indeterminate" data-testid="inbox-loading" />
+  </ng-template>
+
+  <!-- TODO(T3.4): show only to approvers (*moHasRole="'approver'") while selection.hasValue();
+       bind the comment input, disable the buttons until the comment is long enough -->
+  <section class="inbox__bulk" data-testid="bulk-bar">
+    <!-- i18n: inbox.bulk.selected (param: count) -->
+    <span class="inbox__bulk-count">2 selected</span>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic" class="inbox__bulk-comment">
+      <!-- i18n: inbox.bulk.comment -->
+      <mat-label>Justification for all selected</mat-label>
+      <input matInput data-testid="bulk-comment" />
+    </mat-form-field>
+    <!-- i18n: inbox.bulk.approve -->
+    <button mat-flat-button type="button" data-testid="bulk-approve">
+      <mat-icon>done_all</mat-icon>
+      Approve
+    </button>
+    <!-- i18n: inbox.bulk.reject -->
+    <button mat-stroked-button type="button" data-testid="bulk-reject">Reject</button>
+  </section>
+
+  <!-- TODO(T3.4): convert to <table mat-table [dataSource]="dataSource" matSort> with columns
+       select, refNo, step, status, sla, assignee, actions; data-testid="inbox-row" on each row
+       and data-testid="select-row" on each row checkbox; mat-sort-header on refNo/submittedAt/dueAt.
+       @empty-like state: show the empty-state component when there are no rows. -->
+  <div class="inbox__table-wrap">
+    <table class="mo-table">
+      <thead>
+        <tr>
+          <th><mat-checkbox aria-label="Select all" data-testid="select-all" /></th>
+          <!-- i18n: inbox.col.refNo, .step, .status, .sla, .assignee -->
+          <th>Reference</th>
+          <th>Step</th>
+          <th>Status</th>
+          <th>Time left</th>
+          <th>Assignee</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-testid="inbox-row">
+          <td><mat-checkbox aria-label="Select BP-2026-00012" data-testid="select-row" /></td>
+          <td class="mo-ltr">BP-2026-00012</td>
+          <td>Technical review</td>
+          <td><mo-status-chip status="submitted" /></td>
+          <td><mo-sla-badge /></td>
+          <!-- i18n: inbox.unassigned -->
+          <td class="inbox__muted">Unassigned</td>
+          <td class="inbox__actions">
+            <!-- TODO(T3.4): (click) claims; show only when unclaimed -->
+            <!-- i18n: inbox.claim -->
+            <button mat-stroked-button type="button" data-testid="claim">Claim</button>
+            <!-- TODO(T3.4): [routerLink]="['/review/requests', row.id]" -->
+            <!-- i18n: inbox.open -->
+            <a mat-button data-testid="open-request">Open</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <mat-paginator pageSize="10" [pageSizeOptions]="[10, 25, 50]" />
+</div>
