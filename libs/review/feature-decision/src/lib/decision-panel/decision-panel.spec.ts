@@ -62,7 +62,10 @@ function render(assigneeId: string | null = 'u-me') {
     (el.querySelector('[data-testid="decision-form"]') as HTMLFormElement).dispatchEvent(new Event('submit'));
     fixture.detectChanges();
   };
-  const decided = () => dispatch.mock.calls.map(([action]) => action).filter((action) => action.type === '[Inbox] Decide');
+  const decided = () =>
+    dispatch.mock.calls
+      .map(([action]) => action)
+      .filter((action): action is Action => typeof action !== 'function' && action.type === '[Inbox] Decide');
   return { fixture, store, dispatch, el, choose, type, submit, decided };
 }
 
