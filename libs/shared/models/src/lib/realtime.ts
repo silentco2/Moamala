@@ -8,9 +8,11 @@ export type RealtimeEvent =
   | { type: 'notification'; notification: AppNotification }
   | { type: 'presence'; requestId: string; userIds: string[] };
 
-/** Client -> server messages sent on the realtime channel. */
+/**
+ * Client -> server messages sent on the realtime channel. The client authenticates by passing
+ * its token as the `token` query parameter of the socket URL.
+ */
 export type RealtimeClientMessage =
-  | { type: 'auth'; token: string }
   | { type: 'presence.join'; requestId: string }
   | { type: 'presence.leave'; requestId: string };
 

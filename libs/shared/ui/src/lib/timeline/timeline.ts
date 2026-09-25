@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 export type TimelineTone = 'neutral' | 'positive' | 'negative' | 'warning';
@@ -18,11 +17,12 @@ export interface TimelineItem {
 /** `<mo-timeline [items]="items()" />` renders items in the given order. */
 @Component({
   selector: 'mo-timeline',
-  imports: [DatePipe, MatIconModule],
+  imports: [MatIconModule],
   templateUrl: './timeline.html',
   styleUrl: './timeline.scss',
 })
 export class Timeline {
-  // TODO(T2.6): declare a required `items` input (TimelineItem[]).
+  // TODO(T2.6): declare a required `items` input (TimelineItem[]); import DatePipe for the
+  //   timestamps.
   //   Docs: https://angular.dev/guide/components/inputs
 }

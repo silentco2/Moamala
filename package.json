@@ -65,5 +65,10 @@
       "msw",
       "nx"
     ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "apps/portal/public"
+    ]
   }
 }

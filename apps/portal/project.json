@@ -4,11 +4,16 @@
   "projectType": "application",
   "prefix": "mo",
   "sourceRoot": "apps/portal/src",
-  "tags": ["scope:portal", "type:app"],
+  "tags": [
+    "scope:portal",
+    "type:app"
+  ],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/portal",
@@ -21,7 +26,9 @@
             "input": "apps/portal/public"
           }
         ],
-        "styles": ["apps/portal/src/styles.scss"]
+        "styles": [
+          "apps/portal/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -37,7 +44,22 @@
               "maximumError": "8kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/portal/src/mocks/browser.ts",
+              "with": "apps/portal/src/mocks/browser.prod.ts"
+            }
+          ],
+          "assets": [
+            {
+              "glob": "**/*",
+              "input": "apps/portal/public",
+              "ignore": [
+                "mockServiceWorker.js"
+              ]
+            }
+          ]
         },
         "development": {
           "optimization": false,
