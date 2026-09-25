@@ -1,0 +1,13 @@
+.types__list {
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: var(--mo-radius-md);
+  background: var(--mat-sys-surface);
+}
+
+.types__badge {
+  padding: 2px var(--mo-space-2);
+  border-radius: 999px;
+  background: var(--mo-status-approved-bg);
+  color: var(--mo-status-approved-fg);
+  font: var(--mat-sys-label-small);
+}

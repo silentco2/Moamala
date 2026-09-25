@@ -1,0 +1,275 @@
+<div class="mo-page designer">
+  <!-- i18n: designer.titleNew / designer.titleEdit, designer.subtitle -->
+  <mo-page-header heading="New request type" subtitle="Describe the form and the approval workflow.">
+    <!-- TODO(T4.1): (click)="save()", disabled while the form is invalid or pending -->
+    <!-- i18n: designer.save -->
+    <button mat-flat-button moPageActions type="button" data-testid="save-type">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+  </mo-page-header>
+
+  <!-- TODO(T4.1): [formGroup]="form" on this form; formGroupName/formArrayName/formControlName below -->
+  <form class="designer__layout">
+    <div class="designer__editor">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <!-- i18n: designer.basics -->
+          <mat-card-title>Basics</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="designer__basics">
+          <mat-form-field appearance="outline">
+            <!-- i18n: designer.key -->
+            <mat-label>Key</mat-label>
+            <input matInput class="mo-ltr" data-testid="type-key" />
+            <!-- i18n: designer.keyHint -->
+            <mat-hint>snake_case, e.g. building_permit</mat-hint>
+            <!-- TODO(T4.3): show validation.typeKey / validation.keyTaken / validation.required -->
+            <mat-error data-testid="key-error">This key is already taken</mat-error>
+          </mat-form-field>
+          <!-- i18n: designer.active -->
+          <mat-slide-toggle checked>Active</mat-slide-toggle>
+          <!-- i18n: designer.name (label) -->
+          <mo-localized-text-input label="Name" class="designer__wide" />
+          <!-- i18n: designer.description (label) -->
+          <mo-localized-text-input label="Description" class="designer__wide" />
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <!-- i18n: designer.sections -->
+          <mat-card-title>Sections</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- TODO(T4.1): formArrayName="sections" and @for over its controls -->
+          <div class="designer__row" data-testid="section-row">
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <!-- i18n: designer.sectionId -->
+              <mat-label>Section id</mat-label>
+              <input matInput class="mo-ltr" value="owner" />
+            </mat-form-field>
+            <mo-localized-text-input label="Title" />
+            <!-- i18n: designer.remove (aria-label) -->
+            <button mat-icon-button type="button" aria-label="Remove" data-testid="remove-section">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <!-- i18n: designer.addSection -->
+          <button mat-stroked-button type="button" data-testid="add-section">
+            <mat-icon>add</mat-icon>
+            Add section
+          </button>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <!-- i18n: designer.fields -->
+          <mat-card-title>Fields</mat-card-title>
+          <!-- i18n: designer.dragHint -->
+          <mat-card-subtitle>Drag to reorder. Keyboard: focus a handle, then use Space and the arrow keys.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- TODO(T4.1): formArrayName="fields", (cdkDropListDropped)="drop($event)", and
+               @for over the field controls with [formGroupName]="$index" on each cdkDrag row -->
+          <div cdkDropList class="designer__list" data-testid="fields-list">
+            <div cdkDrag class="designer__drag-row" data-testid="field-row">
+              <!-- i18n: designer.dragHandle (aria-label) -->
+              <button mat-icon-button cdkDragHandle type="button" aria-label="Drag to reorder">
+                <mat-icon>drag_indicator</mat-icon>
+              </button>
+              <div class="designer__field">
+                <div class="designer__field-main">
+                  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <!-- i18n: designer.fieldKey -->
+                    <mat-label>Field key</mat-label>
+                    <input matInput class="mo-ltr" value="ownerName" data-testid="field-key" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <!-- i18n: designer.fieldType -->
+                    <mat-label>Type</mat-label>
+                    <!-- TODO(T4.1): options from FIELD_TYPES; labels from fieldTypes.<type> -->
+                    <mat-select value="text">
+                      <mat-option value="text">Text</mat-option>
+                      <mat-option value="number">Number</mat-option>
+                      <mat-option value="select">Select</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <!-- i18n: designer.fieldSection -->
+                    <mat-label>Section</mat-label>
+                    <mat-select value="owner">
+                      <mat-option value="owner">owner</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <!-- i18n: designer.required -->
+                  <mat-checkbox checked>Required</mat-checkbox>
+                </div>
+                <mo-localized-text-input label="Label" />
+                <mat-expansion-panel class="designer__advanced">
+                  <mat-expansion-panel-header>
+                    <!-- i18n: designer.advanced -->
+                    <mat-panel-title>Validation and conditions</mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="designer__field-main">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                      <!-- i18n: designer.min -->
+                      <mat-label>Min</mat-label>
+                      <input matInput type="number" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                      <!-- i18n: designer.max -->
+                      <mat-label>Max</mat-label>
+                      <input matInput type="number" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                      <!-- i18n: designer.pattern -->
+                      <mat-label>Pattern</mat-label>
+                      <input matInput class="mo-ltr" />
+                    </mat-form-field>
+                  </div>
+                  <!-- TODO(T4.3): show validation.minMax when the group has the minMax error -->
+                  <!-- TODO(T4.2): formControlName="options", only for select fields (@if) -->
+                  <mo-options-list-editor />
+                  <div class="designer__field-main">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                      <!-- i18n: designer.visibleIfField -->
+                      <mat-label>Show only when field</mat-label>
+                      <input matInput class="mo-ltr" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                      <!-- i18n: designer.visibleIfEquals -->
+                      <mat-label>equals</mat-label>
+                      <input matInput class="mo-ltr" />
+                    </mat-form-field>
+                  </div>
+                </mat-expansion-panel>
+              </div>
+              <!-- i18n: designer.remove (aria-label) -->
+              <button mat-icon-button type="button" aria-label="Remove" data-testid="remove-field">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+
+            <div cdkDrag class="designer__drag-row" data-testid="field-row">
+              <button mat-icon-button cdkDragHandle type="button" aria-label="Drag to reorder">
+                <mat-icon>drag_indicator</mat-icon>
+              </button>
+              <div class="designer__field">
+                <div class="designer__field-main">
+                  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <mat-label>Field key</mat-label>
+                    <input matInput class="mo-ltr" value="floors" data-testid="field-key" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <mat-label>Type</mat-label>
+                    <mat-select value="number">
+                      <mat-option value="text">Text</mat-option>
+                      <mat-option value="number">Number</mat-option>
+                      <mat-option value="select">Select</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button mat-icon-button type="button" aria-label="Remove" data-testid="remove-field">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          <!-- i18n: designer.addField -->
+          <button mat-stroked-button type="button" data-testid="add-field">
+            <mat-icon>add</mat-icon>
+            Add field
+          </button>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <!-- i18n: designer.steps -->
+          <mat-card-title>Workflow steps</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- TODO(T4.1): formArrayName="steps" with drag-and-drop like the fields -->
+          <div cdkDropList class="designer__list" data-testid="steps-list">
+            <div cdkDrag class="designer__drag-row" data-testid="step-row">
+              <button mat-icon-button cdkDragHandle type="button" aria-label="Drag to reorder">
+                <mat-icon>drag_indicator</mat-icon>
+              </button>
+              <div class="designer__field-main designer__grow">
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <!-- i18n: designer.stepId -->
+                  <mat-label>Step id</mat-label>
+                  <input matInput class="mo-ltr" value="technical-review" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <!-- i18n: designer.stepRole -->
+                  <mat-label>Handled by</mat-label>
+                  <mat-select value="reviewer">
+                    <!-- i18n: roles.reviewer / roles.approver -->
+                    <mat-option value="reviewer">Reviewer</mat-option>
+                    <mat-option value="approver">Approver</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <!-- i18n: designer.slaHours -->
+                  <mat-label>SLA (hours)</mat-label>
+                  <input matInput type="number" value="48" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <!-- i18n: designer.stepActions -->
+                  <mat-label>Allowed actions</mat-label>
+                  <!-- TODO(T4.1): options from DECISION_ACTIONS -->
+                  <mat-select multiple>
+                    <!-- i18n: decision.action.* -->
+                    <mat-option value="forward">Forward</mat-option>
+                    <mat-option value="return">Return</mat-option>
+                    <mat-option value="approve">Approve</mat-option>
+                    <mat-option value="reject">Reject</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mo-localized-text-input label="Step name" class="designer__wide" />
+              </div>
+              <button mat-icon-button type="button" aria-label="Remove" data-testid="remove-step">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+            <div cdkDrag class="designer__drag-row" data-testid="step-row">
+              <button mat-icon-button cdkDragHandle type="button" aria-label="Drag to reorder">
+                <mat-icon>drag_indicator</mat-icon>
+              </button>
+              <div class="designer__field-main designer__grow">
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <mat-label>Step id</mat-label>
+                  <input matInput class="mo-ltr" value="final-approval" />
+                </mat-form-field>
+              </div>
+              <button mat-icon-button type="button" aria-label="Remove" data-testid="remove-step">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          <!-- i18n: designer.addStep -->
+          <button mat-stroked-button type="button" data-testid="add-step">
+            <mat-icon>add</mat-icon>
+            Add step
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <aside class="designer__preview" data-testid="preview">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <!-- i18n: designer.preview -->
+          <mat-card-title>Live preview</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- TODO(T4.4): [type]="preview()" [(value)]="previewValue" [lang]="lang()" -->
+          <mo-dynamic-form />
+        </mat-card-content>
+      </mat-card>
+    </aside>
+  </form>
+</div>
