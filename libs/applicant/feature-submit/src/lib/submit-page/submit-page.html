@@ -1,0 +1,78 @@
+<div class="mo-page submit">
+  <!-- TODO(T2.3): heading = draft type name | localize; subtitle = refNo -->
+  <!-- i18n: submit.title (fallback heading) -->
+  <mo-page-header heading="Building Permit" subtitle="BP-2026-00041">
+    <!-- TODO(T2.3): show "Saving..." while store.savingDraft(), otherwise "Saved at" + savedAt | date: 'shortTime' -->
+    <span class="submit__saved" moPageActions data-testid="saved-indicator">
+      <mat-icon aria-hidden="true">cloud_done</mat-icon>
+      <!-- i18n: submit.savedAt (param: time) | submit.saving -->
+      Saved at 10:42
+    </span>
+  </mo-page-header>
+
+  <!-- TODO(T2.6): when the draft status is 'returned', show this banner with the reviewer comment -->
+  <ng-template>
+    <section class="submit__returned" role="status" data-testid="returned-notice">
+      <mat-icon aria-hidden="true">undo</mat-icon>
+      <!-- i18n: submit.returnedNotice -->
+      <p>This request was returned for changes. Update it and submit again.</p>
+    </section>
+  </ng-template>
+
+  <div class="submit__layout">
+    <mat-card appearance="outlined" class="submit__form">
+      <mat-card-content>
+        <!-- TODO(T2.2): [type]="type" [(value)]="formValue" [attachments]="draft.attachments"
+             [serverErrors]="serverErrors()" [lang]="lang()" once the draft has loaded (@if) -->
+        <mo-dynamic-form />
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <!-- TODO(T2.3): saves immediately with store.saveDraft(formValue()) -->
+        <!-- i18n: submit.saveDraft -->
+        <button mat-button type="button" data-testid="save-draft">Save draft</button>
+        <!-- TODO(T2.2): (click) submits; disable while submitting -->
+        <!-- i18n: submit.submit -->
+        <button mat-flat-button type="button" data-testid="submit-request">
+          <mat-icon>send</mat-icon>
+          Submit request
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="submit__attachments">
+      <mat-card-header>
+        <!-- i18n: submit.attachments -->
+        <mat-card-title>Attachments</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- TODO(T2.4): [multiple]="true" (filesSelected)="onFiles($event)" -->
+        <mo-file-dropzone />
+
+        <mat-list class="submit__uploads">
+          <!-- TODO(T2.4): @for over upload rows (track row.id); progress bar value = row.percent;
+               the error row shows 'validation.' + row.error; cancel calls cancelUpload(row.id) -->
+          <mat-list-item data-testid="upload-row">
+            <mat-icon matListItemIcon aria-hidden="true">upload_file</mat-icon>
+            <span matListItemTitle>ownership-deed.pdf</span>
+            <mat-progress-bar matListItemLine mode="determinate" value="60" />
+            <!-- i18n: upload.cancel (aria-label) -->
+            <button mat-icon-button matListItemMeta type="button" aria-label="Cancel upload">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-list-item>
+
+          <!-- TODO(T2.4): @for over draft.attachments (track attachment.id); remove calls removeAttachment -->
+          <mat-list-item data-testid="attachment-row">
+            <mat-icon matListItemIcon aria-hidden="true">picture_as_pdf</mat-icon>
+            <span matListItemTitle>site-plan.pdf</span>
+            <span matListItemLine class="mo-ltr">142 KB</span>
+            <!-- i18n: upload.remove (aria-label) -->
+            <button mat-icon-button matListItemMeta type="button" aria-label="Remove attachment">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
