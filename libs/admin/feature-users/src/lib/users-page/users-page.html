@@ -1,0 +1,45 @@
+<div class="mo-page">
+  <!-- i18n: users.title, users.subtitle -->
+  <mo-page-header heading="Users and roles" subtitle="Change a role inline; it is saved immediately." />
+
+  <div class="users__table-wrap">
+    <table class="mo-table">
+      <thead>
+        <tr>
+          <!-- i18n: users.col.name, .email, .department, .role -->
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- TODO(T4.5): @for (user of store.users(); track user.id) -->
+        <tr data-testid="user-row">
+          <!-- TODO(T4.5): user.name | localize: lang() -->
+          <td>Sara Al-Mansouri</td>
+          <td class="mo-ltr">sara&#64;reviewer.demo</td>
+          <td>Permits</td>
+          <td class="users__role">
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <!-- i18n: users.role (label) -->
+              <mat-label>Role</mat-label>
+              <!-- TODO(T4.5): [value]="user.role" and (change) calls updateRole; options from ROLES -->
+              <select matNativeControl data-testid="role-select">
+                <!-- i18n: roles.applicant / reviewer / approver / admin -->
+                <option value="applicant">Applicant</option>
+                <option value="reviewer" selected>Reviewer</option>
+                <option value="approver">Approver</option>
+                <option value="admin">Admin</option>
+              </select>
+            </mat-form-field>
+            <!-- TODO(T4.5): show while the user's id is in savingIds() -->
+            <ng-template>
+              <mat-spinner diameter="20" data-testid="role-saving" />
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

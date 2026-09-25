@@ -29,10 +29,21 @@ export default [
         }
     },
     {
+        // This lib intentionally uses NgModule-era patterns (see T4.6 in TASKS.md).
+        files: [
+            "**/*.ts"
+        ],
+        rules: {
+            "@angular-eslint/prefer-standalone": "off",
+            "@angular-eslint/prefer-inject": "off"
+        }
+    },
+    {
         files: [
             "**/*.html"
         ],
-        // Override or add rules here
-        rules: {}
+        rules: {
+            "@angular-eslint/template/prefer-control-flow": "off"
+        }
     }
 ];

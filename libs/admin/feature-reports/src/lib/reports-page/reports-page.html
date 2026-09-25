@@ -1,0 +1,58 @@
+<div class="mo-page">
+  <header class="reports__header">
+    <!-- i18n: reports.title -->
+    <h1 class="reports__title">Reports</h1>
+    <!-- TODO(T4.6): summary.generatedAt | date: 'short' -->
+    <!-- i18n: reports.generatedAt (param: time) -->
+    <p class="reports__meta">Updated 9/25/26, 10:42 AM</p>
+  </header>
+
+  <!-- TODO(T4.6): wrap everything below in
+       <ng-container *ngIf="summary$ | async as summary; else loading"> and add
+       <ng-template #loading> with the spinner -->
+  <section class="reports__totals">
+    <!-- TODO(T4.6): *ngFor="let status of statuses" over the totals; add
+         [attr.data-testid]="'report-total-' + status" to each card -->
+    <mat-card appearance="outlined" class="reports__tile" data-testid="report-total-approved">
+      <mat-card-content>
+        <!-- i18n: status.approved -->
+        <p class="reports__tile-label">Approved</p>
+        <p class="reports__tile-value">7</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card appearance="outlined" class="reports__tile reports__tile--alert" data-testid="report-sla-breaches">
+      <mat-card-content>
+        <!-- i18n: reports.slaBreaches -->
+        <p class="reports__tile-label">SLA breaches</p>
+        <p class="reports__tile-value">3</p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <!-- i18n: reports.byType -->
+      <mat-card-title>By service</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table class="mo-table">
+        <thead>
+          <tr>
+            <!-- i18n: reports.col.type, reports.col.count, reports.col.avgHours -->
+            <th>Service</th>
+            <th>Requests</th>
+            <th>Avg. hours to decision</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- TODO(T4.6): *ngFor="let row of summary.byType; trackBy: trackByType" -->
+          <tr data-testid="report-type-row">
+            <td class="mo-ltr">rt-building-permit</td>
+            <td>14</td>
+            <td>31</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
