@@ -32,7 +32,7 @@ async function render() {
   const el = fixture.nativeElement as HTMLElement;
   const query = (id: string) => el.querySelector(`[data-testid="${id}"]`) as HTMLElement | null;
   const all = (id: string) => Array.from(el.querySelectorAll(`[data-testid="${id}"]`)) as HTMLElement[];
-  const flush = async (body: unknown, opts?: { status: number; statusText: string }) => {
+  const flush = async (body: object, opts?: { status: number; statusText: string }) => {
     httpMock.expectOne('/api/request-types?active=true').flush(body, opts);
     await fixture.whenStable();
   };
