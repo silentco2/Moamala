@@ -85,6 +85,9 @@
       ],
       "@moamala/audit/feature-audit-log": [
         "./libs/audit/feature-audit-log/src/index.ts"
+      ],
+      "@moamala/shared/ui-dynamic-form": [
+        "./libs/shared/ui-dynamic-form/src/index.ts"
       ]
     }
   },

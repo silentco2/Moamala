@@ -1,0 +1,94 @@
+<!-- TODO(T2.2): one <mat-step> per section with @for (track section.id); the step label is
+     section.title | localize: lang(). Inside, @for over the section's visible fields
+     (track field.key) and @switch (field.type) to pick the control below. Bind each control with
+     [formField], show the first error from field state (translated 'validation.<kind>') or the
+     matching serverErrors entry in <mat-error>, and add [attr.data-key]="field.key". -->
+<mat-stepper class="dynamic-form" data-testid="form-stepper">
+  <mat-step label="Owner details">
+    <div class="dynamic-form__grid">
+      <!-- @case ('text') -->
+      <mat-form-field appearance="outline" data-testid="dynamic-field" data-key="ownerName">
+        <mat-label>Owner full name</mat-label>
+        <input matInput />
+        <!-- i18n: validation.required -->
+        <mat-error>This field is required</mat-error>
+      </mat-form-field>
+
+      <!-- @case ('number') -->
+      <mat-form-field appearance="outline" data-testid="dynamic-field" data-key="floors">
+        <mat-label>Number of floors</mat-label>
+        <input matInput type="number" min="1" max="10" />
+      </mat-form-field>
+
+      <!-- @case ('date') -->
+      <mat-form-field appearance="outline" data-testid="dynamic-field" data-key="inspectionDate">
+        <mat-label>Preferred inspection date</mat-label>
+        <input matInput type="date" />
+      </mat-form-field>
+
+      <!-- @case ('select') -->
+      <mat-form-field appearance="outline" data-testid="dynamic-field" data-key="district">
+        <mat-label>District</mat-label>
+        <mat-select>
+          <mat-option value="north">North District</mat-option>
+          <mat-option value="central">Central District</mat-option>
+          <mat-option value="south">South District</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- @case ('textarea') -->
+      <mat-form-field
+        appearance="outline"
+        class="dynamic-form__wide"
+        data-testid="dynamic-field"
+        data-key="description"
+      >
+        <mat-label>Project description</mat-label>
+        <textarea matInput rows="4"></textarea>
+      </mat-form-field>
+
+      <!-- @case ('dateRange'): two native date inputs bound to value.start / value.end -->
+      <fieldset class="dynamic-form__range dynamic-form__wide" data-testid="dynamic-field" data-key="eventDates">
+        <legend class="dynamic-form__legend">Event dates</legend>
+        <mat-form-field appearance="outline">
+          <!-- i18n: form.from -->
+          <mat-label>From</mat-label>
+          <input matInput type="date" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <!-- i18n: form.to -->
+          <mat-label>To</mat-label>
+          <input matInput type="date" />
+        </mat-form-field>
+      </fieldset>
+    </div>
+    <div class="dynamic-form__nav">
+      <!-- i18n: form.next -->
+      <button mat-flat-button matStepperNext type="button">Next</button>
+    </div>
+  </mat-step>
+
+  <mat-step label="Documents">
+    <div class="dynamic-form__grid">
+      <!-- @case ('file'): choose one of the uploaded attachments -->
+      <mat-form-field appearance="outline" data-testid="dynamic-field" data-key="sitePlan">
+        <mat-label>Site plan (PDF)</mat-label>
+        <mat-select>
+          <mat-option value="att-1">site-plan.pdf</mat-option>
+        </mat-select>
+        <mat-icon matSuffix aria-hidden="true">attach_file</mat-icon>
+        <!-- i18n: form.chooseAttachment -->
+        <mat-hint>Upload the file below, then choose it here</mat-hint>
+      </mat-form-field>
+
+      <!-- @case ('checkbox') -->
+      <div class="dynamic-form__wide" data-testid="dynamic-field" data-key="declaration">
+        <mat-checkbox>I confirm the information provided is accurate</mat-checkbox>
+      </div>
+    </div>
+    <div class="dynamic-form__nav">
+      <!-- i18n: form.back -->
+      <button mat-button matStepperPrevious type="button">Back</button>
+    </div>
+  </mat-step>
+</mat-stepper>
