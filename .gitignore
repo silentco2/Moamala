@@ -1,0 +1,16 @@
+node_modules
+dist
+tmp
+out-tsc
+coverage
+.nx/cache
+.nx/workspace-data
+.angular
+test-output
+playwright-report
+test-results
+*.log
+.DS_Store
+.idea
+
+__screenshots__/
