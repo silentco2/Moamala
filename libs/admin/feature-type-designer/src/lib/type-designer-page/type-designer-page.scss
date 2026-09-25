@@ -93,3 +93,14 @@
 .cdk-drop-list-dragging .cdk-drag:not(.cdk-drag-placeholder) {
   transition: transform 200ms ease;
 }
+
+.designer__placeholder {
+  display: flex;
+  gap: var(--mo-space-2);
+  align-items: center;
+  justify-content: center;
+  min-block-size: 200px;
+  border: 1px dashed var(--mat-sys-outline-variant);
+  border-radius: var(--mo-radius-md);
+  color: var(--mat-sys-on-surface-variant);
+}

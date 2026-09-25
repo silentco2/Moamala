@@ -22,9 +22,13 @@
   <div class="submit__layout">
     <mat-card appearance="outlined" class="submit__form">
       <mat-card-content>
-        <!-- TODO(T2.2): [type]="type" [(value)]="formValue" [attachments]="draft.attachments"
-             [serverErrors]="serverErrors()" [lang]="lang()" once the draft has loaded (@if) -->
-        <mo-dynamic-form />
+        <!-- TODO(T2.2): replace this placeholder with <mo-dynamic-form [type]="type"
+             [(value)]="formValue" [attachments]="draft.attachments" [serverErrors]="serverErrors()"
+             [lang]="lang()" /> once the draft has loaded (@if), and import DynamicForm -->
+        <div class="submit__placeholder" data-testid="form-placeholder">
+          <mat-icon aria-hidden="true">dynamic_form</mat-icon>
+          <span>The request form renders here</span>
+        </div>
       </mat-card-content>
       <mat-card-actions align="end">
         <!-- TODO(T2.3): saves immediately with store.saveDraft(formValue()) -->

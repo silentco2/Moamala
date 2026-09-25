@@ -272,8 +272,13 @@
           <mat-card-title>Live preview</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <!-- TODO(T4.4): [type]="preview()" [(value)]="previewValue" [lang]="lang()" -->
-          <mo-dynamic-form />
+          <!-- TODO(T4.4): replace this placeholder with <mo-dynamic-form [type]="preview()"
+               [(value)]="previewValue" [lang]="lang()" /> and import DynamicForm -->
+          <div class="designer__placeholder">
+            <mat-icon aria-hidden="true">preview</mat-icon>
+            <!-- i18n: designer.previewHint -->
+            <span>The live preview of your form renders here</span>
+          </div>
         </mat-card-content>
       </mat-card>
     </aside>

@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Mo'amala" },
+  "app": {
+    "name": "Mo'amala"
+  },
   "common": {
     "any": "Any",
     "anyone": "Anyone",
@@ -10,7 +12,11 @@
     "cancel": "Cancel",
     "save": "Save"
   },
-  "lang": { "switchTo": "Switch language to {{language}}", "en": "English", "ar": "العربية" },
+  "lang": {
+    "switchTo": "Switch language to {{language}}",
+    "en": "English",
+    "ar": "العربية"
+  },
   "roles": {
     "applicant": "Applicant",
     "reviewer": "Reviewer",
@@ -74,7 +80,10 @@
     "chooseAttachment": "Upload the file below, then choose it here"
   },
   "forms": {
-    "localized": { "en": "English", "ar": "Arabic" },
+    "localized": {
+      "en": "English",
+      "ar": "Arabic"
+    },
     "options": {
       "value": "Value",
       "labelEn": "Label (English)",
@@ -123,7 +132,10 @@
     "confirm": "Leave",
     "cancel": "Stay"
   },
-  "sla": { "left": "left", "overdue": "overdue" },
+  "sla": {
+    "left": "left",
+    "overdue": "overdue"
+  },
   "myRequests": {
     "title": "My requests",
     "subtitle": "Track the status of everything you have submitted.",
@@ -155,11 +167,22 @@
     "remove": "Remove attachment"
   },
   "detail": {
-    "returned": { "title": "Returned for changes", "action": "Edit and resubmit" },
-    "approved": { "title": "Approved" },
-    "rejected": { "title": "Rejected" },
-    "progress": { "title": "Waiting at {{step}}" },
-    "draft": { "title": "This request has not been submitted yet" },
+    "returned": {
+      "title": "Returned for changes",
+      "action": "Edit and resubmit"
+    },
+    "approved": {
+      "title": "Approved"
+    },
+    "rejected": {
+      "title": "Rejected"
+    },
+    "progress": {
+      "title": "Waiting at {{step}}"
+    },
+    "draft": {
+      "title": "This request has not been submitted yet"
+    },
     "attachments": "Attachments",
     "noAttachments": "No attachments",
     "history": "History"
@@ -286,21 +309,31 @@
     "stepActions": "Allowed actions",
     "addStep": "Add step",
     "remove": "Remove",
-    "preview": "Live preview"
+    "preview": "Live preview",
+    "previewHint": "The live preview of your form renders here"
   },
   "users": {
     "title": "Users and roles",
     "subtitle": "Change a role inline; it is saved immediately.",
     "role": "Role",
     "saved": "Role updated",
-    "col": { "name": "Name", "email": "Email", "department": "Department", "role": "Role" }
+    "col": {
+      "name": "Name",
+      "email": "Email",
+      "department": "Department",
+      "role": "Role"
+    }
   },
   "reports": {
     "title": "Reports",
     "generatedAt": "Updated {{time}}",
     "slaBreaches": "SLA breaches",
     "byType": "By service",
-    "col": { "type": "Service", "count": "Requests", "avgHours": "Avg. hours to decision" }
+    "col": {
+      "type": "Service",
+      "count": "Requests",
+      "avgHours": "Avg. hours to decision"
+    }
   },
   "notifications": {
     "title": "Notifications",

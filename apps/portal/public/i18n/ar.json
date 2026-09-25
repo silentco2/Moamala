@@ -1,5 +1,7 @@
 {
-  "app": { "name": "معاملة" },
+  "app": {
+    "name": "معاملة"
+  },
   "common": {
     "any": "الكل",
     "anyone": "أي شخص",
@@ -10,8 +12,17 @@
     "cancel": "إلغاء",
     "save": "حفظ"
   },
-  "lang": { "switchTo": "تغيير اللغة إلى {{language}}", "en": "English", "ar": "العربية" },
-  "roles": { "applicant": "مقدم طلب", "reviewer": "مراجع", "approver": "معتمد", "admin": "مسؤول" },
+  "lang": {
+    "switchTo": "تغيير اللغة إلى {{language}}",
+    "en": "English",
+    "ar": "العربية"
+  },
+  "roles": {
+    "applicant": "مقدم طلب",
+    "reviewer": "مراجع",
+    "approver": "معتمد",
+    "admin": "مسؤول"
+  },
   "status": {
     "all": "الكل",
     "draft": "مسودة",
@@ -69,7 +80,10 @@
     "chooseAttachment": "ارفع الملف في الأسفل ثم اختره هنا"
   },
   "forms": {
-    "localized": { "en": "الإنجليزية", "ar": "العربية" },
+    "localized": {
+      "en": "الإنجليزية",
+      "ar": "العربية"
+    },
     "options": {
       "value": "القيمة",
       "labelEn": "التسمية (بالإنجليزية)",
@@ -118,7 +132,10 @@
     "confirm": "مغادرة",
     "cancel": "البقاء"
   },
-  "sla": { "left": "متبقٍ", "overdue": "متأخر" },
+  "sla": {
+    "left": "متبقٍ",
+    "overdue": "متأخر"
+  },
   "myRequests": {
     "title": "طلباتي",
     "subtitle": "تابع حالة كل ما قدمته من طلبات.",
@@ -150,11 +167,22 @@
     "remove": "حذف المرفق"
   },
   "detail": {
-    "returned": { "title": "أُعيد لإجراء تعديلات", "action": "تعديل وإعادة التقديم" },
-    "approved": { "title": "معتمد" },
-    "rejected": { "title": "مرفوض" },
-    "progress": { "title": "بانتظار {{step}}" },
-    "draft": { "title": "لم يُقدَّم هذا الطلب بعد" },
+    "returned": {
+      "title": "أُعيد لإجراء تعديلات",
+      "action": "تعديل وإعادة التقديم"
+    },
+    "approved": {
+      "title": "معتمد"
+    },
+    "rejected": {
+      "title": "مرفوض"
+    },
+    "progress": {
+      "title": "بانتظار {{step}}"
+    },
+    "draft": {
+      "title": "لم يُقدَّم هذا الطلب بعد"
+    },
     "attachments": "المرفقات",
     "noAttachments": "لا توجد مرفقات",
     "history": "السجل"
@@ -281,7 +309,8 @@
     "stepActions": "الإجراءات المسموحة",
     "addStep": "إضافة مرحلة",
     "remove": "حذف",
-    "preview": "معاينة مباشرة"
+    "preview": "معاينة مباشرة",
+    "previewHint": "تظهر هنا معاينة مباشرة لنموذجك"
   },
   "users": {
     "title": "المستخدمون والأدوار",
@@ -300,7 +329,11 @@
     "generatedAt": "آخر تحديث {{time}}",
     "slaBreaches": "تجاوزات مدة الإنجاز",
     "byType": "حسب الخدمة",
-    "col": { "type": "الخدمة", "count": "الطلبات", "avgHours": "متوسط الساعات حتى القرار" }
+    "col": {
+      "type": "الخدمة",
+      "count": "الطلبات",
+      "avgHours": "متوسط الساعات حتى القرار"
+    }
   },
   "notifications": {
     "title": "الإشعارات",

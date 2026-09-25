@@ -22,7 +22,7 @@ export interface TimelineItem {
   styleUrl: './timeline.scss',
 })
 export class Timeline {
-  // TODO(T2.6): declare a required `items` input (TimelineItem[]); import DatePipe for the
-  //   timestamps.
+  // TODO(T2.6): declare an `items` input (TimelineItem[], default []) and import DatePipe for
+  //   the timestamps. A default keeps parents that do not bind it yet compiling.
   //   Docs: https://angular.dev/guide/components/inputs
 }

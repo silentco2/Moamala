@@ -4,7 +4,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { DynamicForm } from '@moamala/shared/ui-dynamic-form';
 import { FileDropzone, PageHeader } from '@moamala/shared/ui';
 
 export const AUTOSAVE_DEBOUNCE_MS = 1500;
@@ -16,7 +15,6 @@ export const AUTOSAVE_DEBOUNCE_MS = 1500;
 @Component({
   selector: 'mo-submit-page',
   imports: [
-    DynamicForm,
     FileDropzone,
     MatButtonModule,
     MatCardModule,

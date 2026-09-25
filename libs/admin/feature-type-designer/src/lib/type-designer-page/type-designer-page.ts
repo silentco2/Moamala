@@ -9,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { DynamicForm } from '@moamala/shared/ui-dynamic-form';
 import { PageHeader } from '@moamala/shared/ui';
 import { LocalizedTextInput, OptionsListEditor } from '@moamala/shared/util-forms';
 
@@ -18,7 +17,6 @@ import { LocalizedTextInput, OptionsListEditor } from '@moamala/shared/util-form
   selector: 'mo-type-designer-page',
   imports: [
     DragDropModule,
-    DynamicForm,
     LocalizedTextInput,
     MatButtonModule,
     MatCardModule,

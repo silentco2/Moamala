@@ -35,3 +35,14 @@
 .submit__uploads {
   margin-block-start: var(--mo-space-3);
 }
+
+.submit__placeholder {
+  display: flex;
+  gap: var(--mo-space-2);
+  align-items: center;
+  justify-content: center;
+  min-block-size: 240px;
+  border: 1px dashed var(--mat-sys-outline-variant);
+  border-radius: var(--mo-radius-md);
+  color: var(--mat-sys-on-surface-variant);
+}
