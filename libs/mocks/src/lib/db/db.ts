@@ -30,8 +30,9 @@ function createSeed(): DbState {
 }
 
 /**
- * In-memory database persisted to localStorage. Every tab keeps its own copy;
- * a BroadcastChannel tells the other tabs to reload after a write.
+ * In-memory database persisted to localStorage. Every tab keeps its own copy and
+ * broadcasts the full state after each write. The state travels in the message
+ * because localStorage reaches other tabs asynchronously and may still be stale.
  */
 class MockDb {
   private state: DbState;
@@ -40,8 +41,8 @@ class MockDb {
 
   constructor() {
     this.state = this.load() ?? this.seed();
-    this.channel?.addEventListener('message', () => {
-      this.state = this.load() ?? this.state;
+    this.channel?.addEventListener('message', (event: MessageEvent<DbState>) => {
+      this.state = event.data;
     });
   }
 
@@ -78,12 +79,12 @@ class MockDb {
   /** Call after every mutation. */
   commit(): void {
     this.save();
-    this.channel?.postMessage('changed');
+    this.channel?.postMessage(this.state);
   }
 
   reset(): void {
     this.state = this.seed();
-    this.channel?.postMessage('changed');
+    this.channel?.postMessage(this.state);
   }
 
   private seed(): DbState {
