@@ -26,8 +26,13 @@ const request = (id: string, patch: Partial<ServiceRequest> = {}): ServiceReques
 
 const act = (type: string, props: object = {}): Action => ({ type: `[Inbox] ${type}`, ...props });
 
-const reduce = (...actions: Action[]): Shape =>
-  actions.reduce<InboxState>((state, action) => inboxReducer(state, action), inboxReducer(undefined, { type: '@@init' })) as Shape;
+const reduceRaw = (...actions: Action[]): InboxState =>
+  actions.reduce<InboxState>((state, action) => inboxReducer(state, action), inboxReducer(undefined, { type: '@@init' }));
+
+/** Reads the state through the shape documented in the T3.1 TODO. */
+const view = (state: InboxState) => state as Shape;
+
+const reduce = (...actions: Action[]): Shape => view(reduceRaw(...actions));
 
 const loaded = [act('Load Inbox'), act('Load Inbox Success', { requests: [request('a'), request('b')] })];
 
@@ -60,11 +65,12 @@ describe('inboxReducer', () => {
 
   it('T3.1 rolls back a failed decision and keeps the field errors', () => {
     const error: ApiError = { status: 422, message: 'errors.validation', fieldErrors: { comment: ['validation.minLength'] } };
-    const state = reduce(...loaded, act('Decide', { requestId: 'a', action: 'reject', comment: 'no' }), act('Decide Failure', { requestId: 'a', error }));
+    const raw = reduceRaw(...loaded, act('Decide', { requestId: 'a', action: 'reject', comment: 'no' }), act('Decide Failure', { requestId: 'a', error }));
+    const state = view(raw);
     expect(state.entities['a']?.refNo).toBe('REF-a');
     expect(state.ids).toContain('a');
     expect(state.decisionErrors).toEqual({ comment: ['validation.minLength'] });
-    const retry = inboxReducer(state, act('Decide', { requestId: 'a', action: 'reject', comment: 'no' })) as Shape;
+    const retry = view(inboxReducer(raw, act('Decide', { requestId: 'a', action: 'reject', comment: 'no' })));
     expect(retry.decisionErrors).toBeNull();
   });
 
@@ -74,11 +80,11 @@ describe('inboxReducer', () => {
   });
 
   it('T5.2 applies realtime updates and assignments', () => {
-    let state = reduce(...loaded, act('Request Updated', { request: request('c') }));
-    expect(state.ids).toContain('c');
-    state = inboxReducer(state, act('Request Updated', { request: request('a', { status: 'approved' }) })) as Shape;
-    expect(state.ids).not.toContain('a');
-    state = inboxReducer(state, act('Request Assigned', { requestId: 'b', assigneeId: 'u-2' })) as Shape;
-    expect(state.entities['b']?.assigneeId).toBe('u-2');
+    let state = reduceRaw(...loaded, act('Request Updated', { request: request('c') }));
+    expect(view(state).ids).toContain('c');
+    state = inboxReducer(state, act('Request Updated', { request: request('a', { status: 'approved' }) }));
+    expect(view(state).ids).not.toContain('a');
+    state = inboxReducer(state, act('Request Assigned', { requestId: 'b', assigneeId: 'u-2' }));
+    expect(view(state).entities['b']?.assigneeId).toBe('u-2');
   });
 });
