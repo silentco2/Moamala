@@ -1,7 +1,12 @@
-import { DateRangeValue, FieldDef, RequestType, RequestTypeInput } from '@moamala/shared/models';
+import {
+  DateRangeValue,
+  FIELD_KEY_PATTERN,
+  FieldDef,
+  RequestType,
+  RequestTypeInput,
+  TYPE_KEY_PATTERN,
+} from '@moamala/shared/models';
 import { FieldErrors } from './responses';
-
-const KEY_PATTERN = /^[a-z][a-z0-9_]*$/;
 
 export function isFieldVisible(field: FieldDef, data: Record<string, unknown>): boolean {
   return !field.visibleIf || data[field.visibleIf.field] === field.visibleIf.equals;
@@ -58,7 +63,7 @@ export function validateRequestType(
   const errors: FieldErrors = {};
   const add = (key: string, message: string) => (errors[key] ??= []).push(message);
 
-  if (!KEY_PATTERN.test(input.key ?? '')) add('key', 'validation.key');
+  if (!TYPE_KEY_PATTERN.test(input.key ?? '')) add('key', 'validation.key');
   if (existing.some((type) => type.key === input.key && type.id !== excludeId)) {
     add('key', 'validation.keyTaken');
   }
@@ -70,7 +75,7 @@ export function validateRequestType(
   const sectionIds = new Set((input.sections ?? []).map((section) => section.id));
   const fieldKeys = new Set<string>();
   (input.fields ?? []).forEach((field, index) => {
-    if (!KEY_PATTERN.test(field.key)) add(`fields.${index}.key`, 'validation.key');
+    if (!FIELD_KEY_PATTERN.test(field.key)) add(`fields.${index}.key`, 'validation.key');
     if (fieldKeys.has(field.key)) add(`fields.${index}.key`, 'validation.duplicate');
     fieldKeys.add(field.key);
     if (!sectionIds.has(field.section)) add(`fields.${index}.section`, 'validation.option');

@@ -1,0 +1,16 @@
+<!-- TODO(T4.2): bind the label input, both input values, (input)/(blur) handlers and [disabled] -->
+<fieldset class="localized-input">
+  <legend class="localized-input__label">Name</legend>
+  <div class="localized-input__fields">
+    <mat-form-field appearance="outline" class="localized-input__field">
+      <!-- i18n: forms.localized.en -->
+      <mat-label>English</mat-label>
+      <input matInput dir="ltr" lang="en" data-testid="localized-en" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="localized-input__field">
+      <!-- i18n: forms.localized.ar -->
+      <mat-label>Arabic</mat-label>
+      <input matInput dir="rtl" lang="ar" data-testid="localized-ar" />
+    </mat-form-field>
+  </div>
+</fieldset>

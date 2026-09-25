@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.localized-input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+
+.localized-input__label {
+  padding: 0;
+  margin-block-end: var(--mo-space-2);
+  font: var(--mat-sys-label-large);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.localized-input__fields {
+  display: grid;
+  gap: var(--mo-space-3);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.localized-input__field {
+  inline-size: 100%;
+}

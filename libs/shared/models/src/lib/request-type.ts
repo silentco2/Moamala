@@ -84,3 +84,9 @@ export interface RequestType {
 
 /** Payload for creating or updating a request type (server assigns `id` and `version`). */
 export type RequestTypeInput = Omit<RequestType, 'id' | 'version'>;
+
+/** Request type keys are snake_case, e.g. `building_permit`. */
+export const TYPE_KEY_PATTERN = /^[a-z][a-z0-9_]*$/;
+
+/** Field keys are camelCase, e.g. `ownerName`. They become keys of `ServiceRequest.data`. */
+export const FIELD_KEY_PATTERN = /^[a-z][a-zA-Z0-9]*$/;
