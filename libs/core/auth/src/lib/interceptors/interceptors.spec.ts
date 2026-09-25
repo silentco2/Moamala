@@ -19,6 +19,7 @@ function setup(interceptor: HttpInterceptorFn, token: string | null = null) {
       TranslocoTestingModule.forRoot({
         langs: { en: { errors: { server: 'Server error', forbidden: 'Forbidden' } } },
         translocoConfig: { availableLangs: ['en'], defaultLang: 'en' },
+        preloadLangs: true,
       }),
     ],
     providers: [
