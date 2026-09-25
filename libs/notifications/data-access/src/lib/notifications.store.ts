@@ -13,6 +13,7 @@ export const NotificationsStore = signalStore(
   { providedIn: 'root' },
   withState<NotificationsState>({ items: [], loading: false }),
   // TODO(T5.3): replace with computed(): `unreadCount` and `latest` (first LATEST_NOTIFICATIONS).
+  //   Docs: https://ngrx.io/guide/signals/signal-store#defining-computed-signals
   withComputed(() => ({
     unreadCount: signal(0).asReadonly(),
     latest: signal<AppNotification[]>([]).asReadonly(),
@@ -29,6 +30,7 @@ export const NotificationsStore = signalStore(
   })),
   // TODO(T5.2): withHooks({ onInit }): subscribe to RealtimeService.on('notification') and
   //   prepend each notification (ignore duplicates by id).
+  //   Docs: https://ngrx.io/guide/signals/signal-store/lifecycle-hooks
   // TODO(T5.3): in the same hook, open a MatSnackBar for kinds in HIGH_PRIORITY_KINDS with the
   //   translated text `notifications.kind.<kind>` (param refNo from the payload).
   //   Docs: https://material.angular.dev/components/snack-bar/overview

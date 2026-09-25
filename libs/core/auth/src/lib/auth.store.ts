@@ -30,14 +30,16 @@ export const AuthStore = signalStore(
   })),
   // TODO(T1.3): implement the methods with inject(HttpClient) and patchState():
   //   login(email): POST /api/auth/login -> LoginResponse, patch state, persist { token, user }
-  //   as JSON under AUTH_STORAGE_KEY, resolve with the user (firstValueFrom is fine here).
+  //   as JSON under AUTH_STORAGE_KEY in sessionStorage, resolve with the user (firstValueFrom is
+  //   fine here). sessionStorage is per tab, so two tabs can be signed in as two different users
+  //   while sharing the mock backend (see "Two tabs, two roles" in the README).
   //   logout(): clear state and storage, then navigate to /login.
   //   Docs: https://ngrx.io/guide/signals/signal-store#defining-store-methods
   withMethods(() => ({
     login: (_email: string): Promise<User> => Promise.reject(new Error('TODO T1.3')),
     logout: (): void => undefined,
   })),
-  // TODO(T1.3): add withHooks({ onInit }) that restores a persisted session from localStorage,
+  // TODO(T1.3): add withHooks({ onInit }) that restores a persisted session from sessionStorage,
   //   ignoring malformed JSON. Put it after withMethods so the hook can use them.
   //   React analogy: the "rehydrate on mount" step of redux-persist.
   //   Docs: https://ngrx.io/guide/signals/signal-store/lifecycle-hooks

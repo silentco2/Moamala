@@ -17,7 +17,7 @@ class Probe {
 
 describe('appConfig', () => {
   beforeEach(() => {
-    localStorage.clear();
+    sessionStorage.clear();
     TestBed.configureTestingModule({
       providers: [...appConfig.providers, provideHttpClientTesting()],
     });
@@ -25,7 +25,7 @@ describe('appConfig', () => {
 
   it('T1.4 registers the HTTP interceptors', () => {
     const user = { id: 'u', name: { en: 'U', ar: 'U' }, email: 'u@test', role: 'applicant' };
-    localStorage.setItem('moamala.auth', JSON.stringify({ token: 'jwt-app', user }));
+    sessionStorage.setItem('moamala.auth', JSON.stringify({ token: 'jwt-app', user }));
     TestBed.inject(HttpClient).get('/api/requests').subscribe();
     const req = TestBed.inject(HttpTestingController).expectOne('/api/requests');
     expect(req.request.headers.get('Authorization')).toBe('Bearer jwt-app');

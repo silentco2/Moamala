@@ -28,5 +28,6 @@ export const appConfig: ApplicationConfig = {
     //   *moHasRole (shared/util-common) can read the role without depending on core/auth.
     //   Docs: https://angular.dev/guide/di/dependency-injection-providers#factory-providers-usefactory
     // TODO(T5.1): provideRealtimeConnection()
+    //   Docs: https://angular.dev/api/core/provideEnvironmentInitializer
   ],
 };

@@ -8,11 +8,13 @@ export type RealtimeEventOf<T extends RealtimeEvent['type']> = Extract<RealtimeE
 export class RealtimeService {
   // TODO(T5.1): expose the connection state as a read-only signal:
   //   'idle' -> 'connecting' -> 'open' -> ('reconnecting' -> 'open')* -> 'closed'.
+  //   Docs: https://angular.dev/guide/signals
   readonly status: Signal<ConnectionStatus> = signal<ConnectionStatus>('idle');
 
   // TODO(T5.1): one shared stream of typed server events for the whole app. It must keep working
   //   across reconnects, so subscribers never need to resubscribe (a Subject you feed from the
   //   socket is the simplest shape).
+  //   Docs: https://rxjs.dev/guide/subject
   readonly events$: Observable<RealtimeEvent> = EMPTY;
 
   // TODO(T5.1): open `${REALTIME_URL}?token=${token}` with webSocket() from 'rxjs/webSocket',
@@ -27,11 +29,13 @@ export class RealtimeService {
   }
 
   // TODO(T5.1): close the socket, stop reconnecting, set status to 'closed'.
+  //   Docs: https://rxjs.dev/api/webSocket/WebSocketSubject
   disconnect(): void {
     return;
   }
 
   // TODO(T5.1): send a client message (the WebSocketSubject serializes it with JSON.stringify).
+  //   Docs: https://rxjs.dev/api/webSocket/WebSocketSubject
   send(_message: RealtimeClientMessage): void {
     return;
   }

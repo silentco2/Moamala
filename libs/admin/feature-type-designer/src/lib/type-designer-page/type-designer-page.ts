@@ -53,6 +53,7 @@ export class TypeDesignerPage {
   // TODO(T4.3): validators: typeKeyValidator + uniqueKeyValidator(key => api.isKeyAvailable(key,
   //   id())) on `key`, fieldKeyValidator on each field key, minMaxValidator on each field group.
   //
+  //   Docs: https://angular.dev/guide/forms/form-validation
   // TODO(T4.4): live preview: `preview` = toSignal(form.valueChanges) mapped to a RequestType
   //   (id 'preview', version 0) and fed to <mo-dynamic-form>, with its own preview value signal.
   //   Docs: https://angular.dev/ecosystem/rxjs-interop#create-a-signal-from-an-observable-with-tosignal

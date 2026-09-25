@@ -11,7 +11,7 @@ const USERS: User[] = [
 ];
 
 async function render() {
-  localStorage.clear();
+  sessionStorage.clear();
   TestBed.configureTestingModule({
     providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])],
   });

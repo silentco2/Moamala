@@ -14,7 +14,7 @@ const reviewer: User = {
 
 describe('AuthStore', () => {
   beforeEach(() => {
-    localStorage.clear();
+    sessionStorage.clear();
     TestBed.configureTestingModule({
       providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])],
     });
@@ -49,7 +49,7 @@ describe('AuthStore', () => {
 
   it('T1.3 persists the session', async () => {
     await loginAsReviewer();
-    expect(JSON.parse(localStorage.getItem(AUTH_STORAGE_KEY) ?? 'null')).toEqual({
+    expect(JSON.parse(sessionStorage.getItem(AUTH_STORAGE_KEY) ?? 'null')).toEqual({
       token: 'jwt-1',
       user: reviewer,
     });
@@ -61,19 +61,19 @@ describe('AuthStore', () => {
     store.logout();
     expect(store.isAuthenticated()).toBe(false);
     expect(store.user()).toBeNull();
-    expect(localStorage.getItem(AUTH_STORAGE_KEY)).toBeNull();
+    expect(sessionStorage.getItem(AUTH_STORAGE_KEY)).toBeNull();
     expect(navigate).toHaveBeenCalledWith('/login');
   });
 
   it('T1.3 restores a persisted session on init', () => {
-    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ token: 'jwt-2', user: reviewer }));
+    sessionStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ token: 'jwt-2', user: reviewer }));
     const store = TestBed.inject(AuthStore);
     expect(store.token()).toBe('jwt-2');
     expect(store.isReviewer()).toBe(true);
   });
 
   it('T1.3 ignores a corrupted persisted session', async () => {
-    localStorage.setItem(AUTH_STORAGE_KEY, '{not json');
+    sessionStorage.setItem(AUTH_STORAGE_KEY, '{not json');
     const { store } = await loginAsReviewer();
     expect(store.isAuthenticated()).toBe(true);
   });

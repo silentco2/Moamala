@@ -33,20 +33,23 @@ export interface OpenDraftParams {
 export const ApplicantStore = signalStore(
   { providedIn: 'root' },
   withState(initialApplicantState),
-  // TODO: implement each method with ApplicantApi and patchState. Task per method:
-  //   T2.5 loadMyRequests(query): rxMethod<RequestQuery> -> store the query, set loading,
-  //        switchMap to listMine, patch requests/total, record errors (tapResponse helps).
-  //        Hint: switchMap cancels a stale request when filters change quickly, like an
-  //        AbortController in a React effect cleanup.
-  //   T2.3 openDraft({ requestId } | { typeId }): load an existing request, or create a draft for
-  //        the type; then load its RequestType into draftType. Resets savedAt.
-  //   T2.3 saveDraft(data): rxMethod -> PUT the draft with the current attachments; while saving
-  //        set savingDraft; on success patch draft and savedAt (= response.updatedAt).
-  //        Use concatMap so saves are applied in order.
-  //   T2.3 submit(): submit the current draft, patch it with the response and resolve with it.
-  //        Reject with the ApiError body (HttpErrorResponse.error) when the API answers 422.
-  //   T2.4 addAttachment(attachment) / removeAttachment(id): update draft.attachments immutably.
+  // Implement each method with ApplicantApi and patchState:
+  // TODO(T2.5): loadMyRequests(query): rxMethod<RequestQuery> -> store the query, set loading,
+  //   switchMap to listMine, patch requests/total, record errors (tapResponse helps).
+  //   Hint: switchMap cancels a stale request when filters change quickly, like an
+  //   AbortController in a React effect cleanup.
   //   Docs: https://ngrx.io/guide/signals/rxjs-integration
+  // TODO(T2.3): openDraft({ requestId } | { typeId }): load an existing request, or create a
+  //   draft for the type; then load its RequestType into draftType. Resets savedAt.
+  //   saveDraft(data): rxMethod -> PUT the draft with the current attachments; while saving set
+  //   savingDraft; on success patch draft and savedAt (= response.updatedAt). Use concatMap so
+  //   saves are applied in order.
+  //   submit(): submit the current draft, patch it with the response and resolve with it. Reject
+  //   with the ApiError body (HttpErrorResponse.error) when the API answers 422.
+  //   Docs: https://ngrx.io/guide/signals/signal-store#defining-store-methods
+  // TODO(T2.4): addAttachment(attachment) / removeAttachment(id): update draft.attachments
+  //   immutably (a new draft object and a new array).
+  //   Docs: https://ngrx.io/guide/signals/signal-state#updating-state
   withMethods(() => ({
     loadMyRequests: (_query: RequestQuery): void => undefined,
     openDraft: (_params: OpenDraftParams): Promise<void> => Promise.resolve(),

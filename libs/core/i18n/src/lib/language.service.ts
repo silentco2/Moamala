@@ -8,6 +8,7 @@ export const LANG_STORAGE_KEY = 'moamala.lang';
 export class LanguageService {
   // TODO(T1.5): keep the active language in a private writable signal and expose it read-only as
   //   `lang`; derive `dir` ('rtl' for Arabic) with computed().
+  //   Docs: https://angular.dev/guide/signals#computed-signals
   readonly lang: Signal<Lang> = signal<Lang>('en');
   readonly dir: Signal<Direction> = signal<Direction>('ltr');
 
