@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { LoginPage } from '@moamala/core/auth';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
   selector: 'mo-root',
+  imports: [LoginPage],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
 })
-export class App {
-  protected title = 'portal';
-}
+export class App {}
