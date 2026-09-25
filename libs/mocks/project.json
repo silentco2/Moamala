@@ -1,0 +1,16 @@
+{
+  "name": "mocks",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mocks/src",
+  "prefix": "mo",
+  "projectType": "library",
+  "tags": [
+    "scope:mocks",
+    "type:mocks"
+  ],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

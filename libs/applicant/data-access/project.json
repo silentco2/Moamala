@@ -1,0 +1,24 @@
+{
+  "name": "applicant-data-access",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/applicant/data-access/src",
+  "prefix": "mo",
+  "projectType": "library",
+  "tags": [
+    "scope:applicant",
+    "type:data-access"
+  ],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "buildTarget": "portal:build:development",
+        "tsConfig": "libs/applicant/data-access/tsconfig.spec.json",
+        "watch": false
+      }
+    }
+  }
+}

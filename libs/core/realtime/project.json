@@ -1,0 +1,24 @@
+{
+  "name": "core-realtime",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/core/realtime/src",
+  "prefix": "mo",
+  "projectType": "library",
+  "tags": [
+    "scope:core",
+    "type:data-access"
+  ],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "buildTarget": "portal:build:development",
+        "tsConfig": "libs/core/realtime/tsconfig.spec.json",
+        "watch": false
+      }
+    }
+  }
+}

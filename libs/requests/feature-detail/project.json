@@ -1,0 +1,24 @@
+{
+  "name": "requests-feature-detail",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/requests/feature-detail/src",
+  "prefix": "mo",
+  "projectType": "library",
+  "tags": [
+    "scope:requests",
+    "type:feature"
+  ],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "buildTarget": "portal:build:development",
+        "tsConfig": "libs/requests/feature-detail/tsconfig.spec.json",
+        "watch": false
+      }
+    }
+  }
+}

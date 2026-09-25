@@ -1,0 +1,46 @@
+// Design tokens shared by the theme and component styles.
+// Components consume the CSS custom properties; SCSS maps exist for the theme only.
+
+:root {
+  --mo-font-family: 'Roboto', 'Noto Kufi Arabic', system-ui, sans-serif;
+
+  --mo-space-1: 4px;
+  --mo-space-2: 8px;
+  --mo-space-3: 12px;
+  --mo-space-4: 16px;
+  --mo-space-5: 24px;
+  --mo-space-6: 32px;
+  --mo-space-7: 48px;
+
+  --mo-radius-sm: 8px;
+  --mo-radius-md: 12px;
+  --mo-radius-lg: 20px;
+
+  --mo-content-max-width: 1200px;
+  --mo-sidenav-width: 264px;
+  --mo-toolbar-height: 64px;
+
+  --mo-elevation-1: 0 1px 2px rgb(0 0 0 / 8%), 0 1px 3px rgb(0 0 0 / 6%);
+
+  // Request status palette (container / on-container pairs).
+  --mo-status-draft-bg: #eceff1;
+  --mo-status-draft-fg: #37474f;
+  --mo-status-submitted-bg: #e3f2fd;
+  --mo-status-submitted-fg: #0d47a1;
+  --mo-status-in_review-bg: #fff8e1;
+  --mo-status-in_review-fg: #8d6e00;
+  --mo-status-returned-bg: #fff3e0;
+  --mo-status-returned-fg: #b34700;
+  --mo-status-approved-bg: #e8f5e9;
+  --mo-status-approved-fg: #1b5e20;
+  --mo-status-rejected-bg: #ffebee;
+  --mo-status-rejected-fg: #b71c1c;
+
+  // SLA states.
+  --mo-sla-ok: #2e7d32;
+  --mo-sla-warning: #b26a00;
+  --mo-sla-overdue: #c62828;
+}
+
+$breakpoint-handset: 599.98px;
+$breakpoint-tablet: 959.98px;

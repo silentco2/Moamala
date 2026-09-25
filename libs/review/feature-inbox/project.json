@@ -1,0 +1,24 @@
+{
+  "name": "review-feature-inbox",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/review/feature-inbox/src",
+  "prefix": "mo",
+  "projectType": "library",
+  "tags": [
+    "scope:review",
+    "type:feature"
+  ],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "buildTarget": "portal:build:development",
+        "tsConfig": "libs/review/feature-inbox/tsconfig.spec.json",
+        "watch": false
+      }
+    }
+  }
+}
