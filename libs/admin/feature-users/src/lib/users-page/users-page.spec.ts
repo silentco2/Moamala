@@ -5,7 +5,12 @@ import { TranslocoTestingModule } from '@jsverse/transloco';
 import { User } from '@moamala/shared/models';
 import { UsersPage } from './users-page';
 
-const user = (id: string, role: User['role']): User => ({ id, name: { en: `Name ${id}`, ar: id }, email: `${id}@test`, role });
+const user = (id: string, role: User['role']): User => ({
+  id,
+  name: { en: `Name ${id}`, ar: id },
+  email: `${id}@test`,
+  role,
+});
 
 describe('UsersPage', () => {
   it('T4.5 lists users and saves inline role changes', () => {

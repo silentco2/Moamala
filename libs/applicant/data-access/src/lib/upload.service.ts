@@ -3,8 +3,7 @@ import { EMPTY, Observable } from 'rxjs';
 import { Attachment } from '@moamala/shared/models';
 
 export type UploadProgress =
-  | { state: 'progress'; percent: number }
-  | { state: 'done'; attachment: Attachment };
+  { state: 'progress'; percent: number } | { state: 'done'; attachment: Attachment };
 
 @Injectable({ providedIn: 'root' })
 export class UploadService {

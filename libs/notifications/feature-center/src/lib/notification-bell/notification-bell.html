@@ -16,7 +16,12 @@
 <mat-menu #menu="matMenu" xPosition="before" class="bell__menu">
   <!-- TODO(T5.3): @for (item of store.latest(); track item.id) with (click)="open(item)";
        unread items get the bell__item--unread class; @empty shows notifications.empty -->
-  <button mat-menu-item type="button" class="bell__item bell__item--unread" data-testid="notification-item">
+  <button
+    mat-menu-item
+    type="button"
+    class="bell__item bell__item--unread"
+    data-testid="notification-item"
+  >
     <mat-icon>undo</mat-icon>
     <span class="bell__text">
       <!-- i18n: notifications.kind.request.returned (param: refNo) -->

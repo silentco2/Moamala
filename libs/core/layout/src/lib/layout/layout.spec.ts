@@ -48,7 +48,8 @@ describe('Layout', () => {
 
   it('T1.6 uses an overlay sidenav on handsets', () => {
     const { fixture } = render('applicant', true);
-    const sidenav = fixture.debugElement.query(By.directive(MatSidenav)).componentInstance as MatSidenav;
+    const sidenav = fixture.debugElement.query(By.directive(MatSidenav))
+      .componentInstance as MatSidenav;
     expect(sidenav.mode).toBe('over');
     expect(sidenav.opened).toBe(false);
     expect(fixture.nativeElement.querySelector('[data-testid="menu-toggle"]')).not.toBeNull();
@@ -56,7 +57,8 @@ describe('Layout', () => {
 
   it('T1.6 keeps a side sidenav and hides the menu button on larger screens', () => {
     const { fixture } = render('applicant', false);
-    const sidenav = fixture.debugElement.query(By.directive(MatSidenav)).componentInstance as MatSidenav;
+    const sidenav = fixture.debugElement.query(By.directive(MatSidenav))
+      .componentInstance as MatSidenav;
     expect(sidenav.mode).toBe('side');
     expect(fixture.nativeElement.querySelector('[data-testid="menu-toggle"]')).toBeNull();
   });

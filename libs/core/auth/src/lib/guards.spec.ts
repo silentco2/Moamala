@@ -45,7 +45,7 @@ describe('route guards', () => {
     expect(await navigate('/review/inbox', 'approver')).toBe('/review/inbox');
   });
 
-  it("T1.2 roleGuard redirects other roles to their own home", async () => {
+  it('T1.2 roleGuard redirects other roles to their own home', async () => {
     expect(await navigate('/admin/types', 'applicant')).toBe('/applicant/catalog');
   });
 

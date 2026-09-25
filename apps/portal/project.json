@@ -4,16 +4,11 @@
   "projectType": "application",
   "prefix": "mo",
   "sourceRoot": "apps/portal/src",
-  "tags": [
-    "scope:portal",
-    "type:app"
-  ],
+  "tags": ["scope:portal", "type:app"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/portal",
@@ -26,9 +21,7 @@
             "input": "apps/portal/public"
           }
         ],
-        "styles": [
-          "apps/portal/src/styles.scss"
-        ]
+        "styles": ["apps/portal/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -55,9 +48,7 @@
             {
               "glob": "**/*",
               "input": "apps/portal/public",
-              "ignore": [
-                "mockServiceWorker.js"
-              ]
+              "ignore": ["mockServiceWorker.js"]
             }
           ]
         },

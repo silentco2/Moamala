@@ -2,7 +2,14 @@ import { TestBed } from '@angular/core/testing';
 import { Timeline, TimelineItem } from './timeline';
 
 const ITEMS: TimelineItem[] = [
-  { id: '1', icon: 'add', title: 'Created', actor: 'Layla', at: '2026-01-01T08:00:00Z', tone: 'neutral' },
+  {
+    id: '1',
+    icon: 'add',
+    title: 'Created',
+    actor: 'Layla',
+    at: '2026-01-01T08:00:00Z',
+    tone: 'neutral',
+  },
   {
     id: '2',
     icon: 'undo',
@@ -12,7 +19,14 @@ const ITEMS: TimelineItem[] = [
     comment: 'Missing deed',
     tone: 'warning',
   },
-  { id: '3', icon: 'send', title: 'Resubmitted', actor: 'Layla', at: '2026-01-03T08:00:00Z', tone: 'neutral' },
+  {
+    id: '3',
+    icon: 'send',
+    title: 'Resubmitted',
+    actor: 'Layla',
+    at: '2026-01-03T08:00:00Z',
+    tone: 'neutral',
+  },
 ];
 
 describe('Timeline', () => {

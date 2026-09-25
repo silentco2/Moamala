@@ -1,5 +1,9 @@
 import { provideHttpClient } from '@angular/common/http';
-import { HttpTestingController, provideHttpClientTesting, TestRequest } from '@angular/common/http/testing';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+  TestRequest,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { AuditEvent, Page, RequestType } from '@moamala/shared/models';
@@ -39,7 +43,13 @@ function render() {
     fixture.detectChanges();
     TestBed.tick();
   };
-  return { fixture, httpMock, page: fixture.debugElement.componentInstance, auditRequests, refresh };
+  return {
+    fixture,
+    httpMock,
+    page: fixture.debugElement.componentInstance,
+    auditRequests,
+    refresh,
+  };
 }
 
 describe('AuditLogPage', () => {
@@ -50,7 +60,9 @@ describe('AuditLogPage', () => {
     expect(req.request.params.get('pageSize')).toBe('50');
     req.flush(page(50, 128));
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('[data-testid="audit-total"]')?.textContent).toContain('128');
+    expect(
+      fixture.nativeElement.querySelector('[data-testid="audit-total"]')?.textContent,
+    ).toContain('128');
   });
 
   it('T6.1 sends filters to the server and starts over at page 1', () => {

@@ -4,10 +4,7 @@
   "sourceRoot": "libs/shared/ui-dynamic-form/src",
   "prefix": "mo",
   "projectType": "library",
-  "tags": [
-    "scope:shared",
-    "type:ui"
-  ],
+  "tags": ["scope:shared", "type:ui"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

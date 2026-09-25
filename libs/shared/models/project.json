@@ -4,10 +4,7 @@
   "sourceRoot": "libs/shared/models/src",
   "prefix": "mo",
   "projectType": "library",
-  "tags": [
-    "scope:shared",
-    "type:model"
-  ],
+  "tags": ["scope:shared", "type:model"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

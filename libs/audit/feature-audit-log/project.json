@@ -4,10 +4,7 @@
   "sourceRoot": "libs/audit/feature-audit-log/src",
   "prefix": "mo",
   "projectType": "library",
-  "tags": [
-    "scope:audit",
-    "type:feature"
-  ],
+  "tags": ["scope:audit", "type:feature"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

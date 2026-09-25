@@ -39,7 +39,8 @@ function render() {
   } as Action);
   fixture.detectChanges();
   const el = fixture.nativeElement as HTMLElement;
-  const all = (id: string) => Array.from(el.querySelectorAll(`[data-testid="${id}"]`)) as HTMLElement[];
+  const all = (id: string) =>
+    Array.from(el.querySelectorAll(`[data-testid="${id}"]`)) as HTMLElement[];
   return { fixture, dispatch, el, all };
 }
 
@@ -64,7 +65,9 @@ describe('InboxPage', () => {
     const { all, dispatch } = render();
     expect(all('claim').length).toBe(2);
     all('claim')[1].click();
-    expect(dispatch).toHaveBeenCalledWith(expect.objectContaining({ type: '[Inbox] Claim', requestId: 'b' }));
+    expect(dispatch).toHaveBeenCalledWith(
+      expect.objectContaining({ type: '[Inbox] Claim', requestId: 'b' }),
+    );
   });
 
   it('T3.4 bulk approves the selected requests with a justification', () => {

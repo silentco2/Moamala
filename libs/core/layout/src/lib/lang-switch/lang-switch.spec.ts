@@ -7,10 +7,14 @@ import { LangSwitch } from './lang-switch';
 describe('LangSwitch', () => {
   function render(current: Lang) {
     const language = { lang: signal<Lang>(current), use: vi.fn() };
-    TestBed.configureTestingModule({ providers: [{ provide: LanguageService, useValue: language }] });
+    TestBed.configureTestingModule({
+      providers: [{ provide: LanguageService, useValue: language }],
+    });
     const fixture = TestBed.createComponent(LangSwitch);
     fixture.detectChanges();
-    const button = fixture.nativeElement.querySelector('[data-testid="lang-switch"]') as HTMLElement;
+    const button = fixture.nativeElement.querySelector(
+      '[data-testid="lang-switch"]',
+    ) as HTMLElement;
     return { fixture, language, button };
   }
 

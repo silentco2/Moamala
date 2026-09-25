@@ -1,10 +1,5 @@
 import { signalStore, withMethods, withState } from '@ngrx/signals';
-import {
-  Attachment,
-  RequestQuery,
-  RequestType,
-  ServiceRequest,
-} from '@moamala/shared/models';
+import { Attachment, RequestQuery, RequestType, ServiceRequest } from '@moamala/shared/models';
 
 export interface ApplicantState {
   requests: ServiceRequest[];

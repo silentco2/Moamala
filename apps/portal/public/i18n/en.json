@@ -1,8 +1,22 @@
 {
   "app": { "name": "Mo'amala" },
-  "common": { "any": "Any", "anyone": "Anyone", "back": "Back", "retry": "Try again", "yes": "Yes", "no": "No", "cancel": "Cancel", "save": "Save" },
+  "common": {
+    "any": "Any",
+    "anyone": "Anyone",
+    "back": "Back",
+    "retry": "Try again",
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
   "lang": { "switchTo": "Switch language to {{language}}", "en": "English", "ar": "العربية" },
-  "roles": { "applicant": "Applicant", "reviewer": "Reviewer", "approver": "Approver", "admin": "Admin" },
+  "roles": {
+    "applicant": "Applicant",
+    "reviewer": "Reviewer",
+    "approver": "Approver",
+    "admin": "Admin"
+  },
   "status": {
     "all": "All",
     "draft": "Draft",
@@ -116,7 +130,13 @@
     "new": "New request",
     "filterLabel": "Filter by status",
     "search": "Reference or keyword",
-    "col": { "refNo": "Reference", "service": "Service", "status": "Status", "submitted": "Submitted", "sla": "Time left" }
+    "col": {
+      "refNo": "Reference",
+      "service": "Service",
+      "status": "Status",
+      "submitted": "Submitted",
+      "sla": "Time left"
+    }
   },
   "submit": {
     "title": "New request",
@@ -148,7 +168,14 @@
     "title": "Audit log",
     "subtitle": "Every action taken on every request.",
     "total": "{{count}} events",
-    "filter": { "type": "Request type", "step": "Step", "action": "Action", "actor": "Actor", "from": "From", "to": "To" },
+    "filter": {
+      "type": "Request type",
+      "step": "Step",
+      "action": "Action",
+      "actor": "Actor",
+      "from": "From",
+      "to": "To"
+    },
     "created": "Created",
     "draft_saved": "Draft saved",
     "submitted": "Submitted",
@@ -174,7 +201,13 @@
     "open": "Open",
     "empty": "Your inbox is empty",
     "emptyHint": "New requests for your step will appear here.",
-    "col": { "refNo": "Reference", "step": "Step", "status": "Status", "sla": "Time left", "assignee": "Assignee" },
+    "col": {
+      "refNo": "Reference",
+      "step": "Step",
+      "status": "Status",
+      "sla": "Time left",
+      "assignee": "Assignee"
+    },
     "bulk": {
       "selected": "{{count}} selected",
       "comment": "Justification for all selected",

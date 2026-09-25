@@ -19,14 +19,24 @@ const REQUESTS = [
 ];
 
 function rootState(...extra: Action[]) {
-  const actions: Action[] = [{ type: '[Inbox] Load Inbox Success', requests: REQUESTS } as Action, ...extra];
-  const inbox = actions.reduce<InboxState>((state, action) => inboxReducer(state, action), inboxReducer(undefined, { type: '@@init' }));
+  const actions: Action[] = [
+    { type: '[Inbox] Load Inbox Success', requests: REQUESTS } as Action,
+    ...extra,
+  ];
+  const inbox = actions.reduce<InboxState>(
+    (state, action) => inboxReducer(state, action),
+    inboxReducer(undefined, { type: '@@init' }),
+  );
   return { [INBOX_FEATURE_KEY]: inbox };
 }
 
 describe('inbox selectors', () => {
   it('T3.2 sorts requests by due date, undated last', () => {
-    expect(selectInboxRequests(rootState()).map((item) => item.id)).toEqual(['early', 'late', 'none']);
+    expect(selectInboxRequests(rootState()).map((item) => item.id)).toEqual([
+      'early',
+      'late',
+      'none',
+    ]);
   });
 
   it('T3.2 selects overdue requests relative to now', () => {
@@ -52,7 +62,11 @@ describe('inbox selectors', () => {
       {
         type: '[Inbox] Decide Failure',
         requestId: 'early',
-        error: { status: 422, message: 'errors.validation', fieldErrors: { comment: ['validation.required'] } },
+        error: {
+          status: 422,
+          message: 'errors.validation',
+          fieldErrors: { comment: ['validation.required'] },
+        },
       } as Action,
     );
     expect(selectDecisionErrors(state)).toEqual({ comment: ['validation.required'] });

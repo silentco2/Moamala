@@ -56,7 +56,9 @@ describe('inbox effects', () => {
   it('T3.3 loadInbox$ reports failures without dying', () => {
     const { httpMock } = setup({ type: '[Inbox] Load Inbox' });
     const output = collect(loadInbox$);
-    httpMock.expectOne((r) => r.url === '/api/requests').flush({ status: 500, message: 'errors.server' }, failure);
+    httpMock
+      .expectOne((r) => r.url === '/api/requests')
+      .flush({ status: 500, message: 'errors.server' }, failure);
     expect(output.map((action) => action.type)).toEqual(['[Inbox] Load Inbox Failure']);
   });
 
@@ -66,31 +68,60 @@ describe('inbox effects', () => {
     const req = httpMock.expectOne('/api/requests/a/claim');
     expect(req.request.method).toBe('POST');
     req.flush(request('a', { assigneeId: 'u-1' }));
-    expect(output).toEqual([{ type: '[Inbox] Claim Success', request: request('a', { assigneeId: 'u-1' }) }]);
+    expect(output).toEqual([
+      { type: '[Inbox] Claim Success', request: request('a', { assigneeId: 'u-1' }) },
+    ]);
   });
 
   it('T3.3 decide$ posts the decision', () => {
-    const { httpMock } = setup({ type: '[Inbox] Decide', requestId: 'a', action: 'reject', comment: 'Not allowed here' } as Action);
+    const { httpMock } = setup({
+      type: '[Inbox] Decide',
+      requestId: 'a',
+      action: 'reject',
+      comment: 'Not allowed here',
+    } as Action);
     const output = collect(decide$);
     const req = httpMock.expectOne('/api/requests/a/decision');
     expect(req.request.body).toEqual({ action: 'reject', comment: 'Not allowed here' });
     req.flush(request('a', { status: 'rejected' }));
-    expect(output).toEqual([{ type: '[Inbox] Decide Success', request: request('a', { status: 'rejected' }) }]);
+    expect(output).toEqual([
+      { type: '[Inbox] Decide Success', request: request('a', { status: 'rejected' }) },
+    ]);
   });
 
   it('T3.3 decide$ passes the API validation error to the failure action', () => {
-    const { httpMock } = setup({ type: '[Inbox] Decide', requestId: 'a', action: 'reject', comment: '' } as Action);
+    const { httpMock } = setup({
+      type: '[Inbox] Decide',
+      requestId: 'a',
+      action: 'reject',
+      comment: '',
+    } as Action);
     const output = collect(decide$);
-    const body = { status: 422, message: 'errors.validation', fieldErrors: { comment: ['validation.required'] } };
-    httpMock.expectOne('/api/requests/a/decision').flush(body, { status: 422, statusText: 'Unprocessable' });
+    const body = {
+      status: 422,
+      message: 'errors.validation',
+      fieldErrors: { comment: ['validation.required'] },
+    };
+    httpMock
+      .expectOne('/api/requests/a/decision')
+      .flush(body, { status: 422, statusText: 'Unprocessable' });
     expect(output).toEqual([{ type: '[Inbox] Decide Failure', requestId: 'a', error: body }]);
   });
 
   it('T3.3 bulkDecide$ only sends requests that are still in the inbox', () => {
-    const { httpMock } = setup({ type: '[Inbox] Bulk Decide', requestIds: ['a', 'gone'], action: 'approve', comment: 'Approved in bulk' } as Action);
+    const { httpMock } = setup({
+      type: '[Inbox] Bulk Decide',
+      requestIds: ['a', 'gone'],
+      action: 'approve',
+      comment: 'Approved in bulk',
+    } as Action);
     const output = collect(bulkDecide$);
     const req = httpMock.expectOne('/api/requests/bulk-decision');
-    expect(req.request.body).toEqual({ requestIds: ['a'], action: 'approve', comment: 'Approved in bulk' });
+    expect(req.request.body).toEqual({
+      requestIds: ['a'],
+      action: 'approve',
+      comment: 'Approved in bulk',
+    });
     req.flush({ updated: [request('a', { status: 'approved' })], failed: [] });
     expect(output[0]?.type).toBe('[Inbox] Bulk Decide Success');
   });

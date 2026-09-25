@@ -9,8 +9,18 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: readonly NavItem[] = [
-  { labelKey: 'nav.catalog', icon: 'storefront', route: '/applicant/catalog', roles: ['applicant'] },
-  { labelKey: 'nav.myRequests', icon: 'description', route: '/applicant/requests', roles: ['applicant'] },
+  {
+    labelKey: 'nav.catalog',
+    icon: 'storefront',
+    route: '/applicant/catalog',
+    roles: ['applicant'],
+  },
+  {
+    labelKey: 'nav.myRequests',
+    icon: 'description',
+    route: '/applicant/requests',
+    roles: ['applicant'],
+  },
   { labelKey: 'nav.inbox', icon: 'inbox', route: '/review/inbox', roles: ['reviewer', 'approver'] },
   { labelKey: 'nav.types', icon: 'tune', route: '/admin/types', roles: ['admin'] },
   { labelKey: 'nav.users', icon: 'group', route: '/admin/users', roles: ['admin'] },

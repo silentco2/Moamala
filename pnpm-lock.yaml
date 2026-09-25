@@ -82,7 +82,7 @@ importers:
         specifier: ^9.8.0
         version: 9.39.5
       '@nx/angular':
-        specifier: ^23.2.1
+        specifier: 23.2.1
         version: 23.2.1(d4af7b873364ce03e3eb30eaf129fb99)
       '@nx/devkit':
         specifier: 23.2.1

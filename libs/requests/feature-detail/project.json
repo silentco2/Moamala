@@ -4,10 +4,7 @@
   "sourceRoot": "libs/requests/feature-detail/src",
   "prefix": "mo",
   "projectType": "library",
-  "tags": [
-    "scope:requests",
-    "type:feature"
-  ],
+  "tags": ["scope:requests", "type:feature"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

@@ -16,5 +16,7 @@ export function notifyUser(userId: string, kind: NotificationKind, request: Serv
 }
 
 export function notifyRole(role: Role, kind: NotificationKind, request: ServiceRequest): void {
-  db.users.filter((user) => user.role === role).forEach((user) => notifyUser(user.id, kind, request));
+  db.users
+    .filter((user) => user.role === role)
+    .forEach((user) => notifyUser(user.id, kind, request));
 }

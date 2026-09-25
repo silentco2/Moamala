@@ -6,7 +6,9 @@ import { TranslocoHttpLoader } from './transloco-loader';
 
 describe('TranslocoHttpLoader', () => {
   it('T1.1 loads the translation file for a language', async () => {
-    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    });
     const result = firstValueFrom(TestBed.inject(TranslocoHttpLoader).getTranslation('ar'));
     TestBed.inject(HttpTestingController).expectOne('/i18n/ar.json').flush({ hello: 'مرحبا' });
     expect(await result).toEqual({ hello: 'مرحبا' });

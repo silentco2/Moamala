@@ -8,7 +8,8 @@ const flatten = (value, prefix = '') =>
   Object.entries(value).flatMap(([key, child]) =>
     typeof child === 'object' ? flatten(child, `${prefix}${key}.`) : [`${prefix}${key}`],
   );
-const keysOf = (lang) => new Set(flatten(JSON.parse(readFileSync(join(dir, `${lang}.json`), 'utf8'))));
+const keysOf = (lang) =>
+  new Set(flatten(JSON.parse(readFileSync(join(dir, `${lang}.json`), 'utf8'))));
 
 const en = keysOf('en');
 const ar = keysOf('ar');

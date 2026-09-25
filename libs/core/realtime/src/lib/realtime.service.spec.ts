@@ -93,7 +93,11 @@ describe('RealtimeService', () => {
     service.connect('jwt-1');
     FakeWebSocket.latest.open();
     FakeWebSocket.latest.receive({ type: 'request.updated', request });
-    FakeWebSocket.latest.receive({ type: 'request.assigned', requestId: 'req-1', assigneeId: 'u-2' });
+    FakeWebSocket.latest.receive({
+      type: 'request.assigned',
+      requestId: 'req-1',
+      assigneeId: 'u-2',
+    });
     expect(ids).toEqual(['u-2']);
   });
 

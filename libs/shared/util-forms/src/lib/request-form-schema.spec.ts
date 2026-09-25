@@ -65,7 +65,10 @@ describe('requestTypeSchema', () => {
   });
 
   it('T2.2 rejects a date range that ends before it starts', () => {
-    const { kinds } = createForm({ ...valid, eventDates: { start: '2026-05-03', end: '2026-05-01' } });
+    const { kinds } = createForm({
+      ...valid,
+      eventDates: { start: '2026-05-03', end: '2026-05-01' },
+    });
     expect(kinds('eventDates')).toContain('dateRange');
   });
 });

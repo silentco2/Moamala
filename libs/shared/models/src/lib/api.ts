@@ -87,4 +87,8 @@ export interface ReportSummary {
 /** Upload limits enforced by the API (and mirrored by client-side validators). */
 export const UPLOAD_MAX_BYTES = 5 * 1024 * 1024;
 
-export const UPLOAD_ALLOWED_MIME: readonly string[] = ['application/pdf', 'image/png', 'image/jpeg'];
+export const UPLOAD_ALLOWED_MIME: readonly string[] = [
+  'application/pdf',
+  'image/png',
+  'image/jpeg',
+];

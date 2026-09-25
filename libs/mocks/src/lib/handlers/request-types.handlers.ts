@@ -46,21 +46,24 @@ export const requestTypeHandlers = [
     return HttpResponse.json<RequestType>(type, { status: 201 });
   }),
 
-  http.put<{ id: string }, RequestTypeInput>('/api/request-types/:id', async ({ request, params }) => {
-    const user = requireUser(request, ['admin']);
-    if (user instanceof Response) return user;
-    const index = db.requestTypes.findIndex((type) => type.id === params.id);
-    if (index < 0) return notFound();
-    const input = await request.json();
-    const errors = validateRequestType(input, db.requestTypes, params.id);
-    if (hasErrors(errors)) return unprocessable(errors);
-    const current = db.requestTypes[index];
-    const updated: RequestType = { ...input, id: current.id, version: current.version + 1 };
-    db.requestTypes[index] = updated;
-    recordAudit('', user.id, 'type_updated', { comment: updated.key });
-    db.commit();
-    return HttpResponse.json<RequestType>(updated);
-  }),
+  http.put<{ id: string }, RequestTypeInput>(
+    '/api/request-types/:id',
+    async ({ request, params }) => {
+      const user = requireUser(request, ['admin']);
+      if (user instanceof Response) return user;
+      const index = db.requestTypes.findIndex((type) => type.id === params.id);
+      if (index < 0) return notFound();
+      const input = await request.json();
+      const errors = validateRequestType(input, db.requestTypes, params.id);
+      if (hasErrors(errors)) return unprocessable(errors);
+      const current = db.requestTypes[index];
+      const updated: RequestType = { ...input, id: current.id, version: current.version + 1 };
+      db.requestTypes[index] = updated;
+      recordAudit('', user.id, 'type_updated', { comment: updated.key });
+      db.commit();
+      return HttpResponse.json<RequestType>(updated);
+    },
+  ),
 
   /** Soft delete: deactivates the type so existing requests keep their schema. */
   http.delete<{ id: string }>('/api/request-types/:id', ({ request, params }) => {

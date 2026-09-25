@@ -8,7 +8,11 @@ import { AppNotification, NotificationKind, RealtimeEvent } from '@moamala/share
 import { filter, Subject } from 'rxjs';
 import { NotificationsStore } from './notifications.store';
 
-const notification = (id: string, kind: NotificationKind = 'request.approved', read = false): AppNotification => ({
+const notification = (
+  id: string,
+  kind: NotificationKind = 'request.approved',
+  read = false,
+): AppNotification => ({
   id,
   userId: 'u-1',
   kind,
@@ -23,7 +27,9 @@ function setup() {
   TestBed.configureTestingModule({
     imports: [
       TranslocoTestingModule.forRoot({
-        langs: { en: { notifications: { kind: { 'sla.breached': 'SLA breached for {{refNo}}' } } } },
+        langs: {
+          en: { notifications: { kind: { 'sla.breached': 'SLA breached for {{refNo}}' } } },
+        },
         translocoConfig: { availableLangs: ['en'], defaultLang: 'en' },
         preloadLangs: true,
       }),

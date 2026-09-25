@@ -8,7 +8,10 @@ export type NotificationKind =
   | 'sla.breached';
 
 /** Kinds that should also surface as a toast, not only in the notification center. */
-export const HIGH_PRIORITY_KINDS: readonly NotificationKind[] = ['sla.breached', 'request.returned'];
+export const HIGH_PRIORITY_KINDS: readonly NotificationKind[] = [
+  'sla.breached',
+  'request.returned',
+];
 
 export interface AppNotification {
   id: string;

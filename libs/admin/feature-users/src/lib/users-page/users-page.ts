@@ -7,7 +7,13 @@ import { PageHeader } from '@moamala/shared/ui';
 
 @Component({
   selector: 'mo-users-page',
-  imports: [MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinnerModule, PageHeader],
+  imports: [
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    PageHeader,
+  ],
   templateUrl: './users-page.html',
   styleUrl: './users-page.scss',
 })

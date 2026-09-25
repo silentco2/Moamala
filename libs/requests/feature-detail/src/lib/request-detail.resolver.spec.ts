@@ -8,9 +8,13 @@ import { requestDetailResolver } from './request-detail.resolver';
 
 describe('requestDetailResolver', () => {
   it('T2.6 resolves the request with its type, audit events and users', () => {
-    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    });
     const httpMock = TestBed.inject(HttpTestingController);
-    const route = { paramMap: convertToParamMap({ id: 'req-7' }) } as unknown as ActivatedRouteSnapshot;
+    const route = {
+      paramMap: convertToParamMap({ id: 'req-7' }),
+    } as unknown as ActivatedRouteSnapshot;
 
     const result = TestBed.runInInjectionContext(() =>
       requestDetailResolver(route, {} as RouterStateSnapshot),

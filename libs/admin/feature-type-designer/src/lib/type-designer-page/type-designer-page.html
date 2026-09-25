@@ -1,6 +1,9 @@
 <div class="mo-page designer">
   <!-- i18n: designer.titleNew / designer.titleEdit, designer.subtitle -->
-  <mo-page-header heading="New request type" subtitle="Describe the form and the approval workflow.">
+  <mo-page-header
+    heading="New request type"
+    subtitle="Describe the form and the approval workflow."
+  >
     <!-- TODO(T4.1): (click)="save()", disabled while the form is invalid or pending -->
     <!-- i18n: designer.save -->
     <button mat-flat-button moPageActions type="button" data-testid="save-type">
@@ -68,7 +71,10 @@
           <!-- i18n: designer.fields -->
           <mat-card-title>Fields</mat-card-title>
           <!-- i18n: designer.dragHint -->
-          <mat-card-subtitle>Drag to reorder. Keyboard: focus a handle, then use Space and the arrow keys.</mat-card-subtitle>
+          <mat-card-subtitle
+            >Drag to reorder. Keyboard: focus a handle, then use Space and the arrow
+            keys.</mat-card-subtitle
+          >
         </mat-card-header>
         <mat-card-content>
           <!-- TODO(T4.1): formArrayName="fields", (cdkDropListDropped)="drop($event)", and

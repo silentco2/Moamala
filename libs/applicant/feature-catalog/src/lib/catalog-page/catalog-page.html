@@ -1,6 +1,9 @@
 <div class="mo-page">
   <!-- i18n: catalog.title, catalog.subtitle (heading / subtitle attributes) -->
-  <mo-page-header heading="Service catalog" subtitle="Choose a government service to start a new request." />
+  <mo-page-header
+    heading="Service catalog"
+    subtitle="Choose a government service to start a new request."
+  />
 
   <!-- TODO(T2.1): two-way bind the search box to the `search` signal -->
   <mat-form-field appearance="outline" class="catalog__search">
@@ -36,7 +39,11 @@
   <!-- TODO(T2.1): show when there are no visible types -->
   <ng-template>
     <!-- i18n: catalog.empty, catalog.emptyHint -->
-    <mo-empty-state icon="search_off" heading="No services found" message="Try a different search term." />
+    <mo-empty-state
+      icon="search_off"
+      heading="No services found"
+      message="Try a different search term."
+    />
   </ng-template>
 
   <!-- TODO(T2.1): @for (type of visibleTypes(); track type.id) -->
@@ -73,7 +80,9 @@
     <h2 class="catalog__help-title">How it works</h2>
     <ol class="catalog__steps">
       <!-- i18n: catalog.howStep1 -->
-      <li><mat-icon aria-hidden="true">edit_note</mat-icon> Fill in the form and attach documents.</li>
+      <li>
+        <mat-icon aria-hidden="true">edit_note</mat-icon> Fill in the form and attach documents.
+      </li>
       <!-- i18n: catalog.howStep2 -->
       <li><mat-icon aria-hidden="true">fact_check</mat-icon> Reviewers check your request.</li>
       <!-- i18n: catalog.howStep3 -->

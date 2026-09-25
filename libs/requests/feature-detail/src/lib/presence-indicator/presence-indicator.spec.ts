@@ -7,7 +7,12 @@ import { RealtimeEvent, User } from '@moamala/shared/models';
 import { filter, Subject } from 'rxjs';
 import { PresenceIndicator } from './presence-indicator';
 
-const user = (id: string, en: string): User => ({ id, name: { en, ar: en }, email: `${id}@test`, role: 'reviewer' });
+const user = (id: string, en: string): User => ({
+  id,
+  name: { en, ar: en },
+  email: `${id}@test`,
+  role: 'reviewer',
+});
 const USERS = [user('me', 'Me Myself'), user('u-2', 'Viewer Two'), user('u-3', 'Viewer Three')];
 
 function render() {
@@ -28,7 +33,9 @@ function render() {
   fixture.componentRef.setInput('users', USERS);
   fixture.detectChanges();
   const viewers = () =>
-    Array.from(fixture.nativeElement.querySelectorAll('[data-testid="presence-viewer"]')) as HTMLElement[];
+    Array.from(
+      fixture.nativeElement.querySelectorAll('[data-testid="presence-viewer"]'),
+    ) as HTMLElement[];
   return { fixture, realtime, events, viewers };
 }
 

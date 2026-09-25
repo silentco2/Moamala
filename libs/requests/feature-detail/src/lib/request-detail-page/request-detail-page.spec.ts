@@ -4,7 +4,13 @@ import { provideRouter } from '@angular/router';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { AuthStore } from '@moamala/core/auth';
 import { RealtimeService } from '@moamala/core/realtime';
-import { AuditEvent, RequestDetail, RequestStatus, RequestType, ServiceRequest } from '@moamala/shared/models';
+import {
+  AuditEvent,
+  RequestDetail,
+  RequestStatus,
+  RequestType,
+  ServiceRequest,
+} from '@moamala/shared/models';
 import { CURRENT_ROLE } from '@moamala/shared/util-common';
 import { NEVER } from 'rxjs';
 import { RequestDetailPage } from './request-detail-page';
@@ -26,9 +32,17 @@ const TYPE: RequestType = {
       label: l('District'),
       options: [{ value: 'north', label: l('Northern Fixture District') }],
     },
-    { key: 'secret', type: 'text', section: 's1', label: l('Hidden'), visibleIf: { field: 'district', equals: 'south' } },
+    {
+      key: 'secret',
+      type: 'text',
+      section: 's1',
+      label: l('Hidden'),
+      visibleIf: { field: 'district', equals: 'south' },
+    },
   ],
-  steps: [{ id: 'step-1', name: l('Fixture Step'), role: 'reviewer', slaHours: 24, actions: ['forward'] }],
+  steps: [
+    { id: 'step-1', name: l('Fixture Step'), role: 'reviewer', slaHours: 24, actions: ['forward'] },
+  ],
   active: true,
   version: 1,
 };
@@ -90,7 +104,9 @@ describe('RequestDetailPage', () => {
   });
 
   it('T2.6 shows the returned banner with the reviewer comment and an edit link', () => {
-    const { query } = render(detail('returned', [event('submitted'), event('returned', 'Fix the deed please')]));
+    const { query } = render(
+      detail('returned', [event('submitted'), event('returned', 'Fix the deed please')]),
+    );
     expect(query('returned-banner')).not.toBeNull();
     expect(query('banner-comment')?.textContent?.trim()).toBe('Fix the deed please');
     expect(query('edit-request')?.getAttribute('href')).toBe('/applicant/requests/req-9/edit');
@@ -110,7 +126,9 @@ describe('RequestDetailPage', () => {
   });
 
   it('T2.6 renders the audit trail in the timeline', () => {
-    const { el } = render(detail('returned', [event('created'), event('submitted'), event('returned', 'x')]));
+    const { el } = render(
+      detail('returned', [event('created'), event('submitted'), event('returned', 'x')]),
+    );
     expect(el.querySelectorAll('[data-testid="timeline-item"]').length).toBe(3);
     expect(el.textContent).toContain('Fixture Reviewer');
   });

@@ -66,7 +66,8 @@ function simulateSlaAlerts(): void {
   for (const request of db.requests) {
     if (!request.dueAt || !['submitted', 'in_review'].includes(request.status)) continue;
     const remaining = Date.parse(request.dueAt) - now;
-    const kind = remaining < 0 ? 'sla.breached' : remaining < WARNING_WINDOW_MS ? 'sla.warning' : null;
+    const kind =
+      remaining < 0 ? 'sla.breached' : remaining < WARNING_WINDOW_MS ? 'sla.warning' : null;
     if (!kind || alreadyNotified(request.id, kind)) continue;
     if (request.assigneeId) {
       notifyUser(request.assigneeId, kind, request);

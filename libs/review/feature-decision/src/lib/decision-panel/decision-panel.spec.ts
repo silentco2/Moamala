@@ -22,7 +22,13 @@ function detail(assigneeId: string | null): RequestDetail {
     id: 'rt-1',
     steps: [
       { id: 'step-1', name: l('First'), role: 'reviewer', slaHours: 1, actions: ['forward'] },
-      { id: 'step-2', name: l('Fixture Approval'), role: 'approver', slaHours: 1, actions: ['approve', 'return', 'reject'] },
+      {
+        id: 'step-2',
+        name: l('Fixture Approval'),
+        role: 'approver',
+        slaHours: 1,
+        actions: ['approve', 'return', 'reject'],
+      },
     ],
   } as unknown as RequestType;
   return { request, type, events: [], users: [] };
@@ -49,7 +55,11 @@ function render(assigneeId: string | null = 'u-me') {
   fixture.detectChanges();
   const el = fixture.nativeElement as HTMLElement;
   const choose = (action: string) => {
-    (el.querySelector(`[data-testid="decision-option"][data-value="${action}"] input`) as HTMLInputElement).click();
+    (
+      el.querySelector(
+        `[data-testid="decision-option"][data-value="${action}"] input`,
+      ) as HTMLInputElement
+    ).click();
     fixture.detectChanges();
   };
   const type = (text: string) => {
@@ -59,7 +69,9 @@ function render(assigneeId: string | null = 'u-me') {
     fixture.detectChanges();
   };
   const submit = () => {
-    (el.querySelector('[data-testid="decision-form"]') as HTMLFormElement).dispatchEvent(new Event('submit'));
+    (el.querySelector('[data-testid="decision-form"]') as HTMLFormElement).dispatchEvent(
+      new Event('submit'),
+    );
     fixture.detectChanges();
   };
   const decided = () =>
@@ -73,7 +85,11 @@ describe('DecisionPanel', () => {
   it('T3.5 offers only the actions allowed at the current step', () => {
     const { el } = render();
     const options = Array.from(el.querySelectorAll('[data-testid="decision-option"]'));
-    expect(options.map((option) => option.getAttribute('data-value'))).toEqual(['approve', 'return', 'reject']);
+    expect(options.map((option) => option.getAttribute('data-value'))).toEqual([
+      'approve',
+      'return',
+      'reject',
+    ]);
   });
 
   it('T3.5 requires a justification before rejecting', () => {
@@ -99,18 +115,31 @@ describe('DecisionPanel', () => {
     type('Use is not permitted in this district');
     submit();
     expect(decided()).toEqual([
-      expect.objectContaining({ requestId: 'req-5', action: 'reject', comment: 'Use is not permitted in this district' }),
+      expect.objectContaining({
+        requestId: 'req-5',
+        action: 'reject',
+        comment: 'Use is not permitted in this district',
+      }),
     ]);
   });
 
   it('T3.5 shows validation errors returned by the API', () => {
     const { fixture, store, el, choose } = render();
     choose('approve');
-    store.dispatch({ type: '[Inbox] Decide', requestId: 'req-5', action: 'approve', comment: 'x' } as Action);
+    store.dispatch({
+      type: '[Inbox] Decide',
+      requestId: 'req-5',
+      action: 'approve',
+      comment: 'x',
+    } as Action);
     store.dispatch({
       type: '[Inbox] Decide Failure',
       requestId: 'req-5',
-      error: { status: 422, message: 'errors.validation', fieldErrors: { comment: ['validation.minLength'] } },
+      error: {
+        status: 422,
+        message: 'errors.validation',
+        fieldErrors: { comment: ['validation.minLength'] },
+      },
     } as Action);
     fixture.detectChanges();
     el.querySelector('[data-testid="decision-comment"]')?.dispatchEvent(new Event('blur'));
@@ -122,6 +151,8 @@ describe('DecisionPanel', () => {
     const { el, dispatch } = render(null);
     expect(el.querySelector('[data-testid="decision-form"]')).toBeNull();
     (el.querySelector('[data-testid="claim"]') as HTMLButtonElement).click();
-    expect(dispatch).toHaveBeenCalledWith(expect.objectContaining({ type: '[Inbox] Claim', requestId: 'req-5' }));
+    expect(dispatch).toHaveBeenCalledWith(
+      expect.objectContaining({ type: '[Inbox] Claim', requestId: 'req-5' }),
+    );
   });
 });

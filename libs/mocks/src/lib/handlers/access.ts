@@ -13,5 +13,7 @@ export function isInInbox(user: User, request: ServiceRequest): boolean {
   const step = db.requestTypes
     .find((type) => type.id === request.typeId)
     ?.steps.find((candidate) => candidate.id === request.currentStepId);
-  return step?.role === user.role && (request.assigneeId === null || request.assigneeId === user.id);
+  return (
+    step?.role === user.role && (request.assigneeId === null || request.assigneeId === user.id)
+  );
 }

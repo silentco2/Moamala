@@ -13,7 +13,6 @@ export type RealtimeEvent =
  * its token as the `token` query parameter of the socket URL.
  */
 export type RealtimeClientMessage =
-  | { type: 'presence.join'; requestId: string }
-  | { type: 'presence.leave'; requestId: string };
+  { type: 'presence.join'; requestId: string } | { type: 'presence.leave'; requestId: string };
 
 export type ConnectionStatus = 'idle' | 'connecting' | 'open' | 'reconnecting' | 'closed';

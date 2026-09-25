@@ -4,10 +4,7 @@
   "sourceRoot": "libs/applicant/feature-submit/src",
   "prefix": "mo",
   "projectType": "library",
-  "tags": [
-    "scope:applicant",
-    "type:feature"
-  ],
+  "tags": ["scope:applicant", "type:feature"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

@@ -18,7 +18,11 @@ const typeOf = (id: string, en: string): RequestType => ({
   version: 1,
 });
 
-const TYPES = [typeOf('t1', 'Alpha Licence'), typeOf('t2', 'Beta Permit'), typeOf('t3', 'Gamma Permit')];
+const TYPES = [
+  typeOf('t1', 'Alpha Licence'),
+  typeOf('t2', 'Beta Permit'),
+  typeOf('t3', 'Gamma Permit'),
+];
 
 async function render() {
   TestBed.configureTestingModule({
@@ -31,7 +35,8 @@ async function render() {
   TestBed.tick();
   const el = fixture.nativeElement as HTMLElement;
   const query = (id: string) => el.querySelector(`[data-testid="${id}"]`) as HTMLElement | null;
-  const all = (id: string) => Array.from(el.querySelectorAll(`[data-testid="${id}"]`)) as HTMLElement[];
+  const all = (id: string) =>
+    Array.from(el.querySelectorAll(`[data-testid="${id}"]`)) as HTMLElement[];
   const flush = async (body: object, opts?: { status: number; statusText: string }) => {
     httpMock.expectOne('/api/request-types?active=true').flush(body, opts);
     await fixture.whenStable();

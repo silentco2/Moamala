@@ -29,7 +29,8 @@ function render(unread: number) {
   const navigate = vi.spyOn(TestBed.inject(Router), 'navigateByUrl').mockResolvedValue(true);
   const fixture = TestBed.createComponent(NotificationBell);
   fixture.detectChanges();
-  const badge = () => fixture.nativeElement.querySelector('.mat-badge-content') as HTMLElement | null;
+  const badge = () =>
+    fixture.nativeElement.querySelector('.mat-badge-content') as HTMLElement | null;
   return { fixture, store, navigate, badge };
 }
 

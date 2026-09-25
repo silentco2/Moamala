@@ -22,7 +22,9 @@ export const reportHandlers = [
       );
       const totalHours = decided.reduce(
         (sum, request) =>
-          sum + (Date.parse(request.updatedAt) - Date.parse(request.submittedAt ?? request.updatedAt)) / HOUR_MS,
+          sum +
+          (Date.parse(request.updatedAt) - Date.parse(request.submittedAt ?? request.updatedAt)) /
+            HOUR_MS,
         0,
       );
       return {
@@ -32,7 +34,9 @@ export const reportHandlers = [
       };
     });
 
-    const slaBreaches = db.requests.filter((request) => request.dueAt && request.dueAt < now).length;
+    const slaBreaches = db.requests.filter(
+      (request) => request.dueAt && request.dueAt < now,
+    ).length;
     return HttpResponse.json<ReportSummary>({ totals, byType, slaBreaches, generatedAt: now });
   }),
 ];

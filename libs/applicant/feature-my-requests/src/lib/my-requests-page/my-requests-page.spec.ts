@@ -61,7 +61,11 @@ describe('MyRequestsPage', () => {
     fixture.componentRef.setInput('status', 'approved');
     fixture.detectChanges();
     TestBed.tick();
-    expect(store.loadMyRequests).toHaveBeenLastCalledWith({ page: 1, pageSize: 10, status: 'approved' });
+    expect(store.loadMyRequests).toHaveBeenLastCalledWith({
+      page: 1,
+      pageSize: 10,
+      status: 'approved',
+    });
   });
 
   it('T2.5 renders one row per request', () => {

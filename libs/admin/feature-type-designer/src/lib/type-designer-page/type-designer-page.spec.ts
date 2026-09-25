@@ -19,7 +19,15 @@ const EXISTING: RequestType = {
     { key: 'alpha', type: 'text', section: 'main', label: l('Alpha'), required: true },
     { key: 'beta', type: 'number', section: 'main', label: l('Beta'), min: 1, max: 5 },
   ],
-  steps: [{ id: 'review', name: l('Review'), role: 'reviewer', slaHours: 24, actions: ['forward', 'reject'] }],
+  steps: [
+    {
+      id: 'review',
+      name: l('Review'),
+      role: 'reviewer',
+      slaHours: 24,
+      actions: ['forward', 'reject'],
+    },
+  ],
   active: true,
   version: 2,
 };
@@ -43,7 +51,8 @@ function render(id?: string) {
   fixture.detectChanges();
   TestBed.tick();
   const el = fixture.nativeElement as HTMLElement;
-  const all = (testId: string) => Array.from(el.querySelectorAll(`[data-testid="${testId}"]`)) as HTMLElement[];
+  const all = (testId: string) =>
+    Array.from(el.querySelectorAll(`[data-testid="${testId}"]`)) as HTMLElement[];
   const click = (testId: string, index = 0) => {
     all(testId)[index].click();
     fixture.detectChanges();
@@ -115,7 +124,10 @@ describe('TypeDesignerPage', () => {
     click('save-type');
     const req = httpMock.expectOne('/api/request-types/rt-1');
     expect(req.request.method).toBe('PUT');
-    expect(req.request.body).toMatchObject({ key: 'fixture_type', fields: [{ key: 'alpha' }, { key: 'beta' }] });
+    expect(req.request.body).toMatchObject({
+      key: 'fixture_type',
+      fields: [{ key: 'alpha' }, { key: 'beta' }],
+    });
   });
 
   it('T4.3 reports a key that is already taken', async () => {
@@ -127,15 +139,21 @@ describe('TypeDesignerPage', () => {
     await vi.advanceTimersByTimeAsync(1000);
     flushAvailability(false);
     fixture.detectChanges();
-    expect(el.querySelector('[data-testid="key-error"]')?.textContent).toContain('Key already taken');
+    expect(el.querySelector('[data-testid="key-error"]')?.textContent).toContain(
+      'Key already taken',
+    );
   });
 
   it('T4.4 previews the designed form live', () => {
     const { all, type } = render();
-    const labelEn = all('field-row')[0].querySelector('[data-testid="localized-en"]') as HTMLInputElement;
+    const labelEn = all('field-row')[0].querySelector(
+      '[data-testid="localized-en"]',
+    ) as HTMLInputElement;
     type(all('field-key')[0] as HTMLInputElement, 'previewField');
     type(labelEn, 'Preview Label');
     const preview = all('preview')[0];
-    expect(preview.querySelector('[data-key="previewField"]')?.textContent).toContain('Preview Label');
+    expect(preview.querySelector('[data-key="previewField"]')?.textContent).toContain(
+      'Preview Label',
+    );
   });
 });

@@ -23,7 +23,9 @@ async function render() {
   httpMock.expectOne('/api/auth/demo-users').flush(USERS);
   await fixture.whenStable();
   const tiles = () =>
-    Array.from(fixture.nativeElement.querySelectorAll('[data-testid="demo-user"]')) as HTMLElement[];
+    Array.from(
+      fixture.nativeElement.querySelectorAll('[data-testid="demo-user"]'),
+    ) as HTMLElement[];
   return { fixture, httpMock, navigate, tiles };
 }
 
@@ -49,7 +51,10 @@ describe('LoginPage', () => {
     tiles()[0].click();
     httpMock
       .expectOne('/api/auth/login')
-      .flush({ status: 401, message: 'errors.invalidCredentials' }, { status: 401, statusText: 'Unauthorized' });
+      .flush(
+        { status: 401, message: 'errors.invalidCredentials' },
+        { status: 401, statusText: 'Unauthorized' },
+      );
     await fixture.whenStable();
     expect(fixture.nativeElement.querySelector('[data-testid="login-error"]')).not.toBeNull();
   });

@@ -28,7 +28,10 @@ export default [
               sourceTag: 'type:data-access',
               onlyDependOnLibsWithTags: ['type:data-access', 'type:util', 'type:model'],
             },
-            { sourceTag: 'type:ui', onlyDependOnLibsWithTags: ['type:ui', 'type:util', 'type:model'] },
+            {
+              sourceTag: 'type:ui',
+              onlyDependOnLibsWithTags: ['type:ui', 'type:util', 'type:model'],
+            },
             { sourceTag: 'type:util', onlyDependOnLibsWithTags: ['type:util', 'type:model'] },
             { sourceTag: 'type:model', onlyDependOnLibsWithTags: ['type:model'] },
             { sourceTag: 'type:mocks', onlyDependOnLibsWithTags: ['type:model'] },

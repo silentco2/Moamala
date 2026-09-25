@@ -22,7 +22,11 @@
   <!-- TODO(T2.6): @switch (detail().request.status) with one banner per case. Only the returned
        case is shown statically; the others follow the same markup. -->
   <!-- @case ('returned') -->
-  <section class="detail__banner detail__banner--warning" role="status" data-testid="returned-banner">
+  <section
+    class="detail__banner detail__banner--warning"
+    role="status"
+    data-testid="returned-banner"
+  >
     <mat-icon aria-hidden="true">undo</mat-icon>
     <div class="detail__banner-text">
       <!-- i18n: detail.returned.title -->
@@ -38,16 +42,26 @@
   </section>
   <ng-template>
     <!-- @case ('approved') -->
-    <section class="detail__banner detail__banner--positive" role="status" data-testid="approved-banner">
+    <section
+      class="detail__banner detail__banner--positive"
+      role="status"
+      data-testid="approved-banner"
+    >
       <mat-icon aria-hidden="true">verified</mat-icon>
       <div class="detail__banner-text">
         <!-- i18n: detail.approved.title -->
         <p class="detail__banner-title">Approved</p>
-        <p class="detail__banner-comment" data-testid="banner-comment">All requirements satisfied.</p>
+        <p class="detail__banner-comment" data-testid="banner-comment">
+          All requirements satisfied.
+        </p>
       </div>
     </section>
     <!-- @case ('rejected') -->
-    <section class="detail__banner detail__banner--negative" role="status" data-testid="rejected-banner">
+    <section
+      class="detail__banner detail__banner--negative"
+      role="status"
+      data-testid="rejected-banner"
+    >
       <mat-icon aria-hidden="true">block</mat-icon>
       <div class="detail__banner-text">
         <!-- i18n: detail.rejected.title -->
@@ -105,7 +119,12 @@
         <mat-card-content>
           <!-- TODO(T2.6): @for over request.attachments; @empty shows detail.noAttachments -->
           <mat-list>
-            <a mat-list-item href="/api/uploads/att-7-sitePlan" target="_blank" data-testid="attachment">
+            <a
+              mat-list-item
+              href="/api/uploads/att-7-sitePlan"
+              target="_blank"
+              data-testid="attachment"
+            >
               <mat-icon matListItemIcon aria-hidden="true">picture_as_pdf</mat-icon>
               <span matListItemTitle>sitePlan-7.pdf</span>
               <span matListItemLine class="mo-ltr">142 KB</span>

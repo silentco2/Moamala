@@ -212,7 +212,8 @@ function slaAdjustedEntry(
     return new Date(cursor.getTime() + 2 * HOUR_MS);
   }
   const bucket = index % 4;
-  const hoursLeft = bucket === 0 ? -5 : bucket === 1 ? 3 : bucket === 2 ? slaHours / 2 : slaHours - 1;
+  const hoursLeft =
+    bucket === 0 ? -5 : bucket === 1 ? 3 : bucket === 2 ? slaHours / 2 : slaHours - 1;
   return new Date(now.getTime() - (slaHours - hoursLeft) * HOUR_MS);
 }
 
@@ -228,8 +229,13 @@ function attachmentsFor(type: RequestType, index: number): Attachment[] {
     }));
 }
 
-function dataFor(type: RequestType, index: number, attachments: Attachment[]): Record<string, unknown> {
-  const attachmentFor = (key: string) => attachments.find((a) => a.id.endsWith(`-${key}`))?.id ?? null;
+function dataFor(
+  type: RequestType,
+  index: number,
+  attachments: Attachment[],
+): Record<string, unknown> {
+  const attachmentFor = (key: string) =>
+    attachments.find((a) => a.id.endsWith(`-${key}`))?.id ?? null;
   switch (type.key) {
     case 'building_permit':
       return {

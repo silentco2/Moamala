@@ -9,7 +9,10 @@ import { LocalizedTextInput } from './localized-text-input';
   template: `<mo-localized-text-input [formControl]="control" />`,
 })
 class Host {
-  readonly control = new FormControl<Localized>({ en: 'Permit', ar: 'تصريح' }, { nonNullable: true });
+  readonly control = new FormControl<Localized>(
+    { en: 'Permit', ar: 'تصريح' },
+    { nonNullable: true },
+  );
 }
 
 function render() {

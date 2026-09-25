@@ -1,6 +1,9 @@
 <div class="mo-page">
   <!-- i18n: myRequests.title, myRequests.subtitle -->
-  <mo-page-header heading="My requests" subtitle="Track the status of everything you have submitted.">
+  <mo-page-header
+    heading="My requests"
+    subtitle="Track the status of everything you have submitted."
+  >
     <!-- TODO(T2.5): routerLink="/applicant/catalog" -->
     <!-- i18n: myRequests.new -->
     <a mat-flat-button moPageActions data-testid="new-request">
@@ -16,11 +19,21 @@
       <!-- i18n: status.all, status.draft ... status.rejected -->
       <mat-button-toggle value="all" data-testid="status-filter-all">All</mat-button-toggle>
       <mat-button-toggle value="draft" data-testid="status-filter-draft">Draft</mat-button-toggle>
-      <mat-button-toggle value="submitted" data-testid="status-filter-submitted">Submitted</mat-button-toggle>
-      <mat-button-toggle value="in_review" data-testid="status-filter-in_review">In review</mat-button-toggle>
-      <mat-button-toggle value="returned" data-testid="status-filter-returned">Returned</mat-button-toggle>
-      <mat-button-toggle value="approved" data-testid="status-filter-approved">Approved</mat-button-toggle>
-      <mat-button-toggle value="rejected" data-testid="status-filter-rejected">Rejected</mat-button-toggle>
+      <mat-button-toggle value="submitted" data-testid="status-filter-submitted"
+        >Submitted</mat-button-toggle
+      >
+      <mat-button-toggle value="in_review" data-testid="status-filter-in_review"
+        >In review</mat-button-toggle
+      >
+      <mat-button-toggle value="returned" data-testid="status-filter-returned"
+        >Returned</mat-button-toggle
+      >
+      <mat-button-toggle value="approved" data-testid="status-filter-approved"
+        >Approved</mat-button-toggle
+      >
+      <mat-button-toggle value="rejected" data-testid="status-filter-rejected"
+        >Rejected</mat-button-toggle
+      >
     </mat-button-toggle-group>
 
     <!-- TODO(T2.5): (ngSubmit) or (submit) navigates with q; prefill the input from q() -->

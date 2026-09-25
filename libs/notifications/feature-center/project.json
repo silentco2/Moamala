@@ -4,10 +4,7 @@
   "sourceRoot": "libs/notifications/feature-center/src",
   "prefix": "mo",
   "projectType": "library",
-  "tags": [
-    "scope:notifications",
-    "type:feature"
-  ],
+  "tags": ["scope:notifications", "type:feature"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

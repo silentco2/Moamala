@@ -29,7 +29,13 @@ const request = (id: string, patch: Partial<ServiceRequest> = {}): ServiceReques
 });
 
 const type = { id: 'rt-1', key: 'test_type' } as RequestType;
-const attachment: Attachment = { id: 'att-1', name: 'a.pdf', size: 1, mime: 'application/pdf', url: '/x' };
+const attachment: Attachment = {
+  id: 'att-1',
+  name: 'a.pdf',
+  size: 1,
+  mime: 'application/pdf',
+  url: '/x',
+};
 
 function setup() {
   const events = new Subject<RealtimeEvent>();
@@ -78,7 +84,12 @@ describe('ApplicantStore', () => {
     expect(req.request.params.get('page')).toBe('2');
     expect(req.request.params.get('status')).toBe('returned');
     expect(req.request.params.has('q')).toBe(false);
-    req.flush({ items: [request('a'), request('b')], total: 12, page: 2, pageSize: 10 } satisfies Page<ServiceRequest>);
+    req.flush({
+      items: [request('a'), request('b')],
+      total: 12,
+      page: 2,
+      pageSize: 10,
+    } satisfies Page<ServiceRequest>);
     expect(store.requests().map((item) => item.id)).toEqual(['a', 'b']);
     expect(store.total()).toBe(12);
     expect(store.loading()).toBe(false);
@@ -129,7 +140,9 @@ describe('ApplicantStore', () => {
   it('T2.3 submits the draft', async () => {
     const { store, httpMock } = await withDraft();
     const submitted = store.submit();
-    httpMock.expectOne('/api/requests/req-1/submit').flush(request('req-1', { status: 'submitted' }));
+    httpMock
+      .expectOne('/api/requests/req-1/submit')
+      .flush(request('req-1', { status: 'submitted' }));
     expect((await submitted).status).toBe('submitted');
     expect(store.draft()?.status).toBe('submitted');
   });
@@ -137,8 +150,14 @@ describe('ApplicantStore', () => {
   it('T2.3 rejects with the API field errors when submit fails validation', async () => {
     const { store, httpMock } = await withDraft();
     const submitted = store.submit();
-    const body: ApiError = { status: 422, message: 'errors.validation', fieldErrors: { fullName: ['validation.required'] } };
-    httpMock.expectOne('/api/requests/req-1/submit').flush(body, { status: 422, statusText: 'Unprocessable' });
+    const body: ApiError = {
+      status: 422,
+      message: 'errors.validation',
+      fieldErrors: { fullName: ['validation.required'] },
+    };
+    httpMock
+      .expectOne('/api/requests/req-1/submit')
+      .flush(body, { status: 422, statusText: 'Unprocessable' });
     await expect(submitted).rejects.toEqual(body);
   });
 
@@ -155,7 +174,12 @@ describe('ApplicantStore', () => {
     store.loadMyRequests({ page: 1, pageSize: 10 });
     httpMock
       .expectOne((r) => r.url === '/api/requests')
-      .flush({ items: [request('a'), request('b', { status: 'in_review' })], total: 2, page: 1, pageSize: 10 });
+      .flush({
+        items: [request('a'), request('b', { status: 'in_review' })],
+        total: 2,
+        page: 1,
+        pageSize: 10,
+      });
     events.next({ type: 'request.updated', request: request('b', { status: 'approved' }) });
     events.next({ type: 'request.updated', request: request('other', { status: 'approved' }) });
     expect(store.requests().map((item) => item.status)).toEqual(['draft', 'approved']);

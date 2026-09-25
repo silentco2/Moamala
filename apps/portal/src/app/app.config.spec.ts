@@ -18,7 +18,9 @@ class Probe {
 describe('appConfig', () => {
   beforeEach(() => {
     localStorage.clear();
-    TestBed.configureTestingModule({ providers: [...appConfig.providers, provideHttpClientTesting()] });
+    TestBed.configureTestingModule({
+      providers: [...appConfig.providers, provideHttpClientTesting()],
+    });
   });
 
   it('T1.4 registers the HTTP interceptors', () => {

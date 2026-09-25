@@ -7,7 +7,14 @@ import { AppNotification } from '@moamala/shared/models';
 import { NotificationsPage } from './notifications-page';
 
 const item = (id: string, read: boolean) =>
-  ({ id, userId: 'u', kind: 'request.approved', payload: { requestId: id, refNo: id }, read, at: '2026-01-01T00:00:00Z' }) as AppNotification;
+  ({
+    id,
+    userId: 'u',
+    kind: 'request.approved',
+    payload: { requestId: id, refNo: id },
+    read,
+    at: '2026-01-01T00:00:00Z',
+  }) as AppNotification;
 
 function render() {
   const items = signal([item('a', false), item('b', true), item('c', false)]);

@@ -21,7 +21,9 @@ export interface InboxViewModel {
 //   Docs: https://ngrx.io/guide/store/selectors
 export const selectInboxRequests = (_state: object): ServiceRequest[] => [];
 
-export const selectInboxEntities = (_state: object): Record<string, ServiceRequest | undefined> => ({});
+export const selectInboxEntities = (
+  _state: object,
+): Record<string, ServiceRequest | undefined> => ({});
 
 export const selectInboxLoading = (_state: object): boolean => false;
 

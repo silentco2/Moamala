@@ -2,14 +2,7 @@ import { Localized } from './i18n';
 import { Role } from './user';
 
 export type FieldType =
-  | 'text'
-  | 'textarea'
-  | 'number'
-  | 'date'
-  | 'dateRange'
-  | 'select'
-  | 'checkbox'
-  | 'file';
+  'text' | 'textarea' | 'number' | 'date' | 'dateRange' | 'select' | 'checkbox' | 'file';
 
 export const FIELD_TYPES: readonly FieldType[] = [
   'text',
@@ -55,7 +48,12 @@ export type StepRole = Exclude<Role, 'applicant' | 'admin'>;
 
 export type DecisionAction = 'forward' | 'return' | 'approve' | 'reject';
 
-export const DECISION_ACTIONS: readonly DecisionAction[] = ['forward', 'return', 'approve', 'reject'];
+export const DECISION_ACTIONS: readonly DecisionAction[] = [
+  'forward',
+  'return',
+  'approve',
+  'reject',
+];
 
 export interface StepDef {
   id: string;

@@ -4,7 +4,12 @@ import { TestBed } from '@angular/core/testing';
 import { User } from '@moamala/shared/models';
 import { UsersStore } from './users.store';
 
-const user = (id: string, role: User['role']): User => ({ id, name: { en: id, ar: id }, email: `${id}@test`, role });
+const user = (id: string, role: User['role']): User => ({
+  id,
+  name: { en: id, ar: id },
+  email: `${id}@test`,
+  role,
+});
 
 function setup() {
   TestBed.configureTestingModule({
@@ -39,9 +44,14 @@ describe('UsersStore', () => {
   it('T4.5 rolls back when the API rejects the change', () => {
     const { store, httpMock } = setup();
     store.updateRole({ userId: 'u-2', role: 'admin' });
-    httpMock
-      .expectOne('/api/users/u-2/role')
-      .flush({ status: 422, message: 'errors.validation', fieldErrors: { role: ['validation.ownRole'] } }, { status: 422, statusText: 'Unprocessable' });
+    httpMock.expectOne('/api/users/u-2/role').flush(
+      {
+        status: 422,
+        message: 'errors.validation',
+        fieldErrors: { role: ['validation.ownRole'] },
+      },
+      { status: 422, statusText: 'Unprocessable' },
+    );
     expect(store.users()[1].role).toBe('reviewer');
     expect(store.savingIds()).toEqual([]);
     expect(store.error()).toBe('errors.validation');

@@ -3,7 +3,17 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "start": "nx serve portal",
+    "build": "nx build portal",
+    "lint": "nx run-many -t lint",
+    "test": "nx run-many -t test",
+    "e2e": "nx e2e portal-e2e",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "i18n:check": "node tools/check-i18n.mjs",
+    "verify": "nx run-many -t lint build && node tools/check-i18n.mjs && prettier --check ."
+  },
   "devDependencies": {
     "@angular-devkit/core": "~22.2.0",
     "@angular-devkit/schematics": "~22.2.0",
@@ -12,7 +22,7 @@
     "@angular/compiler-cli": "~22.2.0",
     "@angular/language-service": "~22.2.0",
     "@eslint/js": "^9.8.0",
-    "@nx/angular": "^23.2.1",
+    "@nx/angular": "23.2.1",
     "@nx/devkit": "23.2.1",
     "@nx/eslint": "23.2.1",
     "@nx/eslint-plugin": "23.2.1",

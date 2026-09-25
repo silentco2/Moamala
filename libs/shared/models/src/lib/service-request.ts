@@ -1,4 +1,5 @@
-export type RequestStatus = 'draft' | 'submitted' | 'in_review' | 'returned' | 'approved' | 'rejected';
+export type RequestStatus =
+  'draft' | 'submitted' | 'in_review' | 'returned' | 'approved' | 'rejected';
 
 export const REQUEST_STATUSES: readonly RequestStatus[] = [
   'draft',
