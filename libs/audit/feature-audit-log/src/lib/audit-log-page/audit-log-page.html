@@ -1,0 +1,72 @@
+<div class="mo-page audit">
+  <!-- i18n: audit.title, audit.subtitle -->
+  <mo-page-header heading="Audit log" subtitle="Every action taken on every request." />
+
+  <!-- TODO(T6.1): bind each control to its filter signal; options from the loaded lists -->
+  <div class="audit__filters">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <!-- i18n: audit.filter.type -->
+      <mat-label>Request type</mat-label>
+      <mat-select data-testid="filter-type">
+        <!-- i18n: common.any -->
+        <mat-option [value]="null">Any</mat-option>
+        <mat-option value="rt-building-permit">Building Permit</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <!-- i18n: audit.filter.step -->
+      <mat-label>Step</mat-label>
+      <mat-select data-testid="filter-step">
+        <mat-option [value]="null">Any</mat-option>
+        <mat-option value="technical-review">Technical review</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <!-- i18n: audit.filter.action -->
+      <mat-label>Action</mat-label>
+      <mat-select data-testid="filter-action">
+        <mat-option [value]="null">Any</mat-option>
+        <!-- i18n: audit.approved (options from AUDIT_ACTIONS, labels audit.<action>) -->
+        <mat-option value="approved">Approved</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <!-- i18n: audit.filter.actor -->
+      <mat-label>Actor</mat-label>
+      <mat-select data-testid="filter-actor">
+        <mat-option [value]="null">Anyone</mat-option>
+        <mat-option value="u-rev-1">Sara Al-Mansouri</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <!-- i18n: audit.filter.from -->
+      <mat-label>From</mat-label>
+      <input matInput type="date" data-testid="filter-from" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <!-- i18n: audit.filter.to -->
+      <mat-label>To</mat-label>
+      <input matInput type="date" data-testid="filter-to" />
+    </mat-form-field>
+  </div>
+
+  <!-- TODO(T6.1): total() -->
+  <!-- i18n: audit.total (param: count) -->
+  <p class="audit__total" data-testid="audit-total">128 events</p>
+
+  <!-- TODO(T6.1): *cdkVirtualFor="let event of events(); trackBy: trackById" on the row and
+       (scrolledIndexChange) on the viewport to call loadMore() near the end -->
+  <cdk-virtual-scroll-viewport itemSize="72" class="audit__viewport">
+    <div class="audit__row" data-testid="audit-row">
+      <mat-icon class="audit__icon" aria-hidden="true">verified</mat-icon>
+      <div class="audit__text">
+        <p class="audit__title">
+          <!-- i18n: audit.approved -->
+          <strong>Approved</strong>
+          <span class="mo-ltr">BP-2026-00031</span>
+        </p>
+        <p class="audit__meta">Mona Youssef · Sep 24, 2026, 3:15 PM</p>
+      </div>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>
