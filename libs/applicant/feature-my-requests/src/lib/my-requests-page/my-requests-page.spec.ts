@@ -92,8 +92,9 @@ describe('MyRequestsPage', () => {
     );
   });
 
-  it('T2.5 searches through the URL', () => {
-    const { el, navigate } = render();
+  it('T2.5 searches through the URL', async () => {
+    const { el, navigate, fixture } = render();
+    await fixture.whenStable();
     const input = el.querySelector('[data-testid="search-input"]') as HTMLInputElement;
     input.value = 'CL-2026';
     input.dispatchEvent(new Event('input'));
