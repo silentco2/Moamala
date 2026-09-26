@@ -1,0 +1,87 @@
+<!-- TODO(T1.3): replace the static tiles with @for over the demo users (track user.id); clicking a
+     tile signs in as that user. Show the error banner only when sign-in fails. -->
+<div class="login">
+  <section class="login__hero">
+    <mat-icon class="login__logo" aria-hidden="true">account_balance</mat-icon>
+    <!-- i18n: app.name -->
+    <h1 class="login__brand">Mo'amala</h1>
+    <!-- i18n: login.tagline -->
+    <p class="login__tagline">Government permits and approvals, in one place.</p>
+  </section>
+
+  <mat-card class="login__card" appearance="outlined">
+    <mat-card-header>
+      <!-- i18n: login.title -->
+      <mat-card-title>Sign in</mat-card-title>
+      <!-- i18n: login.subtitle -->
+      <mat-card-subtitle>Pick a demo account to explore each role.</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <ng-template>
+        <!-- i18n: login.failed -->
+        <p class="login__error" role="alert" data-testid="login-error">
+          We could not sign you in. Please try again.
+        </p>
+      </ng-template>
+
+      <ul class="login__accounts">
+        <li>
+          <button type="button" class="login__account" data-testid="demo-user">
+            <span class="login__avatar login__avatar--applicant">OH</span>
+            <span class="login__account-text">
+              <span class="login__account-name">Omar Haddad</span>
+              <span class="login__account-meta mo-ltr">omar@applicant.demo</span>
+            </span>
+            <!-- i18n: roles.applicant -->
+            <span class="login__role">Applicant</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="login__account" data-testid="demo-user">
+            <span class="login__avatar login__avatar--reviewer">SM</span>
+            <span class="login__account-text">
+              <span class="login__account-name">Sara Al-Mansouri</span>
+              <span class="login__account-meta mo-ltr">sara@reviewer.demo</span>
+            </span>
+            <!-- i18n: roles.reviewer -->
+            <span class="login__role">Reviewer</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="login__account" data-testid="demo-user">
+            <span class="login__avatar login__avatar--approver">MY</span>
+            <span class="login__account-text">
+              <span class="login__account-name">Mona Youssef</span>
+              <span class="login__account-meta mo-ltr">mona@approver.demo</span>
+            </span>
+            <!-- i18n: roles.approver -->
+            <span class="login__role">Approver</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="login__account" data-testid="demo-user">
+            <span class="login__avatar login__avatar--admin">HS</span>
+            <span class="login__account-text">
+              <span class="login__account-name">Huda Saleh</span>
+              <span class="login__account-meta mo-ltr">huda@admin.demo</span>
+            </span>
+            <!-- i18n: roles.admin -->
+            <span class="login__role">Admin</span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- TODO(T1.3): (ngSubmit) signs in with the typed email -->
+      <form class="login__form">
+        <mat-form-field appearance="outline" class="login__email">
+          <!-- i18n: login.email -->
+          <mat-label>Email</mat-label>
+          <input matInput type="email" autocomplete="username" data-testid="login-email" />
+        </mat-form-field>
+        <!-- i18n: login.submit -->
+        <button mat-flat-button type="submit" data-testid="login-submit">Sign in</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

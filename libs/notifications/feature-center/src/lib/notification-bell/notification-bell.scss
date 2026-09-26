@@ -1,0 +1,14 @@
+.bell__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.bell__time {
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.bell__item--unread {
+  font-weight: 500;
+  background: var(--mat-sys-surface-container);
+}

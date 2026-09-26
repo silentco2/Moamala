@@ -1,0 +1,35 @@
+<!-- TODO(T5.3): [matBadge]="store.unreadCount()" [matBadgeHidden]="store.unreadCount() === 0" -->
+<!-- i18n: notifications.open (aria-label) -->
+<button
+  mat-icon-button
+  type="button"
+  aria-label="Notifications"
+  matBadge="2"
+  matBadgeColor="warn"
+  matBadgeSize="small"
+  [matMenuTriggerFor]="menu"
+  data-testid="notification-bell"
+>
+  <mat-icon>notifications</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu" xPosition="before" class="bell__menu">
+  <!-- TODO(T5.3): @for (item of store.latest(); track item.id) with (click)="open(item)";
+       unread items get the bell__item--unread class; @empty shows notifications.empty -->
+  <button
+    mat-menu-item
+    type="button"
+    class="bell__item bell__item--unread"
+    data-testid="notification-item"
+  >
+    <mat-icon>undo</mat-icon>
+    <span class="bell__text">
+      <!-- i18n: notifications.kind.request.returned (param: refNo) -->
+      <span>BP-2026-00026 was returned for changes</span>
+      <span class="bell__time">2 hours ago</span>
+    </span>
+  </button>
+  <!-- TODO(T5.3): routerLink="/notifications" -->
+  <!-- i18n: notifications.viewAll -->
+  <a mat-menu-item data-testid="notifications-view-all">View all notifications</a>
+</mat-menu>

@@ -1,0 +1,30 @@
+<!-- TODO(T4.2): render one row per option with @for (track $index); bind values and handlers -->
+<div class="options-editor">
+  <div class="options-editor__row" data-testid="option-row">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <!-- i18n: forms.options.value -->
+      <mat-label>Value</mat-label>
+      <input matInput class="mo-ltr" value="north" data-testid="option-value" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <!-- i18n: forms.options.labelEn -->
+      <mat-label>Label (English)</mat-label>
+      <input matInput dir="ltr" value="North District" data-testid="option-label-en" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <!-- i18n: forms.options.labelAr -->
+      <mat-label>Label (Arabic)</mat-label>
+      <input matInput dir="rtl" value="الحي الشمالي" data-testid="option-label-ar" />
+    </mat-form-field>
+    <!-- i18n: forms.options.remove (aria-label) -->
+    <button mat-icon-button type="button" aria-label="Remove option" data-testid="remove-option">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <!-- i18n: forms.options.add -->
+  <button mat-stroked-button type="button" class="options-editor__add" data-testid="add-option">
+    <mat-icon>add</mat-icon>
+    Add option
+  </button>
+</div>

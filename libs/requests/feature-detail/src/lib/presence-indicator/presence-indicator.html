@@ -1,0 +1,11 @@
+<!-- TODO(T5.4): render only when others() is not empty; one avatar per viewer (@for, track user.id)
+     with the localized name as tooltip; the label uses presence.one / presence.many -->
+<div class="presence" role="status" data-testid="presence">
+  <div class="presence__avatars">
+    <span class="presence__avatar" matTooltip="Khalid Farouk" data-testid="presence-viewer"
+      >KF</span
+    >
+  </div>
+  <!-- i18n: presence.one (param: name) -->
+  <span class="presence__label">Khalid Farouk is also viewing this request</span>
+</div>

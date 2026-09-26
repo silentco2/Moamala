@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/tokens';
+@use './styles/theme';
+@use './styles/rtl';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--mo-font-family);
+  background: var(--mat-sys-surface-container-lowest);
+  color: var(--mat-sys-on-surface);
+}
+
+a {
+  color: var(--mat-sys-primary);
+}
+
+.mo-page {
+  box-sizing: border-box;
+  max-inline-size: var(--mo-content-max-width);
+  margin-inline: auto;
+  padding: var(--mo-space-5);
+
+  @media (max-width: tokens.$breakpoint-handset) {
+    padding: var(--mo-space-4);
+  }
+}
+
+.mo-card-grid {
+  display: grid;
+  gap: var(--mo-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.mo-visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

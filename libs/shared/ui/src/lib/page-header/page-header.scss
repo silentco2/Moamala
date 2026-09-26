@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  margin-block-end: var(--mo-space-5);
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mo-space-4);
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.page-header__heading {
+  margin: 0;
+  font: var(--mat-sys-headline-medium);
+  color: var(--mat-sys-on-surface);
+}
+
+.page-header__subtitle {
+  margin: var(--mo-space-1) 0 0;
+  font: var(--mat-sys-body-large);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mo-space-2);
+}

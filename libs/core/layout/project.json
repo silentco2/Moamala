@@ -1,0 +1,21 @@
+{
+  "name": "core-layout",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/core/layout/src",
+  "prefix": "mo",
+  "projectType": "library",
+  "tags": ["scope:core", "type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "buildTarget": "portal:build:development",
+        "tsConfig": "libs/core/layout/tsconfig.spec.json",
+        "watch": false
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+<div class="mo-page">
+  <!-- i18n: catalog.title, catalog.subtitle (heading / subtitle attributes) -->
+  <mo-page-header
+    heading="Service catalog"
+    subtitle="Choose a government service to start a new request."
+  />
+
+  <!-- TODO(T2.1): two-way bind the search box to the `search` signal -->
+  <mat-form-field appearance="outline" class="catalog__search">
+    <mat-icon matPrefix aria-hidden="true">search</mat-icon>
+    <!-- i18n: catalog.search -->
+    <mat-label>Search services</mat-label>
+    <input matInput type="search" data-testid="catalog-search" />
+  </mat-form-field>
+
+  <!-- TODO(T2.1): show while the resource is loading (@if) -->
+  <ng-template>
+    <div class="catalog__loading" data-testid="catalog-loading">
+      <mat-progress-bar mode="indeterminate" />
+      <div class="mo-card-grid">
+        <div class="catalog__skeleton"></div>
+        <div class="catalog__skeleton"></div>
+        <div class="catalog__skeleton"></div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- TODO(T2.1): show when the resource has an error; the button calls retry() -->
+  <ng-template>
+    <div class="catalog__error" role="alert" data-testid="catalog-error">
+      <mat-icon aria-hidden="true">cloud_off</mat-icon>
+      <!-- i18n: catalog.loadFailed -->
+      <p>We could not load the services. Please try again.</p>
+      <!-- i18n: common.retry -->
+      <button mat-stroked-button type="button" data-testid="catalog-retry">Try again</button>
+    </div>
+  </ng-template>
+
+  <!-- TODO(T2.1): show when there are no visible types -->
+  <ng-template>
+    <!-- i18n: catalog.empty, catalog.emptyHint -->
+    <mo-empty-state
+      icon="search_off"
+      heading="No services found"
+      message="Try a different search term."
+    />
+  </ng-template>
+
+  <!-- TODO(T2.1): @for (type of visibleTypes(); track type.id) -->
+  <div class="mo-card-grid">
+    <mat-card appearance="outlined" class="catalog__card" data-testid="service-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar class="catalog__avatar" aria-hidden="true">apartment</mat-icon>
+        <!-- TODO(T2.1): type.name | localize: lang() -->
+        <mat-card-title data-testid="service-name">Building Permit</mat-card-title>
+        <!-- i18n: catalog.steps (param: count) -->
+        <mat-card-subtitle>3 approval steps</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- TODO(T2.1): type.description | localize: lang() -->
+        <p class="catalog__description">
+          Apply for a permit to construct or extend a residential or commercial building.
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <!-- TODO(T2.1): routerLink="/applicant/requests/new" with [queryParams]="{ typeId: type.id }" -->
+        <!-- i18n: catalog.start -->
+        <a mat-flat-button data-testid="service-start">
+          Start request
+          <mat-icon iconPositionEnd class="mo-flip-rtl">arrow_forward</mat-icon>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- TODO(T2.1): wrap this section in @defer (on viewport) with a @placeholder; it is below the
+       fold and does not need to load with the page -->
+  <section class="catalog__help">
+    <!-- i18n: catalog.howItWorks -->
+    <h2 class="catalog__help-title">How it works</h2>
+    <ol class="catalog__steps">
+      <!-- i18n: catalog.howStep1 -->
+      <li>
+        <mat-icon aria-hidden="true">edit_note</mat-icon> Fill in the form and attach documents.
+      </li>
+      <!-- i18n: catalog.howStep2 -->
+      <li><mat-icon aria-hidden="true">fact_check</mat-icon> Reviewers check your request.</li>
+      <!-- i18n: catalog.howStep3 -->
+      <li><mat-icon aria-hidden="true">verified</mat-icon> Get a decision and track it live.</li>
+    </ol>
+  </section>
+</div>

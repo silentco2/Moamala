@@ -1,0 +1,12 @@
+<!-- TODO(T2.1): bind heading(); render the subtitle paragraph only when subtitle() is set (@if) -->
+<header class="page-header">
+  <div class="page-header__text">
+    <h1 class="page-header__heading" data-testid="page-heading">Service catalog</h1>
+    <p class="page-header__subtitle" data-testid="page-subtitle">
+      Choose a government service to start a new request.
+    </p>
+  </div>
+  <div class="page-header__actions">
+    <ng-content select="[moPageActions]" />
+  </div>
+</header>

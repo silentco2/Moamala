@@ -1,0 +1,11 @@
+<!-- TODO(T2.3): bind the texts from the injected data; close with true / false -->
+<h2 mat-dialog-title data-testid="confirm-title">Leave this page?</h2>
+<mat-dialog-content>
+  <p class="confirm-dialog__message" data-testid="confirm-message">
+    You have unsaved changes. If you leave now they will be lost.
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button type="button" data-testid="confirm-cancel">Stay</button>
+  <button mat-flat-button type="button" data-testid="confirm-ok">Leave</button>
+</mat-dialog-actions>

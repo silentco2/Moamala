@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+.options-editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mo-space-2);
+}
+
+.options-editor__row {
+  display: grid;
+  gap: var(--mo-space-2);
+  grid-template-columns: minmax(96px, 1fr) minmax(140px, 2fr) minmax(140px, 2fr) auto;
+  align-items: center;
+
+  @media (max-width: 599.98px) {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.options-editor__add {
+  align-self: flex-start;
+}

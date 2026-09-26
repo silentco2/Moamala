@@ -1,0 +1,360 @@
+{
+  "app": {
+    "name": "Mo'amala"
+  },
+  "common": {
+    "any": "Any",
+    "anyone": "Anyone",
+    "back": "Back",
+    "retry": "Try again",
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "lang": {
+    "switchTo": "Switch language to {{language}}",
+    "en": "English",
+    "ar": "العربية"
+  },
+  "roles": {
+    "applicant": "Applicant",
+    "reviewer": "Reviewer",
+    "approver": "Approver",
+    "admin": "Admin"
+  },
+  "status": {
+    "all": "All",
+    "draft": "Draft",
+    "submitted": "Submitted",
+    "in_review": "In review",
+    "returned": "Returned",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "openMenu": "Open menu",
+    "signOut": "Sign out",
+    "catalog": "Service catalog",
+    "myRequests": "My requests",
+    "inbox": "Work inbox",
+    "types": "Request types",
+    "users": "Users and roles",
+    "reports": "Reports",
+    "audit": "Audit log",
+    "notifications": "Notifications"
+  },
+  "login": {
+    "tagline": "Government permits and approvals, in one place.",
+    "title": "Sign in",
+    "subtitle": "Pick a demo account to explore each role.",
+    "email": "Email",
+    "submit": "Sign in",
+    "failed": "We could not sign you in. Please try again."
+  },
+  "notFound": {
+    "title": "We could not find that page",
+    "message": "The link may be broken or the page may have moved.",
+    "home": "Go to my home page"
+  },
+  "catalog": {
+    "title": "Service catalog",
+    "subtitle": "Choose a government service to start a new request.",
+    "search": "Search services",
+    "loadFailed": "We could not load the services. Please try again.",
+    "empty": "No services found",
+    "emptyHint": "Try a different search term.",
+    "steps": "{{count}} approval steps",
+    "start": "Start request",
+    "howItWorks": "How it works",
+    "howStep1": "Fill in the form and attach documents.",
+    "howStep2": "Reviewers check your request.",
+    "howStep3": "Get a decision and track it live."
+  },
+  "form": {
+    "next": "Next",
+    "back": "Back",
+    "from": "From",
+    "to": "To",
+    "chooseAttachment": "Upload the file below, then choose it here"
+  },
+  "forms": {
+    "localized": {
+      "en": "English",
+      "ar": "Arabic"
+    },
+    "options": {
+      "value": "Value",
+      "labelEn": "Label (English)",
+      "labelAr": "Label (Arabic)",
+      "add": "Add option",
+      "remove": "Remove option"
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "pattern": "The format is not valid",
+    "min": "The value is too small",
+    "max": "The value is too large",
+    "minLength": "Please write at least 10 characters",
+    "dateRange": "The end date must be on or after the start date",
+    "option": "Choose one of the available options",
+    "fileSize": "The file is larger than 5 MB",
+    "fileType": "Only PDF, PNG and JPEG files are allowed",
+    "typeKey": "Use snake_case: lowercase letters, digits and underscores",
+    "fieldKey": "Use camelCase: start with a lowercase letter, letters and digits only",
+    "key": "The key format is not valid",
+    "keyTaken": "This key is already taken",
+    "duplicate": "This key is used more than once",
+    "minMax": "Min must not be greater than max",
+    "minItems": "Add at least one item",
+    "localized": "Provide both the English and the Arabic text",
+    "actionNotAllowed": "This action is not allowed at this step",
+    "ownRole": "You cannot change your own role"
+  },
+  "errors": {
+    "server": "Something went wrong on our side. Please try again.",
+    "network": "You appear to be offline.",
+    "unauthorized": "Your session has expired. Please sign in again.",
+    "forbidden": "You do not have permission to do that.",
+    "notFound": "We could not find what you were looking for.",
+    "validation": "Please correct the highlighted fields.",
+    "invalidCredentials": "No demo account uses that email.",
+    "notEditable": "This request can no longer be edited.",
+    "alreadyClaimed": "Someone else has already claimed this request.",
+    "notClaimed": "Claim the request before recording a decision.",
+    "notInInbox": "This request is no longer in your inbox."
+  },
+  "confirmLeave": {
+    "title": "Leave this page?",
+    "message": "You have unsaved changes. If you leave now they will be lost.",
+    "confirm": "Leave",
+    "cancel": "Stay"
+  },
+  "sla": {
+    "left": "left",
+    "overdue": "overdue"
+  },
+  "myRequests": {
+    "title": "My requests",
+    "subtitle": "Track the status of everything you have submitted.",
+    "new": "New request",
+    "filterLabel": "Filter by status",
+    "search": "Reference or keyword",
+    "col": {
+      "refNo": "Reference",
+      "service": "Service",
+      "status": "Status",
+      "submitted": "Submitted",
+      "sla": "Time left"
+    }
+  },
+  "submit": {
+    "title": "New request",
+    "savedAt": "Saved at {{time}}",
+    "saving": "Saving…",
+    "returnedNotice": "This request was returned for changes. Update it and submit again.",
+    "saveDraft": "Save draft",
+    "submit": "Submit request",
+    "attachments": "Attachments"
+  },
+  "upload": {
+    "dropHere": "Drag files here",
+    "limits": "PDF, PNG or JPEG, up to 5 MB each",
+    "browse": "Browse files",
+    "cancel": "Cancel upload",
+    "remove": "Remove attachment"
+  },
+  "detail": {
+    "returned": {
+      "title": "Returned for changes",
+      "action": "Edit and resubmit"
+    },
+    "approved": {
+      "title": "Approved"
+    },
+    "rejected": {
+      "title": "Rejected"
+    },
+    "progress": {
+      "title": "Waiting at {{step}}"
+    },
+    "draft": {
+      "title": "This request has not been submitted yet"
+    },
+    "attachments": "Attachments",
+    "noAttachments": "No attachments",
+    "history": "History"
+  },
+  "audit": {
+    "title": "Audit log",
+    "subtitle": "Every action taken on every request.",
+    "total": "{{count}} events",
+    "filter": {
+      "type": "Request type",
+      "step": "Step",
+      "action": "Action",
+      "actor": "Actor",
+      "from": "From",
+      "to": "To"
+    },
+    "created": "Created",
+    "draft_saved": "Draft saved",
+    "submitted": "Submitted",
+    "claimed": "Claimed",
+    "forwarded": "Forwarded",
+    "returned": "Returned for changes",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "commented": "Commented",
+    "type_created": "Request type created",
+    "type_updated": "Request type updated",
+    "role_changed": "Role changed"
+  },
+  "presence": {
+    "one": "{{name}} is also viewing this request",
+    "many": "{{count}} others are also viewing this request"
+  },
+  "inbox": {
+    "title": "Work inbox",
+    "subtitle": "Requests waiting at your step.",
+    "unassigned": "Unassigned",
+    "claim": "Claim",
+    "open": "Open",
+    "empty": "Your inbox is empty",
+    "emptyHint": "New requests for your step will appear here.",
+    "col": {
+      "refNo": "Reference",
+      "step": "Step",
+      "status": "Status",
+      "sla": "Time left",
+      "assignee": "Assignee"
+    },
+    "bulk": {
+      "selected": "{{count}} selected",
+      "comment": "Justification for all selected",
+      "approve": "Approve",
+      "reject": "Reject"
+    }
+  },
+  "decision": {
+    "title": "Your decision",
+    "claimHint": "Claim this request to record a decision.",
+    "claim": "Claim request",
+    "actionLabel": "Decision",
+    "action": {
+      "forward": "Forward to next step",
+      "return": "Return to applicant",
+      "approve": "Approve",
+      "reject": "Reject"
+    },
+    "comment": "Justification",
+    "commentHint": "At least {{min}} characters. Required unless you forward.",
+    "submit": "Record decision"
+  },
+  "types": {
+    "title": "Request types",
+    "subtitle": "Design the forms and workflows applicants use.",
+    "new": "New type",
+    "meta": "{{fields}} fields · {{steps}} steps · v{{version}}",
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "fieldTypes": {
+    "text": "Text",
+    "textarea": "Long text",
+    "number": "Number",
+    "date": "Date",
+    "dateRange": "Date range",
+    "select": "Select",
+    "checkbox": "Checkbox",
+    "file": "File"
+  },
+  "designer": {
+    "titleNew": "New request type",
+    "titleEdit": "Edit request type",
+    "subtitle": "Describe the form and the approval workflow.",
+    "save": "Save",
+    "basics": "Basics",
+    "key": "Key",
+    "keyHint": "snake_case, e.g. building_permit",
+    "active": "Active",
+    "name": "Name",
+    "description": "Description",
+    "sections": "Sections",
+    "sectionId": "Section id",
+    "sectionTitle": "Title",
+    "addSection": "Add section",
+    "fields": "Fields",
+    "dragHint": "Drag to reorder. Keyboard: focus a handle, then use Space and the arrow keys.",
+    "dragHandle": "Drag to reorder",
+    "fieldKey": "Field key",
+    "fieldType": "Type",
+    "fieldSection": "Section",
+    "fieldLabel": "Label",
+    "required": "Required",
+    "advanced": "Validation and conditions",
+    "min": "Min",
+    "max": "Max",
+    "pattern": "Pattern",
+    "visibleIfField": "Show only when field",
+    "visibleIfEquals": "equals",
+    "addField": "Add field",
+    "steps": "Workflow steps",
+    "stepId": "Step id",
+    "stepName": "Step name",
+    "stepRole": "Handled by",
+    "slaHours": "SLA (hours)",
+    "stepActions": "Allowed actions",
+    "addStep": "Add step",
+    "remove": "Remove",
+    "preview": "Live preview",
+    "previewHint": "The live preview of your form renders here"
+  },
+  "users": {
+    "title": "Users and roles",
+    "subtitle": "Change a role inline; it is saved immediately.",
+    "role": "Role",
+    "saved": "Role updated",
+    "col": {
+      "name": "Name",
+      "email": "Email",
+      "department": "Department",
+      "role": "Role"
+    }
+  },
+  "reports": {
+    "title": "Reports",
+    "generatedAt": "Updated {{time}}",
+    "slaBreaches": "SLA breaches",
+    "byType": "By service",
+    "col": {
+      "type": "Service",
+      "count": "Requests",
+      "avgHours": "Avg. hours to decision"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "open": "Notifications",
+    "viewAll": "View all notifications",
+    "markAll": "Mark all as read",
+    "all": "All",
+    "unread": "Unread",
+    "empty": "You are all caught up",
+    "kind": {
+      "request": {
+        "submitted": "{{refNo}} is waiting for review",
+        "assigned": "{{refNo}} was assigned to you",
+        "returned": "{{refNo}} was returned for changes",
+        "approved": "{{refNo}} was approved",
+        "rejected": "{{refNo}} was rejected"
+      },
+      "sla": {
+        "warning": "{{refNo}} is close to its deadline",
+        "breached": "{{refNo}} has missed its deadline"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<!-- TODO(T2.1): bind icon(), heading() and message(); hide the message paragraph when empty -->
+<section class="empty-state" data-testid="empty-state">
+  <mat-icon class="empty-state__icon" aria-hidden="true">inbox</mat-icon>
+  <h2 class="empty-state__heading" data-testid="empty-state-heading">Nothing here yet</h2>
+  <p class="empty-state__message" data-testid="empty-state-message">
+    When there is something to show, it will appear here.
+  </p>
+  <div class="empty-state__actions">
+    <ng-content />
+  </div>
+</section>

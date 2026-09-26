@@ -1,0 +1,23 @@
+<div class="mo-page">
+  <!-- i18n: types.title, types.subtitle -->
+  <mo-page-header heading="Request types" subtitle="Design the forms and workflows applicants use.">
+    <!-- TODO(T4.1): routerLink="/admin/types/new" -->
+    <!-- i18n: types.new -->
+    <a mat-flat-button moPageActions data-testid="new-type">
+      <mat-icon>add</mat-icon>
+      New type
+    </a>
+  </mo-page-header>
+
+  <!-- TODO(T4.1): @for (type of types(); track type.id), linking each row to /admin/types/:id -->
+  <mat-nav-list class="types__list">
+    <a mat-list-item data-testid="type-row">
+      <mat-icon matListItemIcon aria-hidden="true">apartment</mat-icon>
+      <span matListItemTitle>Building Permit</span>
+      <!-- i18n: types.meta (params: fields, steps, version) -->
+      <span matListItemLine>11 fields · 3 steps · v3</span>
+      <!-- i18n: types.active / types.inactive -->
+      <span matListItemMeta class="types__badge">Active</span>
+    </a>
+  </mat-nav-list>
+</div>

@@ -1,0 +1,16 @@
+// Direction-aware helpers. Layout uses logical properties everywhere, so only
+// glyphs that carry direction (arrows, chevrons) need explicit mirroring.
+
+[dir='rtl'] .mo-flip-rtl {
+  transform: scaleX(-1);
+}
+
+// Latin-only values (reference numbers, emails, IDs) stay left-to-right inside RTL text.
+.mo-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+[lang='ar'] body {
+  letter-spacing: 0;
+}

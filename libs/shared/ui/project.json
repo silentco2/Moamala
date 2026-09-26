@@ -1,0 +1,21 @@
+{
+  "name": "shared-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/ui/src",
+  "prefix": "mo",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:ui"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "buildTarget": "portal:build:development",
+        "tsConfig": "libs/shared/ui/tsconfig.spec.json",
+        "watch": false
+      }
+    }
+  }
+}

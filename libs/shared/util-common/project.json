@@ -1,0 +1,21 @@
+{
+  "name": "shared-util-common",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/util-common/src",
+  "prefix": "mo",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:util"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "buildTarget": "portal:build:development",
+        "tsConfig": "libs/shared/util-common/tsconfig.spec.json",
+        "watch": false
+      }
+    }
+  }
+}

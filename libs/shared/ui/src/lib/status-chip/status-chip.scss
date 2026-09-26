@@ -1,0 +1,31 @@
+:host {
+  --status-bg: var(--mo-status-in_review-bg);
+  --status-fg: var(--mo-status-in_review-fg);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mo-space-1);
+  padding-block: 2px;
+  padding-inline: var(--mo-space-2) var(--mo-space-3);
+  border-radius: 999px;
+  background: var(--status-bg);
+  color: var(--status-fg);
+  font: var(--mat-sys-label-medium);
+  white-space: nowrap;
+}
+
+$statuses: draft, submitted, in_review, returned, approved, rejected;
+
+@each $status in $statuses {
+  :host([data-status='#{$status}']) {
+    --status-bg: var(--mo-status-#{$status}-bg);
+    --status-fg: var(--mo-status-#{$status}-fg);
+  }
+}
+
+.status-chip__dot {
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 50%;
+  background: currentcolor;
+}

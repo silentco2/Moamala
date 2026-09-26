@@ -1,0 +1,14 @@
+.notifications__filter {
+  margin-block-end: var(--mo-space-4);
+}
+
+.notifications__list {
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: var(--mo-radius-md);
+  background: var(--mat-sys-surface);
+}
+
+.notifications__item--unread {
+  background: var(--mat-sys-surface-container);
+  font-weight: 500;
+}

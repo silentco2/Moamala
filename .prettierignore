@@ -1,9 +1,11 @@
 /dist
+/tmp
 /coverage
+/test-output
+/playwright-report
+/test-results
+/.angular
 /.nx/cache
 /.nx/workspace-data
-/.angular
 package-lock.json
 **/mockServiceWorker.js
-
-.angular

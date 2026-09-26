@@ -1,0 +1,21 @@
+{
+  "name": "review-data-access",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/review/data-access/src",
+  "prefix": "mo",
+  "projectType": "library",
+  "tags": ["scope:review", "type:data-access"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "buildTarget": "portal:build:development",
+        "tsConfig": "libs/review/data-access/tsconfig.spec.json",
+        "watch": false
+      }
+    }
+  }
+}

@@ -37,7 +37,20 @@
               "maximumError": "8kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/portal/src/mocks/browser.ts",
+              "with": "apps/portal/src/mocks/browser.prod.ts"
+            }
+          ],
+          "assets": [
+            {
+              "glob": "**/*",
+              "input": "apps/portal/public",
+              "ignore": ["mockServiceWorker.js"]
+            }
+          ]
         },
         "development": {
           "optimization": false,

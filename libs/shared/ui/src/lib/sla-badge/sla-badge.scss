@@ -1,0 +1,30 @@
+:host {
+  --sla-color: var(--mo-sla-ok);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mo-space-1);
+  color: var(--sla-color);
+  font: var(--mat-sys-label-large);
+  white-space: nowrap;
+}
+
+:host([data-state='warning']) {
+  --sla-color: var(--mo-sla-warning);
+}
+
+:host([data-state='overdue']) {
+  --sla-color: var(--mo-sla-overdue);
+
+  font-weight: 700;
+}
+
+:host([data-state='none']) {
+  display: none;
+}
+
+.sla-badge__icon {
+  inline-size: 18px;
+  block-size: 18px;
+  font-size: 18px;
+}

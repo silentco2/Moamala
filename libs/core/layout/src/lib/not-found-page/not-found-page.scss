@@ -1,0 +1,31 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mo-space-2);
+  padding-block: var(--mo-space-7);
+  text-align: center;
+}
+
+.not-found__icon {
+  inline-size: 64px;
+  block-size: 64px;
+  font-size: 64px;
+  color: var(--mat-sys-primary);
+}
+
+.not-found__code {
+  margin: 0;
+  font: var(--mat-sys-display-large);
+  color: var(--mat-sys-outline);
+}
+
+.not-found__title {
+  margin: 0;
+  font: var(--mat-sys-headline-small);
+}
+
+.not-found__message {
+  margin: 0 0 var(--mo-space-4);
+  color: var(--mat-sys-on-surface-variant);
+}

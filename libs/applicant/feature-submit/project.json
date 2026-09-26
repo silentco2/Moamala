@@ -1,0 +1,21 @@
+{
+  "name": "applicant-feature-submit",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/applicant/feature-submit/src",
+  "prefix": "mo",
+  "projectType": "library",
+  "tags": ["scope:applicant", "type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "buildTarget": "portal:build:development",
+        "tsConfig": "libs/applicant/feature-submit/tsconfig.spec.json",
+        "watch": false
+      }
+    }
+  }
+}

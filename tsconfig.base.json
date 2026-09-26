@@ -13,7 +13,34 @@
     "lib": ["es2022", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "paths": {}
+    "paths": {
+      "@moamala/shared/models": ["./libs/shared/models/src/index.ts"],
+      "@moamala/mocks": ["./libs/mocks/src/index.ts"],
+      "@moamala/shared/ui": ["./libs/shared/ui/src/index.ts"],
+      "@moamala/shared/util-forms": ["./libs/shared/util-forms/src/index.ts"],
+      "@moamala/shared/util-common": ["./libs/shared/util-common/src/index.ts"],
+      "@moamala/core/auth": ["./libs/core/auth/src/index.ts"],
+      "@moamala/core/i18n": ["./libs/core/i18n/src/index.ts"],
+      "@moamala/core/realtime": ["./libs/core/realtime/src/index.ts"],
+      "@moamala/core/layout": ["./libs/core/layout/src/index.ts"],
+      "@moamala/applicant/data-access": ["./libs/applicant/data-access/src/index.ts"],
+      "@moamala/applicant/feature-catalog": ["./libs/applicant/feature-catalog/src/index.ts"],
+      "@moamala/applicant/feature-submit": ["./libs/applicant/feature-submit/src/index.ts"],
+      "@moamala/applicant/feature-my-requests": [
+        "./libs/applicant/feature-my-requests/src/index.ts"
+      ],
+      "@moamala/requests/feature-detail": ["./libs/requests/feature-detail/src/index.ts"],
+      "@moamala/review/data-access": ["./libs/review/data-access/src/index.ts"],
+      "@moamala/review/feature-inbox": ["./libs/review/feature-inbox/src/index.ts"],
+      "@moamala/review/feature-decision": ["./libs/review/feature-decision/src/index.ts"],
+      "@moamala/admin/feature-type-designer": ["./libs/admin/feature-type-designer/src/index.ts"],
+      "@moamala/admin/feature-users": ["./libs/admin/feature-users/src/index.ts"],
+      "@moamala/admin/feature-reports": ["./libs/admin/feature-reports/src/index.ts"],
+      "@moamala/notifications/data-access": ["./libs/notifications/data-access/src/index.ts"],
+      "@moamala/notifications/feature-center": ["./libs/notifications/feature-center/src/index.ts"],
+      "@moamala/audit/feature-audit-log": ["./libs/audit/feature-audit-log/src/index.ts"],
+      "@moamala/shared/ui-dynamic-form": ["./libs/shared/ui-dynamic-form/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

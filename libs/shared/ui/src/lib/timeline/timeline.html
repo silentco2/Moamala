@@ -1,0 +1,20 @@
+<!-- TODO(T2.6): render one <li> per item with @for (track item.id); bind icon, title, actor,
+     at | date: 'medium', the tone modifier class, and the comment block only when present (@if) -->
+<ol class="timeline">
+  <li class="timeline__item timeline__item--positive" data-testid="timeline-item">
+    <span class="timeline__marker">
+      <mat-icon aria-hidden="true">send</mat-icon>
+    </span>
+    <div class="timeline__body">
+      <p class="timeline__title" data-testid="timeline-title">Submitted</p>
+      <p class="timeline__meta">
+        <span>Omar Haddad</span>
+        <span aria-hidden="true">·</span>
+        <time datetime="2026-09-20T09:30:00Z">Sep 20, 2026, 9:30 AM</time>
+      </p>
+      <blockquote class="timeline__comment" data-testid="timeline-comment">
+        Please review the attached site plan.
+      </blockquote>
+    </div>
+  </li>
+</ol>

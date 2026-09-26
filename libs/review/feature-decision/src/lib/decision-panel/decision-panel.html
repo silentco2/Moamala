@@ -1,0 +1,57 @@
+<mat-card appearance="outlined" class="decision">
+  <mat-card-header>
+    <!-- i18n: decision.title -->
+    <mat-card-title>Your decision</mat-card-title>
+    <!-- TODO(T3.5): step().name | localize: lang() -->
+    <mat-card-subtitle>Technical review</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- TODO(T3.5): when the request is not claimed by me, show this block instead of the form -->
+    <ng-template>
+      <div class="decision__claim">
+        <!-- i18n: decision.claimHint -->
+        <p>Claim this request to record a decision.</p>
+        <!-- i18n: decision.claim -->
+        <button mat-flat-button type="button" data-testid="claim">Claim request</button>
+      </div>
+    </ng-template>
+
+    <!-- TODO(T3.5): [formGroup]="form" (ngSubmit)="submit()" -->
+    <form class="decision__form" data-testid="decision-form">
+      <!-- i18n: decision.actionLabel (aria-label) -->
+      <!-- TODO(T3.5): formControlName="action"; @for over step().actions (track action) with
+           [value] and [attr.data-value] set to the action -->
+      <mat-radio-group class="decision__actions" aria-label="Decision">
+        <!-- i18n: decision.action.forward / return / approve / reject -->
+        <mat-radio-button value="forward" data-testid="decision-option" data-value="forward"
+          >Forward to next step</mat-radio-button
+        >
+        <mat-radio-button value="return" data-testid="decision-option" data-value="return"
+          >Return to applicant</mat-radio-button
+        >
+        <mat-radio-button value="reject" data-testid="decision-option" data-value="reject"
+          >Reject</mat-radio-button
+        >
+      </mat-radio-group>
+
+      <mat-form-field appearance="outline" class="decision__comment">
+        <!-- i18n: decision.comment -->
+        <mat-label>Justification</mat-label>
+        <!-- TODO(T3.5): formControlName="comment" -->
+        <textarea matInput rows="4" data-testid="decision-comment"></textarea>
+        <!-- i18n: decision.commentHint (param: min) -->
+        <mat-hint>At least 10 characters. Required unless you forward.</mat-hint>
+        <!-- TODO(T3.5): show the first error: validation.required / validation.minLength / the
+             server message key, translated -->
+        <mat-error data-testid="comment-error">This field is required</mat-error>
+      </mat-form-field>
+
+      <!-- i18n: decision.submit -->
+      <button mat-flat-button type="submit" data-testid="decision-submit">
+        <mat-icon>gavel</mat-icon>
+        Record decision
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
