@@ -12,32 +12,31 @@ guided by [`TASKS.md`](TASKS.md) and by specs that fail until you implement each
 ## Quick start
 
 ```sh
-corepack enable              # provides the pinned pnpm version
-pnpm install
-pnpm start                   # http://localhost:4200
+npm ci                       # installs the exact versions from package-lock.json
+npm start                    # http://localhost:4200
 ```
 
 On day one the app boots to a static login page backed by the mock API. Features come alive as you
 complete the tasks. **Start with T1.1** in `apps/portal/src/app/app.config.ts`:
 
 ```sh
-pnpm nx test portal --filter "T1.1"
+npx nx test portal --filter "T1.1"
 ```
 
 ## Scripts
 
-| Command                                    | What it does                                                          |
-| ------------------------------------------ | --------------------------------------------------------------------- |
-| `pnpm start`                               | Dev server with the MSW mock backend                                  |
-| `pnpm build`                               | Production build (the mock backend is excluded)                       |
-| `pnpm test`                                | All specs (they fail until the matching task is done)                 |
-| `pnpm nx test <project> --filter "T2.3"`   | Specs of one task in one project                                      |
-| `pnpm nx run-many -t test --filter "T2\."` | Every spec of a phase                                                 |
-| `pnpm lint`                                | ESLint, including Nx module boundaries                                |
-| `pnpm e2e`                                 | Playwright (you write the test in T6.5)                               |
-| `pnpm typecheck`                           | AOT-compiles every library's templates in a few seconds               |
-| `pnpm i18n:check`                          | `en.json`/`ar.json` parity and template key references                |
-| `pnpm verify`                              | lint + build + typecheck + i18n check + Prettier check (what CI runs) |
+| Command                                   | What it does                                                          |
+| ----------------------------------------- | --------------------------------------------------------------------- |
+| `npm start`                               | Dev server with the MSW mock backend                                  |
+| `npm run build`                           | Production build (the mock backend is excluded)                       |
+| `npm test`                                | All specs (they fail until the matching task is done)                 |
+| `npx nx test <project> --filter "T2.3"`   | Specs of one task in one project                                      |
+| `npx nx run-many -t test --filter "T2\."` | Every spec of a phase                                                 |
+| `npm run lint`                            | ESLint, including Nx module boundaries                                |
+| `npm run e2e`                             | Playwright (you write the test in T6.5)                               |
+| `npm run typecheck`                       | AOT-compiles every library's templates in a few seconds               |
+| `npm run i18n:check`                      | `en.json`/`ar.json` parity and template key references                |
+| `npm run verify`                          | lint + build + typecheck + i18n check + Prettier check (what CI runs) |
 
 ## Demo accounts
 
@@ -135,8 +134,11 @@ Verified against npm on 2026-09-25 and pinned:
 
 ### Deviations from the original brief
 
-- **Package manager:** pnpm. npm 10.9 crashed while resolving the Angular 22 peer tree
-  (`Cannot read properties of null (reading 'edgesOut')`).
+- **npm and the lockfile:** `npm ci` and `npm install` work with any npm 10+ as long as
+  `package-lock.json` is present. Resolving the dependency tree from scratch (deleting the
+  lockfile, or adding a package) crashes npm 10.9, the version bundled with Node 22, with
+  `Cannot read properties of null (reading 'edgesOut')`. Use npm 11 or newer for those cases:
+  `npx npm@11 install <package>`.
 - **Unit tests:** Nx's `vitest-angular` runner only supports buildable libraries, so each library
   gets a `test` target that runs Angular's built-in `@angular/build:unit-test` builder against the
   portal build configuration. Filter with `--filter "T3.4"`; the builder has no `-t` flag.
@@ -153,6 +155,6 @@ Verified against npm on 2026-09-25 and pinned:
 
 ## Continuous integration
 
-`.github/workflows/ci.yml` runs `pnpm verify` (lint, build, typecheck, i18n check, formatting). Specs are
-not part of CI on purpose: they fail until you implement each task, and `pnpm test` is your
+`.github/workflows/ci.yml` runs `npm run verify` (lint, build, typecheck, i18n check, formatting). Specs are
+not part of CI on purpose: they fail until you implement each task, and `npm test` is your
 progress meter.

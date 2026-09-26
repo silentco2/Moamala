@@ -10,11 +10,11 @@ domain types and the whole mock backend are done, so each task is pure Angular.
 3. Run the task's specs until they pass:
 
    ```sh
-   pnpm nx test <project> --filter "T2.3"          # one task in one project
-   pnpm nx run-many -t test --filter "T2\."        # a whole phase, every project
+   npx nx test <project> --filter "T2.3"          # one task in one project
+   npx nx run-many -t test --filter "T2\."        # a whole phase, every project
    ```
 
-4. Try it in the browser (`pnpm start`), then delete the TODO comments you resolved.
+4. Try it in the browser (`npm start`), then delete the TODO comments you resolved.
 5. When a phase is green, tag it: `git tag phase-2 && git push origin phase-2`.
 
 Specs are written against public behavior (inputs, outputs, DOM `data-testid`s, HTTP calls, store
@@ -54,7 +54,7 @@ state), so any correct implementation passes. They fail today on purpose.
 - **Files:** `apps/portal/src/app/app.config.ts`, `libs/core/i18n/src/lib/transloco-loader.ts`.
 - **Acceptance:** route params bind to inputs, Transloco knows `en`/`ar` and loads
   `/i18n/<lang>.json`, the root Store and Effects exist.
-- **Specs:** `pnpm nx test portal --filter "T1.1"`, `pnpm nx test core-i18n --filter "T1.1"`.
+- **Specs:** `npx nx test portal --filter "T1.1"`, `npx nx test core-i18n --filter "T1.1"`.
 - **Deviation from the brief:** `provideAnimationsAsync()` is deprecated since Angular 20.2 and
   Material 22 no longer needs it, so it is not part of this task. Use native CSS or
   `animate.enter` / `animate.leave` if you want animations.
@@ -69,7 +69,7 @@ state), so any correct implementation passes. They fail today on purpose.
   Use `apps/portal/src/app/shell.ts` as the component of the signed-in parent route.
 - **Acceptance:** anonymous users land on `/login`; each role lands on its home; other roles are
   kept out of `/admin`; unknown URLs show the 404 page; `app.html` renders `<router-outlet />`.
-- **Specs:** `pnpm nx test core-auth --filter "T1.2"`, `pnpm nx test portal --filter "T1.2"`.
+- **Specs:** `npx nx test core-auth --filter "T1.2"`, `npx nx test portal --filter "T1.2"`.
 
 ### T1.3 AuthStore and login
 
@@ -81,7 +81,7 @@ state), so any correct implementation passes. They fail today on purpose.
   so two tabs can be two users), role flags are computed,
   logout clears everything and goes to `/login`, a corrupt stored session is ignored; the login
   page lists demo users, signs in, opens the role home and shows an error on failure.
-- **Specs:** `pnpm nx test core-auth --filter "T1.3"`.
+- **Specs:** `npx nx test core-auth --filter "T1.3"`.
 
 ### T1.4 HTTP interceptors
 
@@ -89,7 +89,7 @@ state), so any correct implementation passes. They fail today on purpose.
 - **Concepts:** `HttpInterceptorFn`, `HttpContextToken`, RxJS `catchError` and `retry({ delay })`.
 - **Files:** `libs/core/auth/src/lib/interceptors/*`, registration in `app.config.ts`.
 - **Acceptance:** see the TODOs; the retry spec uses fake timers to check the exact delays.
-- **Specs:** `pnpm nx test core-auth --filter "T1.4"`, `pnpm nx test portal --filter "T1.4"`
+- **Specs:** `npx nx test core-auth --filter "T1.4"`, `npx nx test portal --filter "T1.4"`
   (**Needs** T1.1 and T1.3).
 
 ### T1.5 Language and RTL
@@ -102,7 +102,7 @@ state), so any correct implementation passes. They fail today on purpose.
   `i18n:` comments in the layout, login and 404 templates.
 - **Acceptance:** switching sets `lang`/`dir` on `<html>`, persists under `moamala.lang`, the
   sidenav and menus flip in Arabic, and localized values follow the active language.
-- **Specs:** `pnpm nx run-many -t test --filter "T1.5"`.
+- **Specs:** `npx nx run-many -t test --filter "T1.5"`.
 
 ### T1.6 Layout shell
 
@@ -113,7 +113,7 @@ state), so any correct implementation passes. They fail today on purpose.
   `libs/shared/util-common/src/lib/has-role.directive.ts`, the `CURRENT_ROLE` provider in
   `app.config.ts`.
 - **Acceptance:** nav items match the role; handsets get an overlay drawer and a menu button.
-- **Specs:** `pnpm nx run-many -t test --filter "T1.6"`.
+- **Specs:** `npx nx run-many -t test --filter "T1.6"`.
 
 ## Phase 2: Applicant
 
@@ -123,8 +123,8 @@ state), so any correct implementation passes. They fail today on purpose.
 - **Concepts:** `httpResource`, `computed`, `@if`/`@for`, `@defer (on viewport)`, inputs.
 - **Files:** `libs/applicant/feature-catalog/src/lib/catalog-page/*`,
   `libs/shared/ui/src/lib/page-header/*`, `libs/shared/ui/src/lib/empty-state/*`.
-- **Specs:** `pnpm nx test applicant-feature-catalog --filter "T2.1"`,
-  `pnpm nx test shared-ui --filter "T2.1"` (**Needs** T1.5 for localized names).
+- **Specs:** `npx nx test applicant-feature-catalog --filter "T2.1"`,
+  `npx nx test shared-ui --filter "T2.1"` (**Needs** T1.5 for localized names).
 
 ### T2.2 Dynamic form renderer
 
@@ -136,8 +136,8 @@ state), so any correct implementation passes. They fail today on purpose.
   `libs/applicant/feature-submit/src/lib/submit-page/*`.
 - **Acceptance:** conditional fields appear/disappear and never block submission while hidden;
   date ranges ending before they start are rejected; 422 errors from the API show per field.
-- **Specs:** `pnpm nx test shared-util-forms --filter "T2.2"`,
-  `pnpm nx test shared-ui-dynamic-form --filter "T2.2"` (**Needs** T1.5).
+- **Specs:** `npx nx test shared-util-forms --filter "T2.2"`,
+  `npx nx test shared-ui-dynamic-form --filter "T2.2"` (**Needs** T1.5).
 - **Why a separate lib:** the renderer is reused by the admin live preview (T4.4), and features
   may not import other features, so it lives in `shared/ui-dynamic-form` instead of
   `applicant/feature-submit`.
@@ -150,7 +150,7 @@ state), so any correct implementation passes. They fail today on purpose.
 - **Files:** `libs/applicant/data-access/src/lib/{applicant-api,applicant.store}.ts`,
   `libs/applicant/feature-submit/src/lib/{submit-page/*,unsaved-changes.guard.ts}`,
   `libs/shared/ui/src/lib/confirm-dialog/*`.
-- **Specs:** `pnpm nx run-many -t test --filter "T2.3"`.
+- **Specs:** `npx nx run-many -t test --filter "T2.3"`.
 
 ### T2.4 Uploads
 
@@ -159,7 +159,7 @@ state), so any correct implementation passes. They fail today on purpose.
 - **Files:** `libs/shared/util-forms/src/lib/file-validation.ts`,
   `libs/shared/ui/src/lib/file-dropzone/*`, `libs/applicant/data-access/src/lib/upload.service.ts`,
   the attachment methods of `applicant.store.ts`, the attachments card of the submit page.
-- **Specs:** `pnpm nx run-many -t test --filter "T2.4"`.
+- **Specs:** `npx nx run-many -t test --filter "T2.4"`.
 - **Note:** MSW answers uploads without real network progress, so the bar may jump straight to
   done in the browser; the spec drives progress events explicitly.
 
@@ -171,7 +171,7 @@ state), so any correct implementation passes. They fail today on purpose.
 - **Files:** `libs/applicant/feature-my-requests/src/lib/my-requests-page/*`,
   `libs/shared/util-common/src/lib/sla-countdown.pipe.ts`, `libs/shared/ui/src/lib/status-chip/*`,
   `loadMyRequests` in `applicant.store.ts`.
-- **Specs:** `pnpm nx run-many -t test --filter "T2.5"`.
+- **Specs:** `npx nx run-many -t test --filter "T2.5"`.
 
 ### T2.6 Request detail and timeline
 
@@ -181,8 +181,8 @@ state), so any correct implementation passes. They fail today on purpose.
 - **Files:** `libs/requests/feature-detail/src/lib/{request-detail-api,request-detail.resolver}.ts`,
   `libs/requests/feature-detail/src/lib/request-detail-page/*`, `libs/shared/ui/src/lib/timeline/*`,
   the returned notice in the submit page.
-- **Specs:** `pnpm nx test requests-feature-detail --filter "T2.6"`,
-  `pnpm nx test shared-ui --filter "T2.6"` (**Needs** T1.5, T1.6).
+- **Specs:** `npx nx test requests-feature-detail --filter "T2.6"`,
+  `npx nx test shared-ui --filter "T2.6"` (**Needs** T1.5, T1.6).
 
 ## Phase 3: Reviewer and approver (classic NgRx Store)
 
@@ -191,26 +191,26 @@ state), so any correct implementation passes. They fail today on purpose.
 - **Goal:** the inbox slice with `createActionGroup` and an `@ngrx/entity` adapter, including an
   optimistic decision with rollback.
 - **Files:** `libs/review/data-access/src/lib/{inbox.actions,inbox.reducer}.ts`.
-- **Specs:** `pnpm nx test review-data-access --filter "T3.1"`.
+- **Specs:** `npx nx test review-data-access --filter "T3.1"`.
 
 ### T3.2 Selectors
 
 - **Goal:** memoized selectors and a single view-model selector.
 - **Files:** `libs/review/data-access/src/lib/inbox.selectors.ts`.
-- **Specs:** `pnpm nx test review-data-access --filter "T3.2"` (**Needs** T3.1).
+- **Specs:** `npx nx test review-data-access --filter "T3.2"` (**Needs** T3.1).
 
 ### T3.3 Effects
 
 - **Goal:** load, claim, decide and bulk-decide effects, plus `provideReviewState()`.
 - **Concepts:** functional effects, flattening operators, error isolation, `concatLatestFrom`.
 - **Files:** `libs/review/data-access/src/lib/{inbox.effects,review-api,provide-review-state}.ts`.
-- **Specs:** `pnpm nx test review-data-access --filter "T3.3"`.
+- **Specs:** `npx nx test review-data-access --filter "T3.3"`.
 
 ### T3.4 Inbox page
 
 - **Goal:** `MatTable` with sort, paginator, selection and approver-only bulk decisions.
 - **Files:** `libs/review/feature-inbox/src/lib/inbox-page/*`.
-- **Specs:** `pnpm nx test review-feature-inbox --filter "T3.4"` (**Needs** T3.1, T3.2, T1.6).
+- **Specs:** `npx nx test review-feature-inbox --filter "T3.4"` (**Needs** T3.1, T3.2, T1.6).
 
 ### T3.5 Decision panel
 
@@ -218,13 +218,13 @@ state), so any correct implementation passes. They fail today on purpose.
   422 feedback copied onto the controls.
 - **Files:** `libs/review/feature-decision/src/lib/decision-panel/*`; add the `actions` outlet to
   the detail page and its child route in `app.routes.ts`.
-- **Specs:** `pnpm nx test review-feature-decision --filter "T3.5"` (**Needs** T3.1, T3.2).
+- **Specs:** `npx nx test review-feature-decision --filter "T3.5"` (**Needs** T3.1, T3.2).
 
 ### T3.6 SLA badge
 
 - **Goal:** a ticking countdown with ok / warning / overdue states and clean teardown.
 - **Files:** `libs/shared/ui/src/lib/sla-badge/*`.
-- **Specs:** `pnpm nx test shared-ui --filter "T3.6"` (**Needs** T2.5).
+- **Specs:** `npx nx test shared-ui --filter "T3.6"` (**Needs** T2.5).
 
 ## Phase 4: Admin (Reactive Forms deep dive and legacy patterns)
 
@@ -232,33 +232,33 @@ state), so any correct implementation passes. They fail today on purpose.
 
 - **Goal:** a nested `FormArray` form for sections, fields and steps with CDK drag-and-drop.
 - **Files:** `libs/admin/feature-type-designer/src/lib/{request-types-api.ts,type-list-page/*,type-designer-page/*}`.
-- **Specs:** `pnpm nx test admin-feature-type-designer --filter "T4.1"` (the save spec **Needs** T4.3).
+- **Specs:** `npx nx test admin-feature-type-designer --filter "T4.1"` (the save spec **Needs** T4.3).
 
 ### T4.2 ControlValueAccessors
 
 - **Goal:** `mo-localized-text-input` (`{ en, ar }`) and `mo-options-list-editor` (`FieldOption[]`).
 - **Files:** `libs/shared/util-forms/src/lib/{localized-text-input,options-list-editor}/*`.
-- **Specs:** `pnpm nx test shared-util-forms --filter "T4.2"`.
+- **Specs:** `npx nx test shared-util-forms --filter "T4.2"`.
 
 ### T4.3 Validators
 
 - **Goal:** sync key validators, a cross-field `min <= max` group validator and a debounced async
   "key is available" validator.
 - **Files:** `libs/shared/util-forms/src/lib/designer-validators.ts`, their use in the designer.
-- **Specs:** `pnpm nx run-many -t test --filter "T4.3"`.
+- **Specs:** `npx nx run-many -t test --filter "T4.3"`.
 
 ### T4.4 Live preview
 
 - **Goal:** feed the designer's value into your T2.2 renderer. If the preview works, the schema
   contract between admin and applicant holds.
-- **Specs:** `pnpm nx test admin-feature-type-designer --filter "T4.4"` (**Needs** T2.2, T4.2).
+- **Specs:** `npx nx test admin-feature-type-designer --filter "T4.4"` (**Needs** T2.2, T4.2).
 
 ### T4.5 Users admin
 
 - **Goal:** inline role editing with optimistic updates and rollback, in a component-scoped
   SignalStore.
 - **Files:** `libs/admin/feature-users/src/lib/*`.
-- **Specs:** `pnpm nx test admin-feature-users --filter "T4.5"`.
+- **Specs:** `npx nx test admin-feature-users --filter "T4.5"`.
 
 ### T4.6 Legacy module
 
@@ -266,15 +266,15 @@ state), so any correct implementation passes. They fail today on purpose.
   `*ngIf`/`*ngFor`, the `async` pipe, explicit `OnPush`, manual `subscribe`/`unsubscribe`.
 - **Files:** `libs/admin/feature-reports/src/lib/*`. ESLint's standalone and control-flow rules
   are switched off for this lib only.
-- **Specs:** `pnpm nx test admin-feature-reports --filter "T4.6"`.
+- **Specs:** `npx nx test admin-feature-reports --filter "T4.6"`.
 - **Then write your migration notes below.** On a throwaway branch, run Angular's migrations and
   compare the result with your hand-written version:
 
   ```sh
-  pnpm nx g @angular/core:standalone --path libs/admin/feature-reports --mode convert-to-standalone
-  pnpm nx g @angular/core:standalone --path libs/admin/feature-reports --mode prune-ng-modules
-  pnpm nx g @angular/core:control-flow --path libs/admin/feature-reports
-  pnpm nx g @angular/core:inject --path libs/admin/feature-reports
+  npx nx g @angular/core:standalone --path libs/admin/feature-reports --mode convert-to-standalone
+  npx nx g @angular/core:standalone --path libs/admin/feature-reports --mode prune-ng-modules
+  npx nx g @angular/core:control-flow --path libs/admin/feature-reports
+  npx nx g @angular/core:inject --path libs/admin/feature-reports
   ```
 
   #### My T4.6 migration notes
@@ -289,7 +289,7 @@ state), so any correct implementation passes. They fail today on purpose.
   while a session exists.
 - **Files:** `libs/core/realtime/src/lib/{realtime.service,provide-realtime-connection}.ts`,
   `app.config.ts`.
-- **Specs:** `pnpm nx test core-realtime --filter "T5.1"`.
+- **Specs:** `npx nx test core-realtime --filter "T5.1"`.
 
 ### T5.2 Routing events
 
@@ -297,21 +297,21 @@ state), so any correct implementation passes. They fail today on purpose.
   notifications store (SignalStore hooks).
 - **Files:** `realtimeUpdates$` and the `Request Updated/Assigned` reducer cases in
   `review/data-access`, `withHooks` in `applicant.store.ts` and `notifications.store.ts`.
-- **Specs:** `pnpm nx run-many -t test --filter "T5.2"` (**Needs** T5.1 for the browser; the
+- **Specs:** `npx nx run-many -t test --filter "T5.2"` (**Needs** T5.1 for the browser; the
   specs fake the service).
 
 ### T5.3 Notification center
 
 - **Goal:** unread badge, mark read / mark all read, toasts for high-priority kinds.
 - **Files:** `libs/notifications/data-access/src/lib/*`, `libs/notifications/feature-center/src/lib/*`.
-- **Specs:** `pnpm nx run-many -t test --filter "T5.3"`.
+- **Specs:** `npx nx run-many -t test --filter "T5.3"`.
 
 ### T5.4 Presence
 
 - **Goal:** "Sara is also viewing this request". Open the same request in two tabs as two users
   (see the README) to see it live.
 - **Files:** `libs/requests/feature-detail/src/lib/presence-indicator/*`.
-- **Specs:** `pnpm nx test requests-feature-detail --filter "T5.4"`.
+- **Specs:** `npx nx test requests-feature-detail --filter "T5.4"`.
 
 ## Phase 6: Quality and polish
 
@@ -320,7 +320,7 @@ state), so any correct implementation passes. They fail today on purpose.
 - **Goal:** server-side filters, infinite loading in a CDK virtual scroll viewport, and a step
   filter that resets with `linkedSignal` when the request type changes.
 - **Files:** `libs/audit/feature-audit-log/src/lib/*`.
-- **Specs:** `pnpm nx test audit-feature-audit-log --filter "T6.1"`.
+- **Specs:** `npx nx test audit-feature-audit-log --filter "T6.1"`.
 
 ### T6.2 Performance
 
@@ -330,12 +330,12 @@ state), so any correct implementation passes. They fail today on purpose.
   `trackBy`/`*cdkVirtualFor`.
 - Add `@defer` where it pays: below-the-fold sections, the designer's live preview, heavy dialogs.
   Try `on viewport`, `on idle` and `prefetch on hover`.
-- Run `pnpm build` and read the budget report (`apps/portal/project.json` → `budgets`). Keep the
+- Run `npm run build` and read the budget report (`apps/portal/project.json` → `budgets`). Keep the
   initial bundle under the 500 kB warning; explain any lazy chunk over 100 kB.
 
 ### T6.3 Accessibility
 
-- Implement `moAutofocus` (spec: `pnpm nx test shared-util-common --filter "T6.3"`).
+- Implement `moAutofocus` (spec: `npx nx test shared-util-common --filter "T6.3"`).
 - Focus `<main>` and announce the page title with `LiveAnnouncer` after each navigation (TODO in
   `layout.ts`).
 - Announce async results ("12 requests loaded", "Decision saved") with `LiveAnnouncer`.
@@ -351,7 +351,7 @@ outputs) and one that talks to a store or HTTP. No pre-written specs exist for t
 
 Write one Playwright test in `apps/portal-e2e/src/`: an applicant submits a request in one browser
 context, an approver approves it in a second context, and the applicant sees the new status
-without reloading. Run it with `pnpm e2e`. Tip: call `POST /api/dev/reset` first so the data is
+without reloading. Run it with `npm run e2e`. Tip: call `POST /api/dev/reset` first so the data is
 predictable.
 
 ## Phase 7: .NET backend (separate brief)
